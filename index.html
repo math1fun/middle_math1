@@ -745,10 +745,10 @@
           <span class="widget-val" id="temp-t-val">+3</span>
         </div>
         <svg viewBox="0 0 260 90" id="temp-svg">
-          <rect x="20" y="35" width="200" height="16" rx="8" fill="#F0F2F5" stroke="#16233B" stroke-width="1.4"/>
-          <rect id="temp-fill" x="120" y="35" width="0" height="16" rx="8" fill="#7C3AED"/>
-          <circle cx="20" cy="43" r="12" fill="#F0F2F5" stroke="#16233B" stroke-width="1.4"/>
-          <circle id="temp-bulb" cx="20" cy="43" r="8" fill="#7C3AED"/>
+          <rect x="30" y="35" width="200" height="16" rx="8" fill="#F0F2F5" stroke="#16233B" stroke-width="1.4"/>
+          <rect id="temp-fill" x="130" y="35" width="0" height="16" rx="8" fill="#7C3AED"/>
+          <circle cx="130" cy="43" r="12" fill="#F0F2F5" stroke="#16233B" stroke-width="1.4"/>
+          <circle id="temp-bulb" cx="130" cy="43" r="8" fill="#7C3AED"/>
         </svg>
         <div class="widget-result" id="temp-result"></div>
       </div>
@@ -3351,8 +3351,8 @@ window.GEO = (function(){
     const v=+t.value;
     tVal.textContent = v>0? '+'+v : v;
     const color = v>0? '#EA580C' : v<0? '#2563EB' : '#6B7A90';
-    const w = Math.abs(v)*9;
-    fill.setAttribute('x', v>=0? 20 : 20-w);
+    const w = Math.abs(v)*10;
+    fill.setAttribute('x', v>=0? 130 : 130-w);
     fill.setAttribute('width', w); fill.setAttribute('fill', color); bulb.setAttribute('fill', color);
     const label = v>0? '양수':v<0?'음수':'영(0)';
     res.innerHTML = `${tVal.textContent}℃ → <span class="big">${label}</span>`;
