@@ -1,0 +1,3760 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중학교 1학년 수학 개념 한눈에 총정리</title>
+<style>
+  :root{
+    --bg:#F6F8F7; --panel:#FFFFFF; --ink:#16233B; --body:#33415C; --muted:#6B7A90;
+    --line:#DCE6E2; --line-soft:#E9EFED; --amber:#B45309; --amber-soft:#FEF3E2;
+    --c1:#2563EB; --c1-soft:#EAF1FE;
+    --c2:#7C3AED; --c2-soft:#F1EBFE;
+    --c3:#059669; --c3-soft:#E7F6EF;
+    --c4:#0D9488; --c4-soft:#E4F5F3;
+    --c5:#EA580C; --c5-soft:#FDEDE2;
+    --c6:#DB2777; --c6-soft:#FCE7F1;
+    --c7:#4F46E5; --c7-soft:#EEF0FE;
+    --c8:#0891B2; --c8-soft:#E3F4F8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:"Noto Sans KR","Malgun Gothic",system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--body); line-height:1.62;}
+  .math{font-family:"Georgia","Times New Roman",serif; font-style:italic;}
+
+  .hero{position:relative; background:linear-gradient(135deg,#101B30 0%,#16233B 55%,#2A0E30 100%); color:#F3F6F5; padding:56px 24px 44px; overflow:hidden;}
+  .hero::before{content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:34px 34px; mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.15));}
+  .hero-inner{position:relative; max-width:1180px; margin:0 auto;}
+  .hero-eyebrow{font-size:13px; color:#B8D9F5; letter-spacing:.02em; margin:0 0 10px;}
+  .hero h1{font-size:clamp(26px,4vw,38px); margin:0 0 12px; font-weight:700; letter-spacing:-0.01em;}
+  .hero p{margin:0; color:#B9C6D9; font-size:15px; max-width:640px;}
+
+  .layout{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:250px 1fr; gap:0; align-items:start;}
+  @media (max-width:900px){.layout{grid-template-columns:1fr;}}
+
+  .sidebar{position:sticky; top:0; height:100vh; overflow-y:auto; padding:22px 14px 40px 24px; border-right:1px solid var(--line); background:var(--bg);}
+  @media (max-width:900px){.sidebar{position:static; height:auto; overflow:visible; border-right:none; border-bottom:1px solid var(--line); padding:16px 16px 8px;}}
+  .sidebar-title{font-size:11px; color:var(--muted); letter-spacing:.06em; margin:4px 0 12px; text-transform:uppercase;}
+  .toc-chapter{margin-bottom:6px;}
+  .toc-chapter-head{display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:700; color:var(--ink); padding:9px 10px; border-radius:8px;}
+  .toc-dot{width:8px; height:8px; border-radius:50%; flex:0 0 auto; transition:transform .25s ease;}
+  .toc-chapter-head:hover .toc-dot{ animation:popDot .5s ease; }
+  .toc-list{list-style:none; margin:2px 0 10px; padding:0 0 0 26px;}
+  .toc-list li{margin:1px 0;}
+  .toc-list a{display:block; font-size:12.5px; color:var(--muted); text-decoration:none; padding:4px 8px; border-radius:6px; border-left:2px solid transparent; transition:background .2s ease, color .2s ease, padding-left .2s ease;}
+  .toc-list a:hover{background:var(--line-soft); color:var(--ink); padding-left:11px;}
+  .toc-list a.active{color:var(--ink); font-weight:700; background:var(--line-soft);}
+
+  main{padding:36px 28px 100px;}
+  @media (max-width:600px){main{padding:26px 16px 80px;}}
+
+  .chapter-banner{display:flex; align-items:baseline; gap:12px; margin:52px 0 22px; padding-top:6px;}
+  .chapter-banner:first-of-type{margin-top:8px;}
+  .chapter-num{font-size:13px; font-weight:700; color:#fff; padding:4px 10px; border-radius:20px;}
+  .chapter-banner h2{margin:0; font-size:21px; color:var(--ink); font-weight:700;}
+  .chapter-sub{margin:0 0 26px; color:var(--muted); font-size:13.5px;}
+
+  .concept{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:16px; scroll-margin-top:18px;}
+  .concept-head{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
+  .concept-num{font-size:12px; font-weight:800; color:#fff; width:28px; height:28px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex:0 0 auto; transition:transform .25s ease;}
+  .concept:hover .concept-num{ transform:scale(1.1) rotate(-4deg); }
+  .concept h3{margin:0; font-size:16.5px; color:var(--ink); font-weight:700;}
+
+  .def{font-size:14.5px; color:var(--body);}
+  .def p{margin:0 0 8px;}
+  .def ul{margin:6px 0 8px; padding-left:20px;}
+  .def li{margin:3px 0;}
+
+  .figure{margin:12px 0 16px; padding:16px; background:#FBFDFC; border:1px solid var(--line); border-radius:10px; display:flex; flex-direction:column; align-items:center;}
+  .figure svg{max-width:100%; height:auto; display:block;}
+  .figure-cap{margin-top:8px; font-size:12px; color:var(--muted); text-align:center;}
+
+  .formula{background:var(--soft,#F3F6F5); border-left:3px solid var(--accent,#999); border-radius:0 8px 8px 0; padding:10px 14px; margin:10px 0; font-size:14.5px; overflow-x:auto;}
+  .formula .math{color:var(--ink);}
+
+  table.dtable{width:100%; border-collapse:collapse; margin:10px 0; font-size:13.5px;}
+  table.dtable th, table.dtable td{border:1px solid var(--line); padding:7px 10px; text-align:center;}
+  table.dtable th{background:var(--line-soft); color:var(--ink); font-weight:700;}
+
+  details.example{margin-top:12px; border:1px dashed var(--line); border-radius:10px; background:#FBFDFC; padding:0 14px;}
+  details.example summary{cursor:pointer; list-style:none; padding:11px 0; font-size:13.5px; font-weight:700; color:var(--accent,#333); display:flex; align-items:center; gap:6px;}
+  details.example summary::before{content:"▸"; display:inline-block; transition:transform .15s ease; font-size:11px;}
+  details.example[open] summary::before{transform:rotate(90deg);}
+  .example-body{padding:0 0 14px; font-size:13.8px; color:var(--body);}
+  .example-body p{margin:6px 0;}
+
+  .tip{margin-top:10px; font-size:12.8px; padding:9px 12px; background:var(--amber-soft); color:#7C4A0A; border-radius:8px; border-left:3px solid var(--amber);}
+
+  .ch1 .concept-num,.ch1 .toc-dot,.ch1 .chapter-num{background:var(--c1);} .ch1 .formula{--soft:var(--c1-soft); --accent:var(--c1);} .ch1 details.example summary{--accent:var(--c1); color:var(--c1);} .ch1 .concept{border-top:3px solid var(--c1);}
+  .ch2 .concept-num,.ch2 .toc-dot,.ch2 .chapter-num{background:var(--c2);} .ch2 .formula{--soft:var(--c2-soft); --accent:var(--c2);} .ch2 details.example summary{--accent:var(--c2); color:var(--c2);} .ch2 .concept{border-top:3px solid var(--c2);}
+  .ch3 .concept-num,.ch3 .toc-dot,.ch3 .chapter-num{background:var(--c3);} .ch3 .formula{--soft:var(--c3-soft); --accent:var(--c3);} .ch3 details.example summary{--accent:var(--c3); color:var(--c3);} .ch3 .concept{border-top:3px solid var(--c3);}
+  .ch4 .concept-num,.ch4 .toc-dot,.ch4 .chapter-num{background:var(--c4);} .ch4 .formula{--soft:var(--c4-soft); --accent:var(--c4);} .ch4 details.example summary{--accent:var(--c4); color:var(--c4);} .ch4 .concept{border-top:3px solid var(--c4);}
+  .ch5 .concept-num,.ch5 .toc-dot,.ch5 .chapter-num{background:var(--c5);} .ch5 .formula{--soft:var(--c5-soft); --accent:var(--c5);} .ch5 details.example summary{--accent:var(--c5); color:var(--c5);} .ch5 .concept{border-top:3px solid var(--c5);}
+  .ch6 .concept-num,.ch6 .toc-dot,.ch6 .chapter-num{background:var(--c6);} .ch6 .formula{--soft:var(--c6-soft); --accent:var(--c6);} .ch6 details.example summary{--accent:var(--c6); color:var(--c6);} .ch6 .concept{border-top:3px solid var(--c6);}
+  .ch7 .concept-num,.ch7 .toc-dot,.ch7 .chapter-num{background:var(--c7);} .ch7 .formula{--soft:var(--c7-soft); --accent:var(--c7);} .ch7 details.example summary{--accent:var(--c7); color:var(--c7);} .ch7 .concept{border-top:3px solid var(--c7);}
+  .ch8 .concept-num,.ch8 .toc-dot,.ch8 .chapter-num{background:var(--c8);} .ch8 .formula{--soft:var(--c8-soft); --accent:var(--c8);} .ch8 details.example summary{--accent:var(--c8); color:var(--c8);} .ch8 .concept{border-top:3px solid var(--c8);}
+
+  footer{text-align:center; color:var(--muted); font-size:12.5px; padding:24px; border-top:1px solid var(--line);}
+
+  .mobile-jump{display:none; gap:8px; padding:10px 16px; overflow-x:auto; border-bottom:1px solid var(--line); background:var(--panel);}
+  .mobile-jump a{flex:0 0 auto; font-size:12px; font-weight:700; color:#fff; padding:7px 11px; border-radius:20px; text-decoration:none; white-space:nowrap; transition:transform .15s ease;}
+  .mobile-jump a:active{ transform:scale(.95); }
+  @media (max-width:900px){.mobile-jump{display:flex;}}
+
+  /* ---------- ANIMATED INTRO (landing) ---------- */
+  .intro-hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; position:relative; overflow:hidden;
+    padding:60px 24px;
+    background:linear-gradient(-45deg,#0B1220,#1B1035,#0B1220,#152A4A);
+    background-size:400% 400%;
+    animation:gradientShift 22s ease infinite;
+    color:#F3F6F5;
+  }
+  .intro-hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(255,255,255,.10) 1.4px, transparent 1.4px);
+    background-size:28px 28px;
+    opacity:.5;
+    animation:drift 55s linear infinite;
+  }
+  .intro-content{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; }
+  .float-layer{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+  .float-symbol{
+    position:absolute; font-family:Georgia,"Times New Roman",serif; font-style:italic;
+    color:rgba(255,255,255,.16); user-select:none; will-change:transform;
+  }
+  .float-symbol.accent{ color:rgba(143,217,198,.18); }
+  .float-symbol.accent2{ color:rgba(217,184,245,.16); }
+  .float-shape{ position:absolute; border:1.5px solid rgba(255,255,255,.14); pointer-events:none; will-change:transform; }
+  .fs-a{ animation:floatA 26s ease-in-out infinite; }
+  .fs-b{ animation:floatB 32s ease-in-out infinite; }
+  .fs-c{ animation:floatC 29s ease-in-out infinite; }
+  .intro-badge{
+    position:relative; display:inline-block; font-size:12.5px; letter-spacing:.06em;
+    padding:6px 16px; border-radius:999px; background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2); color:#B8D9F5; margin-bottom:26px;
+    opacity:0; animation:fadeInUp 1.3s ease .2s forwards;
+  }
+  .intro-hero h1{
+    position:relative; font-size:clamp(28px,5vw,46px); font-weight:800; margin:0 0 20px;
+    line-height:1.3;
+    opacity:0;
+    background:linear-gradient(90deg,#fff,#B8D9F5,#D9B8F5,#8FD9C6,#fff);
+    background-size:300% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:fadeInUp 1.4s ease .55s forwards, shimmerText 8s linear infinite 2.2s;
+  }
+  .intro-hero .intro-sub{
+    position:relative; font-size:15.5px; color:#B9C6D9; max-width:540px; margin:0 0 42px;
+    opacity:0; animation:fadeInUp 1.3s ease 1s forwards;
+  }
+  .quote-wrap{ position:relative; min-height:170px; width:380px; max-width:90vw; }
+  .rainbow{
+    position:absolute; left:50%; bottom:-6px; width:380px; height:190px;
+    transform:translate(-50%, 26px) scale(.92);
+    opacity:0; z-index:0; pointer-events:none; overflow:visible;
+    animation:rainbowRise 7s ease-in-out infinite 2.6s;
+  }
+  .quote-box{
+    position:relative; z-index:1; max-width:580px; padding:32px 34px 28px; border-radius:18px;
+    background:rgba(20,16,35,.55); border:1px solid rgba(255,255,255,.16);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    opacity:0; animation:fadeInUp 1.5s ease 1.5s forwards;
+  }
+  .quote-box .quote-mark{ font-size:48px; line-height:1; color:#8FD9C6; font-family:Georgia,serif; margin-bottom:2px; opacity:.85;}
+  .quote-box blockquote{ font-size:19px; line-height:1.55; color:#F3F6F5; margin:0 0 10px; font-weight:700;}
+  .quote-box cite{ display:block; font-size:13px; color:#B8D9F5; font-weight:700; font-style:normal; letter-spacing:.02em;}
+  .scroll-cue{
+    position:relative; margin-top:46px; opacity:0; text-decoration:none; cursor:pointer;
+    color:#B9C6D9; font-size:12.5px; display:flex; flex-direction:column; align-items:center; gap:7px;
+    animation:fadeIn 1.3s ease 2.3s forwards, bounce 2.4s ease-in-out infinite 3.6s;
+  }
+  .scroll-cue svg{ width:20px; height:20px; }
+  @keyframes gradientShift{ 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+  @keyframes drift{ from{background-position:0 0;} to{background-position:220px 220px;} }
+  @keyframes shimmerText{ 0%{background-position:0% 50%;} 100%{background-position:300% 50%;} }
+  @keyframes fadeInUp{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+  @keyframes bounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
+  @keyframes floatA{ 0%,100%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(16px,-22px) rotate(9deg);} }
+  @keyframes floatB{ 0%,100%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(-18px,16px) rotate(-11deg);} }
+  @keyframes floatC{ 0%,100%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(12px,18px) rotate(7deg);} }
+  @keyframes rainbowRise{
+    0%{ opacity:0; transform:translate(-50%, 26px) scale(.92); }
+    28%{ opacity:1; transform:translate(-50%, 0) scale(1); }
+    72%{ opacity:1; transform:translate(-50%, 0) scale(1); }
+    100%{ opacity:0; transform:translate(-50%, 12px) scale(.95); }
+  }
+
+  /* scroll-reveal for content cards (JS adds .reveal, then .in-view on intersect) */
+  /* (중2 효과로 교체됨: 아래 "중2 효과 이식" 블록 참고) */  /* ---------- INTERACTIVE WIDGETS ---------- */
+  .widget{
+    margin-top:14px; padding:18px 20px; border-radius:12px;
+    background:linear-gradient(135deg, var(--soft,#F3F6F5) 0%, #fff 65%);
+    border:1.5px solid var(--accent,#999);
+    position:relative;
+  }
+  .widget-label{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11.5px; font-weight:800; color:#fff; background:var(--accent,#999);
+    padding:3px 10px; border-radius:20px; margin-bottom:12px; letter-spacing:.01em;
+  }
+  .widget-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:9px 0; }
+  .widget-row label{ font-size:13px; color:var(--body); font-weight:700; min-width:64px; flex:0 0 auto;}
+  .widget input[type=range]{ flex:1; min-width:110px; accent-color:var(--accent,#999); cursor:pointer;}
+  .widget input[type=number], .widget input[type=text]{
+    width:76px; padding:6px 8px; border:1.5px solid var(--line); border-radius:8px; font-size:14px; text-align:center; font-weight:700; color:var(--ink);
+  }
+  .widget button{
+    padding:7px 15px; border-radius:8px; border:none; background:var(--accent,#999); color:#fff;
+    font-size:12.5px; font-weight:700; cursor:pointer;
+    box-shadow:0 3px 0 rgba(22,35,59,.22); transition:transform .1s ease, box-shadow .1s ease;
+  }
+  .widget button:active{ transform:translateY(2px); box-shadow:0 1px 0 rgba(22,35,59,.22); }
+  .widget button.ghost{ background:#fff; color:var(--accent,#999); border:1.5px solid var(--accent,#999); box-shadow:0 3px 0 var(--line); }
+  .widget button:disabled{ opacity:.45; cursor:default; box-shadow:none; }
+  .widget-label::before{ content:"◆"; font-size:8px; animation:popDot 1.6s ease infinite; }
+  .widget-result{
+    margin-top:12px; padding:12px 14px; border-radius:10px; background:#fff;
+    border:1px dashed var(--line); font-size:13.5px; color:var(--ink); line-height:1.75;
+  }
+  .widget-result .big{ font-size:18px; font-weight:800; color:var(--accent,#999); }
+  .widget-val{ display:inline-block; min-width:26px; text-align:center; font-weight:800; color:var(--accent,#999); }
+  .widget svg{ display:block; margin:10px auto; max-width:100%; }
+  .chip-btns{ display:flex; gap:6px; flex-wrap:wrap; }
+  .chip-btns button{ padding:5px 12px; font-size:12px; }
+  .chip-btns button.active{ outline:2px solid var(--ink); outline-offset:1px; }
+  .num-pt{ cursor:grab; touch-action:none; }
+  .num-pt:active{ cursor:grabbing; }
+  .grid-click{ cursor:crosshair; }
+
+  .ch1 .widget{ --soft:var(--c1-soft); --accent:var(--c1); }
+  .ch2 .widget{ --soft:var(--c2-soft); --accent:var(--c2); }
+  .ch3 .widget{ --soft:var(--c3-soft); --accent:var(--c3); }
+  .ch4 .widget{ --soft:var(--c4-soft); --accent:var(--c4); }
+  .ch5 .widget{ --soft:var(--c5-soft); --accent:var(--c5); }
+  .ch6 .widget{ --soft:var(--c6-soft); --accent:var(--c6); }
+  .ch7 .widget{ --soft:var(--c7-soft); --accent:var(--c7); }
+  .ch8 .widget{ --soft:var(--c8-soft); --accent:var(--c8); }
+
+  /* ================= 중2 효과 이식 (인트로 제외) ================= */
+  #scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c6), var(--c7), var(--c8)); z-index:999; }
+  @keyframes fadeInDown{ from{ opacity:0; transform:translateY(-14px);} to{ opacity:1; transform:translateY(0);} }
+  @keyframes popDot{ 0%{transform:scale(1);} 50%{transform:scale(1.55);} 100%{transform:scale(1);} }
+
+  /* 히어로: 화면에 보일 때 순서대로 내려오며 등장 (중1은 인트로 아래에 있어 스크롤 시점에 재생) */
+  .hero-inner > *{ opacity:0; }
+  .hero.hero-play .hero-inner > *{ animation:fadeInDown .7s ease forwards; }
+  .hero.hero-play .hero-eyebrow{ animation-delay:.05s; }
+  .hero.hero-play h1{ animation-delay:.15s; }
+  .hero.hero-play .hero-inner > p:last-child{ animation-delay:.25s; }
+
+  /* 스크롤 등장 + 카드 hover 그림자 */
+  .concept, .chapter-banner, .chapter-sub{ opacity:0; transform:translateY(18px); transition:opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease; }
+  .concept.in-view, .chapter-banner.in-view, .chapter-sub.in-view{ opacity:1; transform:translateY(0); }
+  .concept:hover{ box-shadow:0 10px 26px -14px rgba(22,35,59,.22); }
+
+  /* 예제 펼칠 때 페이드 */
+  .example-body.fade-in{ animation:fadeIn .35s ease; }
+
+  button:focus-visible, a:focus-visible, input:focus-visible, [role=button]:focus-visible{ outline:3px solid #93B4FF; outline-offset:2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-inner > *, .toc-dot, .concept-num, .widget-label::before{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+    html{ scroll-behavior:auto !important; }
+    .concept, .chapter-banner, .chapter-sub{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .hero-inner > *{ opacity:1 !important; }
+  }
+</style>
+</head>
+<body>
+<noscript><style>.concept,.chapter-banner,.chapter-sub,.hero-inner>*{opacity:1!important;transform:none!important;animation:none!important;}</style></noscript>
+<div id="scroll-progress"></div>
+
+<section class="intro-hero" id="introHero">
+  <div class="float-layer">
+    <span class="float-symbol fs-a" style="top:12%; left:8%; font-size:44px;">π</span>
+    <span class="float-symbol fs-b accent" style="top:8%; left:78%; font-size:38px;">√</span>
+    <span class="float-symbol fs-c accent2" style="top:68%; left:12%; font-size:48px;">∑</span>
+    <span class="float-symbol fs-a accent" style="top:62%; left:85%; font-size:40px;">∞</span>
+    <span class="float-symbol fs-b" style="top:6%; left:48%; font-size:30px;">θ</span>
+    <span class="float-symbol fs-c" style="top:88%; left:15%; font-size:34px;">±</span>
+    <span class="float-symbol fs-a accent2" style="top:30%; left:90%; font-size:28px;">x²</span>
+    <span class="float-symbol fs-b" style="top:90%; left:82%; font-size:30px;">Δ</span>
+    <span class="float-symbol fs-c accent" style="top:20%; left:3%; font-size:26px;">π/2</span>
+    <span class="float-shape fs-b" style="top:22%; left:22%; width:46px; height:46px; border-radius:50%;"></span>
+    <span class="float-shape fs-c" style="top:78%; left:88%; width:0; height:0; border:none; border-left:26px solid transparent; border-right:26px solid transparent; border-bottom:42px solid rgba(255,255,255,.12);"></span>
+    <span class="float-shape fs-a" style="top:45%; left:6%; width:34px; height:34px; transform:rotate(20deg);"></span>
+    <span class="float-shape fs-b" style="top:15%; left:63%; width:28px; height:28px; border-radius:50%;"></span>
+  </div>
+  <div class="intro-content">
+    <span class="intro-badge">상무고 유환수 제작 · 중학교 1학년 수학</span>
+    <h1>숫자와 도형이 만드는<br>첫 번째 수학 이야기</h1>
+    <p class="intro-sub">소인수분해부터 통계까지, 중1 수학 8개 단원을 한 페이지에 담았습니다.<br>정의 · 공식 · 예제 · 그림까지 한눈에 정리하며 시작해볼까요?</p>
+    <div class="quote-wrap">
+      <svg class="rainbow" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M22,200 A178,178 0 0,1 378,200" stroke="#FF6B6B" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M40,200 A160,160 0 0,1 360,200" stroke="#FFA552" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M58,200 A142,142 0 0,1 342,200" stroke="#FFE066" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M76,200 A124,124 0 0,1 324,200" stroke="#8CE99A" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M94,200 A106,106 0 0,1 306,200" stroke="#74C0FC" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M112,200 A88,88 0 0,1 288,200" stroke="#9775FA" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M130,200 A70,70 0 0,1 270,200" stroke="#DA77F2" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <a href="#hero" class="scroll-cue">
+      <span>아래로 스크롤</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </div>
+</section>
+
+<div class="hero" id="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">중학교 1학년 · 수학 개념 한눈에 총정리</p>
+    <h1>소인수분해부터 통계까지, 8개 단원 핵심 정리</h1>
+    <p>정의 → 공식 → 예제 순으로 정리했습니다. 표와 그림으로 헷갈리는 개념을 한눈에 비교해보세요.</p>
+  </div>
+</div>
+
+<div class="mobile-jump">
+  <a href="#ch1" style="background:#2563EB;">①소인수분해</a>
+  <a href="#ch2" style="background:#7C3AED;">②정수·유리수</a>
+  <a href="#ch3" style="background:#059669;">③문자와 식</a>
+  <a href="#ch4" style="background:#0D9488;">④그래프</a>
+  <a href="#ch5" style="background:#EA580C;">⑤도형의 기초</a>
+  <a href="#ch6" style="background:#DB2777;">⑥평면도형</a>
+  <a href="#ch7" style="background:#4F46E5;">⑦입체도형</a>
+  <a href="#ch8" style="background:#0891B2;">⑧통계</a>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <p class="sidebar-title">목차</p>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#2563EB;"></span>Ⅰ. 소인수분해</div>
+      <ul class="toc-list">
+        <li><a href="#c1">거듭제곱</a></li>
+        <li><a href="#c2">소수와 합성수</a></li>
+        <li><a href="#c3">소인수분해</a></li>
+        <li><a href="#c4">약수·약수 개수 구하기</a></li>
+        <li><a href="#c5">최대공약수</a></li>
+        <li><a href="#c6">최소공배수</a></li>
+        <li><a href="#c7">최대공약수와 최소공배수의 관계</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#7C3AED;"></span>Ⅱ. 정수와 유리수</div>
+      <ul class="toc-list">
+        <li><a href="#c8">양수와 음수</a></li>
+        <li><a href="#c9">정수와 유리수</a></li>
+        <li><a href="#c10">수직선과 절댓값</a></li>
+        <li><a href="#c11">정수·유리수의 대소관계</a></li>
+        <li><a href="#c12">부등호의 사용</a></li>
+        <li><a href="#c13">정수·유리수의 덧셈</a></li>
+        <li><a href="#c14">덧셈의 연산법칙</a></li>
+        <li><a href="#c15">정수·유리수의 뺄셈</a></li>
+        <li><a href="#c16">덧셈과 뺄셈의 혼합계산</a></li>
+        <li><a href="#c17">정수·유리수의 곱셈</a></li>
+        <li><a href="#c18">곱셈의 연산법칙</a></li>
+        <li><a href="#c19">정수·유리수의 나눗셈</a></li>
+        <li><a href="#c20">사칙연산과 혼합계산</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#059669;"></span>Ⅲ. 문자와 식</div>
+      <ul class="toc-list">
+        <li><a href="#c21">곱셈기호의 생략</a></li>
+        <li><a href="#c22">대입과 식의 값</a></li>
+        <li><a href="#c23">항, 상수항, 계수, 일차식</a></li>
+        <li><a href="#c24">단항식과 수의 곱셈·나눗셈</a></li>
+        <li><a href="#c25">일차식과 수의 곱셈·나눗셈</a></li>
+        <li><a href="#c26">동류항의 덧셈과 뺄셈</a></li>
+        <li><a href="#c27">일차식의 덧셈과 뺄셈</a></li>
+        <li><a href="#c28">방정식과 항등식</a></li>
+        <li><a href="#c29">등식의 성질</a></li>
+        <li><a href="#c30">등식의 성질과 방정식의 풀이</a></li>
+        <li><a href="#c31">일차방정식의 뜻과 풀이</a></li>
+        <li><a href="#c32">복잡한 일차방정식의 풀이</a></li>
+        <li><a href="#c33">일차방정식의 활용</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#0D9488;"></span>Ⅳ. 그래프와 비례관계</div>
+      <ul class="toc-list">
+        <li><a href="#c34">순서쌍과 좌표평면</a></li>
+        <li><a href="#c35">그래프의 뜻과 표현</a></li>
+        <li><a href="#c36">정비례와 그래프</a></li>
+        <li><a href="#c37">반비례와 그래프</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#EA580C;"></span>Ⅴ. 도형의 기초</div>
+      <ul class="toc-list">
+        <li><a href="#c38">점, 선, 면</a></li>
+        <li><a href="#c39">직선, 반직선, 선분</a></li>
+        <li><a href="#c40">두 점 사이의 거리</a></li>
+        <li><a href="#c41">중점</a></li>
+        <li><a href="#c42">각의 정의와 표시</a></li>
+        <li><a href="#c43">각의 크기와 종류</a></li>
+        <li><a href="#c44">교각, 맞꼭지각</a></li>
+        <li><a href="#c45">수직과 직교, 수선의 발</a></li>
+        <li><a href="#c46">평면 점과 직선의 위치관계</a></li>
+        <li><a href="#c47">평면 두 직선의 위치관계</a></li>
+        <li><a href="#c48">공간 점과 직선의 위치관계</a></li>
+        <li><a href="#c49">공간 점과 평면의 위치관계</a></li>
+        <li><a href="#c50">공간 두 직선의 위치관계</a></li>
+        <li><a href="#c51">공간 평면과 직선의 위치관계</a></li>
+        <li><a href="#c52">공간 두 평면의 위치관계</a></li>
+        <li><a href="#c53">위치 관계 총정리</a></li>
+        <li><a href="#c54">동위각과 엇각</a></li>
+        <li><a href="#c55">평행선의 성질</a></li>
+        <li><a href="#c56">작도</a></li>
+        <li><a href="#c57">삼각형의 대변과 대각</a></li>
+        <li><a href="#c58">삼각형의 작도</a></li>
+        <li><a href="#c59">도형의 합동과 합동조건</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#DB2777;"></span>Ⅵ. 평면도형</div>
+      <ul class="toc-list">
+        <li><a href="#c60">다각형</a></li>
+        <li><a href="#c61">대각선</a></li>
+        <li><a href="#c62">삼각형의 내각·외각</a></li>
+        <li><a href="#c63">다각형의 내각·외각의 합</a></li>
+        <li><a href="#c64">원, 호, 현, 활꼴, 부채꼴</a></li>
+        <li><a href="#c65">원과 부채꼴의 둘레·넓이</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#4F46E5;"></span>Ⅶ. 입체도형</div>
+      <ul class="toc-list">
+        <li><a href="#c66">다면체, 각기둥, 각뿔, 각뿔대</a></li>
+        <li><a href="#c67">정다면체</a></li>
+        <li><a href="#c68">회전체와 원뿔대</a></li>
+        <li><a href="#c69">각기둥·원기둥의 겉넓이와 부피</a></li>
+        <li><a href="#c70">각뿔·원뿔의 겉넓이와 부피</a></li>
+        <li><a href="#c71">구의 겉넓이와 부피</a></li>
+      </ul>
+    </div>
+
+    <div class="toc-chapter">
+      <div class="toc-chapter-head"><span class="toc-dot" style="background:#0891B2;"></span>Ⅷ. 통계</div>
+      <ul class="toc-list">
+        <li><a href="#c72">대푯값: 평균·중앙값·최빈값</a></li>
+        <li><a href="#c73">줄기와 잎 그림</a></li>
+        <li><a href="#c74">도수분포표</a></li>
+        <li><a href="#c75">도수분포표 만드는 법</a></li>
+        <li><a href="#c76">히스토그램</a></li>
+        <li><a href="#c77">도수분포다각형</a></li>
+        <li><a href="#c78">상대도수와 분포표</a></li>
+        <li><a href="#c79">상대도수의 그래프</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+  <!-- ================= CHAPTER 1 : 소인수분해 ================= -->
+  <div id="ch1" class="ch1">
+    <div class="chapter-banner"><span class="chapter-num">Ⅰ</span><h2>소인수분해</h2></div>
+    <p class="chapter-sub">거듭제곱, 소수와 합성수, 소인수분해, 최대공약수와 최소공배수를 다루는 단원입니다.</p>
+
+    <section class="concept" id="c1">
+      <div class="concept-head"><span class="concept-num">1</span><h3>거듭제곱</h3></div>
+      <div class="def">
+        <p><b>거듭제곱</b>: 같은 수나 문자를 거듭(반복)하여 곱한 것</p>
+        <p>같은 수를 여러 번 더하기 → (더하는 수) × (더한 횟수)</p>
+        <p>같은 수를 여러 번 곱하기 → (곱하는 수)<span class="math">(곱한 횟수)</span> = <span class="math">밑<sup>지수</sup></span></p>
+        <p>분수의 거듭제곱에서는 괄호 사용: <span class="math">2/5 × 2/5 × 2/5 = (2/5)³</span></p>
+        <p>여러 수나 문자가 섞여 있을 때는 같은 수, 같은 문자끼리만 거듭제곱으로 표시한다.</p>
+        <div class="formula"><span class="math">3×3×3×3×5×5 = 3⁴×5²</span><br><span class="math">a×a×a×b×b = a³×b²</span></div>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
+          <text x="20" y="70" font-size="20" fill="#16233B">2×2×2×2 =</text>
+          <circle cx="190" cy="60" r="26" fill="none" stroke="#2563EB" stroke-width="2.4"/>
+          <text x="182" y="68" font-size="22" font-weight="700" fill="#16233B">2</text>
+          <text x="212" y="34" font-size="16" font-weight="700" fill="#2563EB">4</text>
+          <path d="M222,30 L250,20" stroke="#2563EB" stroke-width="1.5"/>
+          <text x="252" y="20" font-size="13" fill="#2563EB" font-weight="700">지수</text>
+          <path d="M212,66 L250,78" stroke="#16233B" stroke-width="1.5"/>
+          <text x="252" y="82" font-size="13" fill="#16233B" font-weight="700">밑</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 5×5×5×2×2를 거듭제곱을 사용하여 나타내면?</p>
+          <p><b>A.</b> 같은 수끼리만 묶어서 거듭제곱으로 쓰면 <span class="math">5³×2²</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>밑(base)</label>
+          <input type="range" id="pw-base" min="2" max="9" value="2">
+          <span class="widget-val" id="pw-base-val">2</span>
+        </div>
+        <div class="widget-row">
+          <label>지수</label>
+          <input type="range" id="pw-exp" min="1" max="6" value="3">
+          <span class="widget-val" id="pw-exp-val">3</span>
+        </div>
+        <div class="widget-result" id="pw-result"></div>
+      </div>
+<div class="tip">밑과 지수를 헷갈리지 않으려면 "몇 번 곱했는지"가 항상 위 작은 숫자(지수) 자리라는 것을 기억하자.</div>
+    </section>
+
+    <section class="concept" id="c2">
+      <div class="concept-head"><span class="concept-num">2</span><h3>소수와 합성수</h3></div>
+      <div class="def">
+        <p><b>소수</b>: 1과 자기 자신만을 약수로 갖는 자연수. 약수의 개수가 2개.</p>
+        <p><b>합성수</b>: 1보다 큰 자연수 중 소수가 아닌 자연수. 약수의 개수가 3개 이상.</p>
+        <p><b>1</b>은 소수도 합성수도 아니다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 21은 소수인가, 합성수인가?</p>
+          <p><b>A.</b> <span class="math">21=3×7</span>이므로 약수가 1, 3, 7, 21로 4개 → 합성수</p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>수</label>
+          <input type="number" id="pr-n" value="21" min="1" max="300">
+          <button id="pr-check">확인하기</button>
+        </div>
+        <div class="widget-result" id="pr-result"></div>
+      </div>
+<div class="tip">2는 가장 작은 소수이자 유일한 짝수 소수이다.</div>
+    </section>
+
+    <section class="concept" id="c3">
+      <div class="concept-head"><span class="concept-num">3</span><h3>소인수분해</h3></div>
+      <div class="def">
+        <p><b>인수</b>: 어떤 수나 식을 곱하기만으로 표현했을 때 곱해지는 각각의 것들.</p>
+        <p><span class="math">12 = 1×12 = 2×6 = 3×4</span> → 12의 인수: 1, 2, 3, 4, 6, 12</p>
+        <p><b>소인수</b>: 인수 중에서 소수인 것. 12의 인수 중 소수는 2, 3 → 소인수는 2, 3</p>
+        <p><b>소인수분해</b>: 자연수를 소인수들의 곱으로 표현하는 것.</p>
+        <p>방법 1. 합성수가 없어질 때까지 계속해서 소수들의 곱으로 바꾼다.</p>
+        <p>방법 2. 몫이 소수가 나올 때까지 계속해서 소수로 나눈다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" font-size="14" fill="#16233B">81 = 3×27 = 3×3×9 = 3×3×3×3 = 3⁴</text>
+
+          <text x="93" y="42" font-size="16" font-weight="700" fill="#16233B">81</text>
+          <line x1="100" y1="48" x2="60" y2="75" stroke="#94A8C4" stroke-width="1.4"/>
+          <line x1="100" y1="48" x2="140" y2="75" stroke="#94A8C4" stroke-width="1.4"/>
+          <circle cx="55" cy="88" r="13" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+          <text x="49" y="93" font-size="13" fill="#2563EB">3</text>
+          <text x="128" y="93" font-size="16" font-weight="700" fill="#16233B">27</text>
+
+          <line x1="140" y1="98" x2="100" y2="125" stroke="#94A8C4" stroke-width="1.4"/>
+          <line x1="140" y1="98" x2="180" y2="125" stroke="#94A8C4" stroke-width="1.4"/>
+          <circle cx="95" cy="138" r="13" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+          <text x="89" y="143" font-size="13" fill="#2563EB">3</text>
+          <text x="172" y="143" font-size="16" font-weight="700" fill="#16233B">9</text>
+
+          <line x1="180" y1="148" x2="150" y2="175" stroke="#94A8C4" stroke-width="1.4"/>
+          <line x1="180" y1="148" x2="210" y2="175" stroke="#94A8C4" stroke-width="1.4"/>
+          <circle cx="145" cy="188" r="13" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+          <text x="139" y="193" font-size="13" fill="#2563EB">3</text>
+          <circle cx="215" cy="188" r="13" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+          <text x="209" y="193" font-size="13" fill="#2563EB">3</text>
+        </svg>
+        <p class="figure-cap">소인수분해 나무 그림 — 합성수가 없어질 때까지 소수로 계속 쪼갠다</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 60을 소인수분해하면?</p>
+          <p><b>A.</b> <span class="math">60=2×2×3×5=2²×3×5</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>수</label>
+          <input type="number" id="ft-n" value="60" min="2" max="999">
+          <button id="ft-go">소인수분해</button>
+        </div>
+        <div class="widget-result" id="ft-result"></div>
+      </div>
+<div class="tip">나무 그림이든 나눗셈이든 결과는 같으니, 계산이 편한 방법을 골라 쓰면 된다.</div>
+    </section>
+
+    <section class="concept" id="c4">
+      <div class="concept-head"><span class="concept-num">4</span><h3>소인수분해를 이용하여 약수 구하기, 약수 개수 구하기</h3></div>
+      <div class="def">
+        <p>주어진 수를 소인수분해 → 거듭제곱의 약수를 모두 구하여 서로 곱한다.</p>
+        <p><span class="math">72 = 2³×3²</span> → (2³의 약수 중 하나) × (3²의 약수 중 하나)</p>
+        <p><b>약수 개수 구하기</b>: 각 소인수의 지수에 1을 더해서 서로 곱함</p>
+        <div class="formula">소인수분해 → <span class="math">aᵐ×bⁿ</span> → 약수 개수 = <span class="math">(m+1)×(n+1)</span></div>
+      </div>
+      <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 72의 약수의 개수는?</p>
+          <p><b>A.</b> <span class="math">72=2³×3²</span>이므로 (2³의 지수 3+1)×(3²의 지수 2+1) = 4×3 = <b>12개</b></p>
+        </div>
+      </details>
+            <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>수</label>
+          <input type="number" id="dv-n" value="72" min="2" max="999">
+          <button id="dv-go">약수 개수 구하기</button>
+        </div>
+        <div class="widget-result" id="dv-result"></div>
+      </div>
+<div class="tip">약수를 하나하나 나열하지 않아도, 소인수분해만 해두면 지수에 1을 더해 곱하는 것만으로 개수를 바로 구할 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c5">
+      <div class="concept-head"><span class="concept-num">5</span><h3>최대공약수 (Greatest Common Divisor, G)</h3></div>
+      <div class="def">
+        <p><b>최대공약수</b>: 공약수 중 가장 큰 공약수. (최대공약수의 약수) = (공약수)</p>
+        <p><b>서로소</b>: 공약수가 1뿐인 2개 이상의 자연수, 최대공약수가 1</p>
+        <p>방법 1. 두 수를 소인수분해하여 거듭제곱으로 나타낸 뒤, 공통된 소인수 중 지수가 같으면 그대로, 지수가 다르면 지수가 낮은 소인수들을 골라 곱한다.</p>
+        <p>방법 2. 두 수를 서로소가 나올 때까지 공약수로 나누고, 나온 공약수를 모두 곱한다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 400 165" xmlns="http://www.w3.org/2000/svg">
+          <text x="20" y="24" font-size="14" fill="#16233B">60 = 2×2×3×5 = 2²×3×5</text>
+          <text x="20" y="46" font-size="14" fill="#16233B">48 = 2×2×2×2×3 = 2⁴×3</text>
+          <line x1="20" y1="55" x2="210" y2="55" stroke="#16233B" stroke-width="1.2"/>
+          <text x="20" y="72" font-size="14" font-weight="700" fill="#2563EB">최대공약수 = 2×2×3 = 2²×3</text>
+          <text x="270" y="25" font-size="13" fill="#16233B">2 ) 60  48</text>
+          <text x="270" y="45" font-size="13" fill="#16233B">2 ) 30  24</text>
+          <text x="270" y="65" font-size="13" fill="#16233B">3 ) 15  12</text>
+          <text x="286" y="85" font-size="13" fill="#16233B">5    4</text>
+          <line x1="20" y1="118" x2="380" y2="118" stroke="#DCE6E2" stroke-width="1"/>
+          <text x="20" y="140" font-size="15" font-weight="700" fill="#2563EB">최대공약수 = 2×2×3 = 12</text>
+        </svg>
+        <p class="figure-cap">공통 소인수 중 지수가 같거나 작은 것만 골라 곱한다</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 18과 24의 최대공약수는?</p>
+          <p><b>A.</b> <span class="math">18=2×3², 24=2³×3</span>이므로 공통 소인수 중 작은 지수를 골라 <span class="math">2×3=6</span></p>
+        </div>
+      </details>
+<div class="tip">최대공약수를 구할 때는 "공통이면서 작은 것"만 고른다는 점이 최소공배수와 정반대이니 혼동하지 말 것.</div>
+    </section>
+
+    <section class="concept" id="c6">
+      <div class="concept-head"><span class="concept-num">6</span><h3>최소공배수 (Least Common Multiple, L)</h3></div>
+      <div class="def">
+        <p><b>최소공배수</b>: 공배수 중 가장 작은 공배수. (최소공배수의 배수) = (공배수)</p>
+        <p>방법 1. 두 수를 소인수분해하여 거듭제곱으로 나타낸 뒤 소인수들을 모두 곱한다. 이때 공통된 소인수 중 지수가 같으면 그대로, 지수가 다르면 지수가 큰 소인수를 고른다.</p>
+        <p>방법 2. 모든 수에서 서로소가 나올 때까지 공약수로 나누고, 공약수와 서로소를 모두 곱한다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
+          <text x="20" y="24" font-size="14" fill="#16233B">60 = 2×2×3×5 = 2²×3×5</text>
+          <text x="20" y="46" font-size="14" fill="#16233B">48 = 2×2×2×2×3 = 2⁴×3</text>
+          <line x1="20" y1="55" x2="240" y2="55" stroke="#16233B" stroke-width="1.2"/>
+          <text x="270" y="25" font-size="13" fill="#16233B">2 ) 60 48 40</text>
+          <text x="270" y="45" font-size="13" fill="#16233B">2 ) 30 24 20</text>
+          <text x="270" y="65" font-size="13" fill="#16233B">2 ) 15 12 10</text>
+          <text x="270" y="85" font-size="13" fill="#16233B">3 ) 15  6  5</text>
+          <text x="270" y="105" font-size="13" fill="#16233B">5 )  5  2  5</text>
+          <text x="286" y="125" font-size="13" fill="#16233B">1  2  1</text>
+          <line x1="20" y1="138" x2="380" y2="138" stroke="#DCE6E2" stroke-width="1"/>
+          <text x="20" y="160" font-size="13.5" font-weight="700" fill="#2563EB">최소공배수 = 2×2×2×2×3×5 = 2⁴×3×5 = 240</text>
+        </svg>
+        <p class="figure-cap">최소공배수는 공통 여부와 상관없이 모든 소인수를 곱하되, 공통인 것은 지수가 큰 쪽을 취한다</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 18과 24의 최소공배수는?</p>
+          <p><b>A.</b> <span class="math">18=2×3², 24=2³×3</span>이므로 지수가 큰 것을 모두 곱해 <span class="math">2³×3²=72</span></p>
+        </div>
+      </details>
+<div class="tip">최소공배수는 "빠짐없이 모두" 곱한다는 점이 핵심이다. 공통되지 않은 소인수도 절대 빠뜨리면 안 된다.</div>
+    </section>
+
+    <section class="concept" id="c7">
+      <div class="concept-head"><span class="concept-num">7</span><h3>최대공약수와 최소공배수의 관계</h3></div>
+      <div class="def">
+        <p>두 자연수 <span class="math">A, B</span>의 최대공약수를 <span class="math">G</span>, 최소공배수를 <span class="math">L</span>, 서로소를 <span class="math">a, b</span>라고 할 때,</p>
+        <div class="formula">
+          <span class="math">A = G×a</span>, <span class="math">B = G×b</span><br>
+          최소공배수 <span class="math">L = G×a×b</span><br>
+          <span class="math">A×B = L×G</span> → (두 수의 곱) = (최대공약수) × (최소공배수)
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 두 자연수의 곱이 216이고 최대공약수가 6일 때, 최소공배수는?</p>
+          <p><b>A.</b> (두 수의 곱)=(최대공약수)×(최소공배수)이므로 최소공배수 <span class="math">=216÷6=36</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>수 A</label>
+          <input type="number" id="gl-a" value="60" min="1" max="999">
+          <label>수 B</label>
+          <input type="number" id="gl-b" value="48" min="1" max="999">
+          <button id="gl-calc">계산하기</button>
+        </div>
+        <div class="widget-result" id="gl-result"></div>
+      </div>
+<div class="tip">두 수의 곱을 알고 최대공약수(또는 최소공배수) 중 하나만 알아도 나머지 하나를 바로 계산할 수 있다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 2 : 정수와 유리수 ================= -->
+  <div id="ch2" class="ch2">
+    <div class="chapter-banner"><span class="chapter-num">Ⅱ</span><h2>정수와 유리수</h2></div>
+    <p class="chapter-sub">양수와 음수의 개념부터 사칙연산까지, 부호가 있는 수를 다루는 방법을 정리합니다.</p>
+
+    <section class="concept" id="c8">
+      <div class="concept-head"><span class="concept-num">1</span><h3>양수와 음수</h3></div>
+      <div class="def">
+        <p><span class="math">(+)</span>: 양의 부호, <span class="math">(-)</span>: 음의 부호</p>
+        <p><b>양수</b>: (+) 부호가 붙은 수. 0보다 크다.</p>
+        <p><b>음수</b>: (-) 부호가 붙은 수. 0보다 작다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 영상 5℃를 +5℃로 나타낼 때, 영하 3℃는 어떻게 나타내는가?</p>
+          <p><b>A.</b> <span class="math">-3℃</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 온도계를 움직여보세요</span>
+        <div class="widget-row">
+          <input type="range" id="temp-t" min="-10" max="10" value="3">
+          <span class="widget-val" id="temp-t-val">+3</span>
+        </div>
+        <svg viewBox="0 0 260 90" id="temp-svg">
+          <rect x="20" y="35" width="200" height="16" rx="8" fill="#F0F2F5" stroke="#16233B" stroke-width="1.4"/>
+          <rect id="temp-fill" x="120" y="35" width="0" height="16" rx="8" fill="#7C3AED"/>
+          <circle cx="20" cy="43" r="12" fill="#F0F2F5" stroke="#16233B" stroke-width="1.4"/>
+          <circle id="temp-bulb" cx="20" cy="43" r="8" fill="#7C3AED"/>
+        </svg>
+        <div class="widget-result" id="temp-result"></div>
+      </div>
+<div class="tip">0은 양수도 음수도 아니라는 것을 잊지 말자.</div>
+    </section>
+
+    <section class="concept" id="c9">
+      <div class="concept-head"><span class="concept-num">2</span><h3>정수와 유리수</h3></div>
+      <div class="def">
+        <p><b>정수</b>: 양의 정수(자연수, +1,+2,+3…), 0, 음의 정수(-1,-2,-3…)</p>
+        <p><b>유리수</b>: 분수꼴 <span class="math">b/a</span> (a≠0인 정수)로 나타낼 수 있는 수</p>
+        <p><b>양의 유리수</b>: (+)가 있는 유리수, <b>음의 유리수</b>: (-)가 있는 유리수</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="140" cy="110" r="85" fill="#F1EBFE" stroke="#7C3AED" stroke-width="2"/>
+          <circle cx="140" cy="125" r="57" fill="#E7DDFC" stroke="#7C3AED" stroke-width="1.6"/>
+          <circle cx="140" cy="145" r="28" fill="#DCCCF9" stroke="#7C3AED" stroke-width="1.4"/>
+          <text x="118" y="45" font-size="13" fill="#16233B">유리수</text>
+          <text x="125" y="88" font-size="13" fill="#16233B">정수</text>
+          <text x="118" y="150" font-size="12" fill="#16233B">자연수</text>
+          <line x1="206" y1="86" x2="270" y2="55" stroke="#7C3AED" stroke-width="1.3"/>
+          <text x="273" y="58" font-size="11.5" fill="#16233B">정수 아닌 유리수</text>
+        </svg>
+        <p class="figure-cap">자연수 ⊂ 정수 ⊂ 유리수, 정수가 아닌 유리수는 원 바깥쪽 고리</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> -2, 0, 3/4, 5 중 정수가 아닌 유리수를 고르면?</p>
+          <p><b>A.</b> 정수가 아닌 유리수는 <span class="math">3/4</span> (나머지는 모두 정수)</p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>수 입력</label>
+          <input type="text" id="cls-n" value="3/4" style="width:90px;">
+          <button id="cls-go">분류하기</button>
+        </div>
+        <div class="widget-result" id="cls-result">예: 5, -3, 0, 1/2, -2.5 처럼 정수나 분수·소수를 입력해보세요.</div>
+      </div>
+<div class="tip">분수꼴로 나타낼 수 있으면 모두 유리수다. 0.3, -1.5처럼 소수로 보이는 수도 분수로 고칠 수 있으면 유리수에 포함된다.</div>
+    </section>
+
+    <section class="concept" id="c10">
+      <div class="concept-head"><span class="concept-num">3</span><h3>수직선과 절댓값</h3></div>
+      <div class="def">
+        <p><b>수직선</b>: 직선에 점을 찍어서 숫자와 대응시킨 선</p>
+        <p><b>절댓값</b>: 수직선에서 원점을 기준으로 얼마나 떨어져 있는지를 나타낸 값. 기호는 <span class="math">| |</span></p>
+        <p>절댓값 구하는 법: 부호 떼고 숫자만. <span class="math">|+4|=4</span>, <span class="math">|-4|=4</span></p>
+        <p><b>절댓값의 성질</b>: <span class="math">|0|=0</span>으로 절댓값이 가장 작다. 절댓값은 항상 0 또는 양수. 원점에서 멀어질수록 절댓값이 커진다. 0을 제외하면 절댓값이 같은 수는 두 개.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 380 90" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="45" x2="360" y2="45" stroke="#16233B" stroke-width="1.6"/>
+          <polygon points="360,45 350,40 350,50" fill="#16233B"/>
+          <polygon points="20,45 30,40 30,50" fill="#16233B"/>
+          <g font-size="13" fill="#16233B">
+            <text x="35" y="35">-5</text><text x="70" y="35">-4</text><text x="105" y="35">-3</text><text x="140" y="35">-2</text><text x="175" y="35">-1</text>
+            <text x="210" y="35">0</text><text x="238" y="35">+1</text><text x="273" y="35">+2</text><text x="308" y="35">+3</text><text x="343" y="35">+4</text>
+          </g>
+          <g stroke="#16233B"><line x1="40" y1="40" x2="40" y2="50"/><line x1="75" y1="40" x2="75" y2="50"/><line x1="110" y1="40" x2="110" y2="50"/><line x1="145" y1="40" x2="145" y2="50"/><line x1="180" y1="40" x2="180" y2="50"/><line x1="215" y1="40" x2="215" y2="50"/><line x1="245" y1="40" x2="245" y2="50"/><line x1="280" y1="40" x2="280" y2="50"/><line x1="315" y1="40" x2="315" y2="50"/><line x1="350" y1="40" x2="350" y2="50"/></g>
+          <text x="60" y="70" font-size="12" fill="#7C3AED" font-weight="700">← 음의 유리수</text>
+          <text x="240" y="70" font-size="12" fill="#7C3AED" font-weight="700">양의 유리수 →</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> |-7|의 값은?</p>
+          <p><b>A.</b> 부호를 떼고 숫자만 남기면 <span class="math">|-7|=7</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 점을 드래그해보세요</span>
+        <svg viewBox="0 0 380 90" id="abs-svg">
+          <line x1="20" y1="45" x2="360" y2="45" stroke="#16233B" stroke-width="1.6"/>
+          <polygon points="360,45 350,40 350,50" fill="#16233B"/>
+          <polygon points="20,45 30,40 30,50" fill="#16233B"/>
+          <g id="abs-ticks"></g>
+          <circle id="abs-pt" cx="190" cy="45" r="8" fill="#7C3AED" class="num-pt"/>
+        </svg>
+        <div class="widget-result">값: <span class="widget-val" id="abs-val">0</span> &nbsp;|&nbsp; 절댓값: <span class="widget-val" id="abs-abs">0</span></div>
+      </div>
+<div class="tip">절댓값은 원점(0)까지의 "거리"이므로, 부호를 떼고 크기만 비교하면 된다.</div>
+    </section>
+
+    <section class="concept" id="c11">
+      <div class="concept-head"><span class="concept-num">4</span><h3>정수와 유리수의 대소관계</h3></div>
+      <div class="def">
+        <p>수직선에서 오른쪽에 있는 수가 더 크다.</p>
+        <p><span class="math">음수 &lt; 0 &lt; 양수</span></p>
+        <p>양수는 절댓값이 클수록 크다. 음수는 절댓값이 작을수록 크다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> -3과 -5 중 더 큰 수는?</p>
+          <p><b>A.</b> 음수는 절댓값이 작을수록 크므로 <span class="math">-3 &gt; -5</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>수 A</label>
+          <input type="range" id="cmp-a" min="-10" max="10" value="-3">
+          <span class="widget-val" id="cmp-a-val">-3</span>
+        </div>
+        <div class="widget-row">
+          <label>수 B</label>
+          <input type="range" id="cmp-b" min="-10" max="10" value="4">
+          <span class="widget-val" id="cmp-b-val">4</span>
+        </div>
+        <div class="widget-result" id="cmp-result"></div>
+      </div>
+<div class="tip">음수끼리 비교할 때는 절댓값이 큰 쪽이 오히려 더 작은 수라는 점을 특히 조심하자. (예: -5 &lt; -2)</div>
+    </section>
+
+    <section class="concept" id="c12">
+      <div class="concept-head"><span class="concept-num">5</span><h3>부등호의 사용</h3></div>
+      <div class="def">
+        <table class="dtable">
+          <tr><th>기호</th><th>뜻</th><th>다른 표현</th><th>예</th></tr>
+          <tr><td><span class="math">&gt;</span></td><td>크다</td><td>초과</td><td><span class="math">a &gt; 4</span></td></tr>
+          <tr><td><span class="math">&lt;</span></td><td>작다</td><td>미만</td><td><span class="math">a &lt; 4</span></td></tr>
+          <tr><td><span class="math">≥</span></td><td>크거나 같다(작지 않다)</td><td>이상</td><td><span class="math">a ≥ 4</span></td></tr>
+          <tr><td><span class="math">≤</span></td><td>작거나 같다(크지 않다)</td><td>이하</td><td><span class="math">a ≤ 4</span></td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> "x는 4보다 크거나 같다"를 부등호로 나타내면?</p>
+          <p><b>A.</b> <span class="math">x ≥ 4</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>x =</label>
+          <input type="number" id="ineq-x" value="4" style="width:60px;">
+          <div class="chip-btns" id="ineq-op">
+            <button data-op="&gt;" class="active">&gt;</button>
+            <button data-op="&lt;">&lt;</button>
+            <button data-op="≥">≥</button>
+            <button data-op="≤">≤</button>
+          </div>
+          <input type="number" id="ineq-k" value="4" style="width:60px;">
+        </div>
+        <div class="widget-result" id="ineq-result"></div>
+      </div>
+<div class="tip">"이상"과 "이하"는 그 수를 포함하고, "초과"와 "미만"은 그 수를 포함하지 않는다는 차이를 꼭 기억하자.</div>
+    </section>
+
+    <section class="concept" id="c13">
+      <div class="concept-head"><span class="concept-num">6</span><h3>정수와 유리수의 덧셈</h3></div>
+      <div class="def">
+        <p><b>부호가 같은 수의 덧셈</b>: 절댓값을 더해주고 부호는 공통부호</p>
+        <p><b>부호가 다른 수의 덧셈</b>: 절댓값의 차에 절댓값이 큰 수의 부호</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (-3)+(+8)의 값은?</p>
+          <p><b>A.</b> 부호가 다르므로 절댓값의 차에 큰 쪽 부호: <span class="math">8-3=5</span> → <span class="math">+5</span></p>
+        </div>
+      </details>
+<div class="tip">부호가 다를 때는 "큰 것에서 작은 것을 빼고, 부호는 절댓값이 큰 쪽을 따라간다"고 기억하면 실수가 적다.</div>
+    </section>
+
+    <section class="concept" id="c14">
+      <div class="concept-head"><span class="concept-num">7</span><h3>덧셈의 연산법칙 (세 수 a, b, c에 대하여)</h3></div>
+      <div class="def">
+        <p><b>교환법칙</b>: 덧셈 기호 양쪽 수의 자리를 바꿔도 계산 결과가 같음. <span class="math">a+b=b+a</span></p>
+        <p><b>결합법칙</b>: 어느 것이나 두 개씩 묶어서 계산해도 결과가 같음.</p>
+        <div class="formula"><span class="math">(a+b)+c = a+(b+c) = a+b+c</span></div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (+2)+(-5)+(+3)을 교환법칙을 이용해 계산하면?</p>
+          <p><b>A.</b> <span class="math">(+2)+(+3)+(-5) = (+5)+(-5) = 0</span></p>
+        </div>
+      </details>
+<div class="tip">이 두 법칙 덕분에, 여러 수를 더할 때 부호가 같은 수끼리 먼저 모아서 계산할 수 있다(혼합계산 #16 참고).</div>
+    </section>
+
+    <section class="concept" id="c15">
+      <div class="concept-head"><span class="concept-num">8</span><h3>정수와 유리수의 뺄셈</h3></div>
+      <div class="def">
+        <p>뺄셈을 덧셈으로 바꿔서 계산한다.</p>
+        <p>1. (-)를 (+)로 바꾸고 2. (-) 바로 뒤의 수의 부호를 반대로 3. 나머지는 모두 그대로 4. 수의 덧셈을 계산</p>
+        <div class="formula"><span class="math">(+7) - (+3) → (+7) + (-3)</span></div>
+        <p>뺄셈에서는 교환법칙, 결합법칙이 성립하지 않는다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (-4)-(-9)의 값은?</p>
+          <p><b>A.</b> 뺄셈을 덧셈으로: <span class="math">(-4)+(+9) = +5</span></p>
+        </div>
+      </details>
+<div class="tip">뺄셈 기호와 바로 뒤 숫자의 부호, 이 두 가지를 동시에 뒤집는다고 기억하면 헷갈리지 않는다.</div>
+    </section>
+
+    <section class="concept" id="c16">
+      <div class="concept-head"><span class="concept-num">9</span><h3>덧셈과 뺄셈이 혼합된 계산</h3></div>
+      <div class="def">
+        <p>1. 뺄셈을 덧셈으로 바꾼다. 2. 교환법칙을 이용해 부호가 같은 수끼리 모은다. 3. 부호가 같은 것끼리 다 더하면 양수 하나와 음수 하나가 남는다. 4. 이 둘을 더한다.</p>
+        <div class="formula">
+          <span class="math">(-1)+(+2)+(-3)-(-5)</span><br>
+          <span class="math">= (-1)+(+2)+(-3)+(+5)</span> (뺄셈을 덧셈으로)<br>
+          <span class="math">= (-1)+(-3)+(+2)+(+5)</span> (양수끼리, 음수끼리)<br>
+          <span class="math">= (-4)+(+7) = (+3)</span>
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (+3)-(+5)+(-2)-(-6)의 값은?</p>
+          <p><b>A.</b> 덧셈으로 바꾸면 <span class="math">(+3)+(-5)+(-2)+(+6)</span>. 양수끼리 <span class="math">3+6=9</span>, 음수끼리 <span class="math">-5-2=-7</span>, 합은 <span class="math">+2</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>식</label>
+          <input type="text" id="mix-data" value="-1,2,-3,5" style="width:160px;">
+          <button id="mix-go">계산하기</button>
+        </div>
+        <div class="widget-result" id="mix-result">쉼표로 구분한 부호 있는 수들의 합을 계산해요 (예: -1,2,-3,5)</div>
+      </div>
+<div class="tip">부호별로 모아서 계산하면 마지막엔 항상 양수 하나 + 음수 하나만 남으므로 실수를 크게 줄일 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c17">
+      <div class="concept-head"><span class="concept-num">10</span><h3>정수와 유리수의 곱셈</h3></div>
+      <div class="def">
+        <p><b>부호가 같은 두 수의 곱</b>: 두 수의 절댓값의 곱에 (+) 부호</p>
+        <p><b>부호가 다른 두 수의 곱</b>: 두 수의 절댓값의 곱에 (-) 부호</p>
+        <p>음수의 지수 또는 곱하는 음수의 개수가 <b>홀수</b> → 결과는 (-)</p>
+        <p>음수의 지수 또는 곱하는 음수의 개수가 0 또는 <b>짝수</b> → 결과는 (+)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (-2)×(-3)×(-1)의 값은?</p>
+          <p><b>A.</b> 음수가 3개(홀수개) 곱해졌으므로 부호는 (-), 절댓값의 곱은 6 → <span class="math">-6</span></p>
+        </div>
+      </details>
+<div class="tip">음수가 몇 개 곱해졌는지 세어서, 홀수면 (-) 짝수면 (+)라는 규칙 하나만 알면 복잡한 곱셈의 부호도 바로 판단할 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c18">
+      <div class="concept-head"><span class="concept-num">11</span><h3>곱셈의 연산법칙</h3></div>
+      <div class="def">
+        <p><b>교환법칙</b>: <span class="math">a×b = b×a</span></p>
+        <p><b>결합법칙</b>: <span class="math">(a×b)×c = a×(b×c)</span></p>
+        <p><b>분배법칙</b>: <span class="math">(a+b)×c = a×c + b×c</span></p>
+        <table class="dtable">
+          <tr><th></th><th>교환법칙</th><th>결합법칙</th></tr>
+          <tr><td>덧셈</td><td><span class="math">a+b=b+a</span></td><td><span class="math">(a+b)+c=a+(b+c)</span></td></tr>
+          <tr><td>곱셈</td><td><span class="math">a×b=b×a</span></td><td><span class="math">(a×b)×c=a×(b×c)</span></td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 25×(-4)×7을 순서를 바꿔 계산하면?</p>
+          <p><b>A.</b> 결합법칙으로 <span class="math">25×(-4)=-100</span>먼저 계산 → <span class="math">-100×7=-700</span></p>
+        </div>
+      </details>
+<div class="tip">분배법칙은 괄호를 풀 때(전개)뿐 아니라, 거꾸로 공통인수로 묶을 때도 그대로 쓰인다.</div>
+    </section>
+
+    <section class="concept" id="c19">
+      <div class="concept-head"><span class="concept-num">12</span><h3>정수와 유리수의 나눗셈</h3></div>
+      <div class="def">
+        <p><b>부호가 같은 두 수</b>: 두 수의 절댓값을 나눠주고, 부호는 (+)</p>
+        <p><b>부호가 다른 두 수</b>: 두 수의 절댓값을 나눠주고, 부호는 (-)</p>
+        <p><b>역수를 이용하여 곱셈으로 바꿔서 계산</b>: <span class="math">÷ b/a → × a/b</span> (a≠0, b≠0)</p>
+        <p>나눗셈에서는 교환법칙, 결합법칙이 성립하지 않는다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (-12)÷(+4)의 값은?</p>
+          <p><b>A.</b> 부호가 다르므로 (-), 절댓값은 <span class="math">12÷4=3</span> → <span class="math">-3</span></p>
+        </div>
+      </details>
+<div class="tip">나눗셈이 복잡해 보이면 일단 뒤의 수를 역수로 바꾸고 곱셈으로 바꿔서 생각하는 습관을 들이자.</div>
+    </section>
+
+    <section class="concept" id="c20">
+      <div class="concept-head"><span class="concept-num">13</span><h3>사칙연산과 혼합계산</h3></div>
+      <div class="def">
+        <table class="dtable">
+          <tr><th></th><th>덧셈</th><th>뺄셈</th><th>곱셈</th><th>나눗셈</th></tr>
+          <tr><td>부호 같을 때</td><td>+(절댓값의 합)</td><td rowspan="2">덧셈으로 변경 후 계산</td><td>+(절댓값의 곱)</td><td rowspan="2">곱셈으로 변경 후 계산</td></tr>
+          <tr><td>부호 다를 때</td><td>(절댓값 큰 쪽 부호)(절댓값의 차)</td><td>-(절댓값의 곱)</td></tr>
+          <tr><td>교환·결합법칙</td><td>O</td><td>X</td><td>O</td><td>X</td></tr>
+        </table>
+        <p><b>혼합계산 순서</b>: 1. 거듭제곱 → 2. 괄호 ( )→{ }→[ ] → 3. ×, ÷ → 4. +, - → 5. 앞에서부터 순서대로</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 2+3×(-2)²의 값은?</p>
+          <p><b>A.</b> 거듭제곱을 먼저 계산: <span class="math">(-2)²=4</span>, <span class="math">3×4=12</span>, <span class="math">2+12=14</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <input type="number" id="ar-a" value="-3">
+          <div class="chip-btns" id="ar-op">
+            <button data-op="+" class="active">+</button>
+            <button data-op="-">-</button>
+            <button data-op="×">×</button>
+            <button data-op="÷">÷</button>
+          </div>
+          <input type="number" id="ar-b" value="5">
+        </div>
+        <div class="widget-result" id="ar-result"></div>
+      </div>
+<div class="tip">혼합계산에서 가장 많이 틀리는 부분은 순서다. "거듭제곱 → 괄호 → 곱나눗 → 덧뺄"을 입으로 외워두면 실수를 줄일 수 있다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 3 : 문자와 식 ================= -->
+  <div id="ch3" class="ch3">
+    <div class="chapter-banner"><span class="chapter-num">Ⅲ</span><h2>문자와 식</h2></div>
+    <p class="chapter-sub">문자를 사용한 식의 표현, 일차식의 계산, 방정식과 그 풀이를 다루는 단원입니다.</p>
+
+    <section class="concept" id="c21">
+      <div class="concept-head"><span class="concept-num">1</span><h3>곱셈기호의 생략</h3></div>
+      <div class="def">
+        <p>생략할 수 있는 곱셈기호: 문자와 숫자 사이, 문자와 문자 사이에 있는 곱셈기호</p>
+        <p>숫자는 앞에, 문자는 뒤에: <span class="math">a×2 = 2a</span></p>
+        <p>문자끼리의 곱은 알파벳 순서대로: <span class="math">b×a = ba = ab</span></p>
+        <p>1은 생략: <span class="math">1×a=a</span>, <span class="math">(-1)×a=-a</span> (단, 0.1×a=0.1a, 11×a=11a처럼 1이 포함된 다른 숫자는 생략하지 않음)</p>
+        <p>같은 문자끼리 곱할 때는 거듭제곱: <span class="math">a×a=a²</span></p>
+        <p>괄호와 숫자의 곱은 숫자를 앞으로: <span class="math">(a+b)×3 = 3(a+b)</span></p>
+        <p>나눗셈기호의 생략은 역수를 이용: <span class="math">a÷b = a×(1/b) = a/b</span> (b≠0)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> a×(-1)×b×3을 곱셈기호를 생략하여 나타내면?</p>
+          <p><b>A.</b> 숫자를 앞으로, -1은 부호만 남겨서 <span class="math">-3ab</span></p>
+        </div>
+      </details>
+<div class="tip">"0.1a"나 "11a"처럼 숫자 1이 들어있는 계수는 절대 생략하지 않는다. 생략되는 것은 오직 계수가 정확히 1 또는 -1일 때뿐이다.</div>
+    </section>
+
+    <section class="concept" id="c22">
+      <div class="concept-head"><span class="concept-num">2</span><h3>대입과 식의 값</h3></div>
+      <div class="def">
+        <p><b>대입</b>: 문자가 있는 식에서 문자 대신에 다른 문자나 숫자를 넣는 것</p>
+        <p><b>식의 값</b>: 문자에 수를 대입해서 식을 계산한 값</p>
+        <p>1. 생략한 곱셈, 나눗셈 기호를 다시 되살린다. 2. 음수를 대입할 때는 괄호 사용. 3. 분수는 나눗셈으로 바꿔서 계산.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> x=-2일 때, 3x+5의 값은?</p>
+          <p><b>A.</b> <span class="math">3×(-2)+5 = -6+5 = -1</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>식</label>
+          <input type="number" id="sub-a" value="3" style="width:50px;">x +
+          <input type="number" id="sub-b" value="5" style="width:50px;">
+          <label>x =</label>
+          <input type="number" id="sub-x" value="-2" style="width:50px;">
+        </div>
+        <div class="widget-result" id="sub-result"></div>
+      </div>
+<div class="tip">음수를 대입할 때 괄호를 빼먹으면 부호가 완전히 달라지므로, "대입=괄호 씌우기"라고 습관을 들이자.</div>
+    </section>
+
+    <section class="concept" id="c23">
+      <div class="concept-head"><span class="concept-num">3</span><h3>항, 상수항, 계수, 단항식과 다항식, 일차식</h3></div>
+      <div class="def">
+        <p><b>항</b>: 수 또는 문자의 곱으로 이루어진 식. 예: 3, a, 3a, a², abc</p>
+        <p><b>상수항</b>: 항 중에서 수만 있는 항. 예: 3, -7</p>
+        <p><b>계수</b>: 수와 문자의 곱에서 수. <span class="math">3a</span>의 계수는 3, <span class="math">a</span>의 계수는 1</p>
+        <p><b>다항식</b>: 1개 또는 2개 이상의 항의 합으로 된 식. <b>단항식</b>: 다항식 중 항이 1개만 있는 식.</p>
+        <p><b>차수</b>: 문자가 곱해진 횟수(거듭제곱의 지수). <span class="math">4x²+2y-3</span>: x의 차수는 2, y의 차수는 1, -3의 차수는 0</p>
+        <p>항의 차수가 1이면 일차항, 2면 이차항, 3이면 삼차항. 상수항은 0차항.</p>
+        <p><b>다항식의 차수</b>: 차수가 가장 높은 항(최고차항)의 차수. <b>일차식</b>: 최고차항의 차수가 1인 다항식.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 다항식 5x²-3x+7에서 상수항과 x의 계수는?</p>
+          <p><b>A.</b> 상수항은 <span class="math">7</span>, x의 계수는 <span class="math">-3</span></p>
+        </div>
+      </details>
+<div class="tip">한 다항식이라도 어떤 문자에 대해 보느냐에 따라 차수가 달라진다. <span class="math">4x²+2y-3</span>은 x에 대해서는 이차식, y에 대해서는 일차식이다.</div>
+    </section>
+
+    <section class="concept" id="c24">
+      <div class="concept-head"><span class="concept-num">4</span><h3>단항식과 수의 곱셈과 나눗셈</h3></div>
+      <div class="def">
+        <p>문자는 그대로 두고, 계수와 수끼리만 계산한다.</p>
+        <div class="formula"><span class="math">2a×3 = (2×3)a = 6a</span></div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 4a÷2를 간단히 하면?</p>
+          <p><b>A.</b> <span class="math">4a÷2 = 2a</span></p>
+        </div>
+      </details>
+<div class="tip">문자 부분은 건드리지 않고 숫자끼리만 계산한다는 원칙은 이후 동류항 계산(#26)에서도 그대로 이어진다.</div>
+    </section>
+
+    <section class="concept" id="c25">
+      <div class="concept-head"><span class="concept-num">5</span><h3>일차식과 수의 곱셈과 나눗셈</h3></div>
+      <div class="def">
+        <p>분배법칙 이용: <span class="math">(a+b)×c = a×c + b×c</span></p>
+        <p>나눗셈은 역수를 이용하여 곱셈으로 바꿔서 계산: <span class="math">÷ b/a → × a/b</span></p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (2x-6)÷2를 계산하면?</p>
+          <p><b>A.</b> 각 항을 2로 나누어 <span class="math">x-3</span></p>
+        </div>
+      </details>
+<div class="tip">괄호 안의 모든 항에 빠짐없이 곱해야 한다. 항 하나를 빠뜨리는 실수가 가장 흔하다.</div>
+    </section>
+
+    <section class="concept" id="c26">
+      <div class="concept-head"><span class="concept-num">6</span><h3>동류항의 덧셈과 뺄셈</h3></div>
+      <div class="def">
+        <p><b>동류항</b>: 문자와 차수가 서로 같은 항</p>
+        <table class="dtable">
+          <tr><th></th><th><span class="math">2a²</span></th><th><span class="math">3a²</span></th><th><span class="math">4a</span></th><th><span class="math">5b</span></th><th><span class="math">6a²b</span></th></tr>
+          <tr><td>문자</td><td>a</td><td>a</td><td>a</td><td>b</td><td>a와 b</td></tr>
+          <tr><td>차수</td><td>2</td><td>2</td><td>1</td><td>2</td><td>2와 1</td></tr>
+          <tr><td>2a²와 동류항?</td><td>-</td><td>O</td><td>X(차수다름)</td><td>X(문자다름)</td><td>X(문자·차수 다름)</td></tr>
+        </table>
+        <p>덧셈과 뺄셈은 동류항끼리만 가능하다. 계수끼리 계산하고 문자는 그대로 둔다.</p>
+        <div class="formula"><span class="math">2a+3a=(2+3)a=5a</span>,&nbsp; <span class="math">5b-2b=(5-2)b=3b</span></div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 7a-3a+2a를 간단히 하면?</p>
+          <p><b>A.</b> 계수끼리 계산: <span class="math">(7-3+2)a = 6a</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <input type="number" id="lt-c1" value="3" style="width:50px;">a
+          <span>+</span>
+          <input type="number" id="lt-c2" value="5" style="width:50px;">a
+        </div>
+        <div class="widget-result" id="lt-result"></div>
+      </div>
+<div class="tip">문자와 차수가 둘 다 정확히 같아야 동류항이다. 문자가 같아도 차수가 다르면(2a²과 4a처럼) 절대 더할 수 없다.</div>
+    </section>
+
+    <section class="concept" id="c27">
+      <div class="concept-head"><span class="concept-num">7</span><h3>일차식의 덧셈과 뺄셈</h3></div>
+      <div class="def">
+        <p>동류항 계산 방법과 같다.</p>
+        <p>괄호가 있을 때: 분배법칙으로 전개한 후, 동류항끼리 묶어서 계산</p>
+        <p>분수꼴로 되어 있을 때: 통분을 해야 하며, 이때 괄호를 이용</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (3x+2)-(x-5)를 계산하면?</p>
+          <p><b>A.</b> 괄호를 풀면 <span class="math">3x+2-x+5 = 2x+7</span></p>
+        </div>
+      </details>
+<div class="tip">분수 형태의 일차식을 뺄 때는 통분 후 분자 전체에 괄호를 씌워야 부호 실수를 막을 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c28">
+      <div class="concept-head"><span class="concept-num">8</span><h3>방정식과 항등식</h3></div>
+      <div class="def">
+        <p><b>등식</b>: 등호(=)의 양쪽이 서로 같음을 나타내는 식. 좌변, 우변, 둘을 합쳐 양변.</p>
+        <p><b>등식의 참/거짓</b>: 좌변과 우변이 같으면 참(성립), 다르면 거짓(성립하지 않음)</p>
+        <p><b>방정식</b>: 미지수에 따라 참이기도 하고 거짓이기도 한 등식</p>
+        <p><b>방정식의 해(근)</b>: 방정식을 참이 되게 하는 미지수. <b>방정식을 푼다</b>: 방정식의 해를 구하는 것.</p>
+        <p><b>항등식</b>: 미지수에 어떤 수를 대입해도 항상 참인 등식.</p>
+        <table class="dtable">
+          <tr><th>방정식</th><th>항등식</th></tr>
+          <tr><td>미지수가 특정한 값을 가질 때만 참<br>좌변과 우변이 다른 식</td><td>미지수가 어떤 값을 가져도 참<br>좌변과 우변이 같은 식</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 2x+3=7과 2x+3=2x+3 중 항등식은 어느 것인가?</p>
+          <p><b>A.</b> <span class="math">2x+3=2x+3</span>은 x에 어떤 값을 대입해도 항상 참이므로 항등식</p>
+        </div>
+      </details>
+<div class="tip">항등식인지 방정식인지 헷갈리면, 식을 정리했을 때 양변이 완전히 똑같은 모양이 되는지 확인해보면 된다.</div>
+    </section>
+
+    <section class="concept" id="c29">
+      <div class="concept-head"><span class="concept-num">9</span><h3>등식의 성질</h3></div>
+      <div class="def">
+        <p>등식의 양변에 같은 수를 더해도, 빼도, 곱해도 등식은 성립한다.</p>
+        <p>등식의 양변을 0이 아닌 같은 수로 나누어도 등식은 성립한다.</p>
+        <div class="formula">
+          <span class="math">a=b</span>이면 <span class="math">a+c=b+c</span>, <span class="math">a-c=b-c</span>, <span class="math">ac=bc</span>, <span class="math">a÷c=b÷c</span> (c≠0)
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> a=b일 때 a+7=b+7이 성립하는 이유는?</p>
+          <p><b>A.</b> 등식의 양변에 같은 수(7)를 더해도 등식은 그대로 성립하기 때문</p>
+        </div>
+      </details>
+<div class="tip">0으로 나누는 것만은 절대 허용되지 않는다는 점을 꼭 기억하자.</div>
+    </section>
+
+    <section class="concept" id="c30">
+      <div class="concept-head"><span class="concept-num">10</span><h3>등식의 성질을 이용한 방정식의 풀이</h3></div>
+      <div class="def">
+        <p><span class="math">x = (숫자)</span> 꼴로 방정식의 모양을 바꾼다. x가 없는 항을 먼저 정리하고, 마지막에 x의 계수로 양변을 나눈다.</p>
+        <div class="formula">
+          <span class="math">4x+2=-10</span><br>
+          <span class="math">4x+2-2=-10-2</span> (등식의 성질)<br>
+          <span class="math">4x=-12</span><br>
+          <span class="math">4x÷4=-12÷4</span> (등식의 성질)<br>
+          <span class="math">x=-3</span>
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 3x-4=11을 등식의 성질로 풀면?</p>
+          <p><b>A.</b> 양변에 4를 더해 <span class="math">3x=15</span>, 양변을 3으로 나눠 <span class="math">x=5</span></p>
+        </div>
+      </details>
+<div class="tip">등식의 성질로 방정식을 푸는 과정은 이후 배우는 "이항"과 결과적으로 똑같다. 원리를 이해한 뒤에는 이항을 더 빠르게 쓰면 된다.</div>
+    </section>
+
+    <section class="concept" id="c31">
+      <div class="concept-head"><span class="concept-num">11</span><h3>일차방정식의 뜻과 풀이</h3></div>
+      <div class="def">
+        <p><b>이항</b>: 등식의 성질을 이용해서 등식의 한 변에 있는 항을 부호를 바꾸어 등호의 반대쪽으로 옮기는 것</p>
+        <p><b>일차방정식</b>: 최고차항의 차수가 1인 방정식. (일차식) = 0의 꼴</p>
+        <p>풀이: 1. x가 포함된 모든 항은 좌변으로, 상수항은 우변으로 이항. 2. 양변을 동류항 정리하여 <span class="math">ax=(상수항)</span>꼴로. 3. x의 계수 a로 양변을 나눈다.</p>
+        <div class="formula">
+          <span class="math">2x+3=4x-9</span><br>
+          <span class="math">2x-4x=-9-3</span> (이항)<br>
+          <span class="math">-2x=-12</span> (동류항 정리)<br>
+          <span class="math">x=6</span> (x의 계수로 양변을 나눔)
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 5x-3=2x+9를 풀면?</p>
+          <p><b>A.</b> 이항하면 <span class="math">5x-2x=9+3</span>, <span class="math">3x=12</span>, <span class="math">x=4</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>방정식</label>
+          <input type="number" id="eq-a" value="3" style="width:52px;">x +
+          <input type="number" id="eq-b" value="4" style="width:52px;"> =
+          <input type="number" id="eq-c" value="19" style="width:52px;">
+          <button id="eq-solve">풀기</button>
+        </div>
+        <div class="widget-result" id="eq-result"></div>
+      </div>
+<div class="tip">이항할 때는 부호가 반드시 바뀐다는 것만 기억하면, 등식의 성질을 매번 쓰지 않고도 빠르게 방정식을 풀 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c32">
+      <div class="concept-head"><span class="concept-num">12</span><h3>복잡한 일차방정식의 풀이</h3></div>
+      <div class="def">
+        <p>복잡하지 않게 바꾸어 푼다.</p>
+        <p><b>괄호가 있을 때</b>: 분배법칙으로 괄호를 풀고 동류항 정리</p>
+        <p><b>계수가 분수일 때</b>: 모든 분모의 최소공배수를 양변에 곱해서 분모를 없애 계수를 정수로 바꾼다.</p>
+        <p><b>계수가 소수일 때</b>: 10, 100, 1000 등 10의 거듭제곱을 곱해서 계수를 정수로 바꾼다.</p>
+        <p><b>비례식일 때</b>: (내항의 곱) = (외항의 곱)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> (1/2)x+1=(1/3)x+2를 풀면?</p>
+          <p><b>A.</b> 양변에 분모의 최소공배수 6을 곱하면 <span class="math">3x+6=2x+12</span>, 이항하면 <span class="math">x=6</span></p>
+        </div>
+      </details>
+<div class="tip">분모나 소수를 정리하는 단계에서 양변 모든 항에 똑같이 곱해야 한다는 것을 잊지 말자. 일부 항만 곱하면 식이 깨진다.</div>
+    </section>
+
+    <section class="concept" id="c33">
+      <div class="concept-head"><span class="concept-num">13</span><h3>일차방정식의 활용</h3></div>
+      <div class="def">
+        <p>1. 문제에서 구하려는 것을 x라고 놓는다. 2. 문제의 조건에 맞는 방정식을 세운다. 3. 방정식을 풀어서 해를 구한다. 4. 문제에서 원하는 답을 구한다.</p>
+        <div class="formula">
+          거리 = 속력×시간, 속력 = 거리/시간, 시간 = 거리/속력<br>
+          농도(%) = (소금의 양/소금물의 양)×100<br>
+          소금의 양(g) = (농도/100)×소금물의 양
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 어떤 수의 3배에 4를 더하면 19가 될 때, 그 수는?</p>
+          <p><b>A.</b> 그 수를 x라 하면 <span class="math">3x+4=19</span>, <span class="math">3x=15</span>, <span class="math">x=5</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 거리·속력·시간</span>
+        <div class="widget-row">
+          <label>거리(km)</label>
+          <input type="number" id="dst-d" value="90">
+          <label>시간(h)</label>
+          <input type="number" id="dst-t" value="2">
+        </div>
+        <div class="widget-result" id="dst-result"></div>
+      </div>
+<div class="tip">거리·속력·시간, 농도 공식은 통째로 외우기보다 "거리=속력×시간" 하나만 정확히 기억하고 나머지는 그 식을 변형해서 구하는 것이 안전하다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 4 : 그래프와 비례관계 ================= -->
+  <div id="ch4" class="ch4">
+    <div class="chapter-banner"><span class="chapter-num">Ⅳ</span><h2>그래프와 비례관계</h2></div>
+    <p class="chapter-sub">좌표평면 위에 그래프를 그리고, 정비례·반비례 관계를 다루는 단원입니다.</p>
+
+    <section class="concept" id="c34">
+      <div class="concept-head"><span class="concept-num">1</span><h3>순서쌍과 좌표평면</h3></div>
+      <div class="def">
+        <p><b>좌표</b>: 수직선 위의 한 점에 대응하는 수. <b>순서쌍</b>: 한 쌍의 숫자를 순서대로 쓰는 것 <span class="math">(a,b)</span></p>
+        <p><b>x축</b>: 가로로 그어진 수직선, <b>y축</b>: 세로로 그어진 수직선. 둘을 합쳐 좌표축.</p>
+        <p><b>좌표평면</b>: x축과 y축이 그려진 평면. <b>원점</b>: x축과 y축이 만나는 점 O.</p>
+        <p><span class="math">P(x,y)</span>: 점 P의 좌표로 x좌표, y좌표 순으로 쓴다.</p>
+        <p><b>사분면</b>: 좌표평면이 좌표축으로 나누어진 네 영역</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="130" x2="280" y2="130" stroke="#16233B" stroke-width="1.5"/>
+          <line x1="150" y1="20" x2="150" y2="240" stroke="#16233B" stroke-width="1.5"/>
+          <text x="284" y="134" font-size="13" fill="#16233B">x</text>
+          <text x="154" y="18" font-size="13" fill="#16233B">y</text>
+          <text x="130" y="146" font-size="12" fill="#16233B">O</text>
+          <text x="205" y="70" font-size="14" fill="#0D9488" font-weight="700">제1사분면</text>
+          <text x="200" y="86" font-size="11" fill="#6B7A90">(+,+)</text>
+          <text x="55" y="70" font-size="14" fill="#0D9488" font-weight="700">제2사분면</text>
+          <text x="55" y="86" font-size="11" fill="#6B7A90">(-,+)</text>
+          <text x="55" y="190" font-size="14" fill="#0D9488" font-weight="700">제3사분면</text>
+          <text x="55" y="206" font-size="11" fill="#6B7A90">(-,-)</text>
+          <text x="205" y="190" font-size="14" fill="#0D9488" font-weight="700">제4사분면</text>
+          <text x="200" y="206" font-size="11" fill="#6B7A90">(+,-)</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 점 (3,-2)는 제몇 사분면 위의 점인가?</p>
+          <p><b>A.</b> x좌표가 양수, y좌표가 음수이므로 <b>제4사분면</b></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 좌표평면을 클릭해보세요</span>
+        <svg viewBox="0 0 300 260" id="cp-svg" class="grid-click">
+          <line x1="20" y1="130" x2="280" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <line x1="150" y1="20" x2="150" y2="240" stroke="#16233B" stroke-width="1.4"/>
+          <text x="284" y="134" font-size="12">x</text>
+          <text x="154" y="18" font-size="12">y</text>
+          <rect x="20" y="20" width="260" height="220" fill="transparent"/>
+          <circle id="cp-dot" cx="150" cy="130" r="6" fill="#0D9488" style="display:none;"/>
+        </svg>
+        <div class="widget-result" id="cp-result">좌표평면 위를 클릭해서 점을 찍어보세요.</div>
+      </div>
+<div class="tip">사분면은 1사분면부터 반시계 방향으로 번호가 매겨진다는 것을 기억하면 순서를 헷갈리지 않는다.</div>
+    </section>
+
+    <section class="concept" id="c35">
+      <div class="concept-head"><span class="concept-num">2</span><h3>그래프의 뜻과 표현</h3></div>
+      <div class="def">
+        <p><b>변수</b>: 변하는 값, 변하는 값을 나타내는 문자. <b>상수</b>: 변하지 않는 값</p>
+        <p><b>그래프</b>: 여러 자료를 좌표를 이용해서 좌표평면에 점, 직선, 곡선 등으로 나타낸 것. 표로 볼 때보다 변화나 상태를 더 직관적으로 알아볼 수 있다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 시간에 따라 변하는 기온을 그래프로 나타낼 때, 변수는 무엇인가?</p>
+          <p><b>A.</b> 시간과 기온이 모두 변수다(시간이 변함에 따라 기온도 변한다)</p>
+        </div>
+      </details>
+<div class="tip">같은 자료라도 표보다 그래프로 보면 "증가하는지 감소하는지", "얼마나 빠르게 변하는지"가 한눈에 들어온다.</div>
+    </section>
+
+    <section class="concept" id="c36">
+      <div class="concept-head"><span class="concept-num">3</span><h3>정비례와 그래프</h3></div>
+      <div class="def">
+        <p>변수 x, y에서 x가 2배, 3배가 될 때 y도 2배, 3배가 되는 관계를 <b>정비례</b>라 하며, <span class="math">y=ax</span> (a≠0)의 관계가 성립한다.</p>
+        <table class="dtable">
+          <tr><th></th><th><span class="math">a &gt; 0</span></th><th><span class="math">a &lt; 0</span></th></tr>
+          <tr><td colspan="2" style="text-align:center;">원점 (0,0)을 지나는 직선</td></tr>
+          <tr><td>오른쪽 위로 향하는 직선<br>제1,3사분면 (x,y 부호 같음)</td><td>오른쪽 아래로 향하는 직선<br>제2,4사분면 (x,y 부호 반대)</td></tr>
+        </table>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="100" x2="280" y2="100" stroke="#C7D3E0" stroke-width="1"/>
+          <line x1="150" y1="10" x2="150" y2="190" stroke="#C7D3E0" stroke-width="1"/>
+          <line x1="110" y1="180" x2="190" y2="20" stroke="#0D9488" stroke-width="2.4"/>
+          <text x="192" y="18" font-size="12" fill="#0D9488" font-weight="700">y=2x</text>
+          <line x1="110" y1="20" x2="190" y2="180" stroke="#EA580C" stroke-width="2.4"/>
+          <text x="192" y="186" font-size="12" fill="#EA580C" font-weight="700">y=-2x</text>
+        </svg>
+        <p class="figure-cap">정비례 그래프는 항상 원점을 지나는 직선이다</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 정비례 관계 y=3x에서 x=4일 때 y의 값은?</p>
+          <p><b>A.</b> <span class="math">y=3×4=12</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>a 값</label>
+          <input type="range" id="dp-a" min="-5" max="5" step="0.5" value="2">
+          <span class="widget-val" id="dp-a-val">2</span>
+        </div>
+        <svg viewBox="0 0 300 200" id="dp-svg">
+          <line x1="20" y1="100" x2="280" y2="100" stroke="#C7D3E0" stroke-width="1"/>
+          <line x1="150" y1="10" x2="150" y2="190" stroke="#C7D3E0" stroke-width="1"/>
+          <line id="dp-line" x1="110" y1="180" x2="190" y2="20" stroke="#0D9488" stroke-width="2.6"/>
+        </svg>
+        <div class="widget-result" id="dp-result"></div>
+      </div>
+<div class="tip">원점 외에 점 하나만 더 찍으면 직선을 그을 수 있다. x에 1을 대입해 나오는 y값을 이용하면 가장 간단하다.</div>
+    </section>
+
+    <section class="concept" id="c37">
+      <div class="concept-head"><span class="concept-num">4</span><h3>반비례와 그래프</h3></div>
+      <div class="def">
+        <p>x가 2배, 3배가 될 때 y는 1/2배, 1/3배가 되는 관계를 <b>반비례</b>라 하며, <span class="math">xy=a</span> (a≠0), 즉 <span class="math">y=a/x</span>의 관계가 성립한다.</p>
+        <table class="dtable">
+          <tr><th></th><th><span class="math">a &gt; 0</span></th><th><span class="math">a &lt; 0</span></th></tr>
+          <tr><td colspan="2" style="text-align:center;">x축, y축에 한없이 가까워지는 한 쌍의 곡선(쌍곡선)</td></tr>
+          <tr><td>제1,3사분면 (x,y 부호 같음)</td><td>제2,4사분면 (x,y 부호 반대)</td></tr>
+        </table>
+        <p>x가 2배, 3배… 될 때 y도 2배, 3배…면 정비례, y가 1/2배, 1/3배…면 반비례, 특징이 없으면 정비례도 반비례도 아니다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="100" x2="280" y2="100" stroke="#C7D3E0" stroke-width="1"/>
+          <line x1="150" y1="10" x2="150" y2="190" stroke="#C7D3E0" stroke-width="1"/>
+          <polyline points="154.8,10 156,28 159,52 162,64 168,76 180,85.6 198,91 228,94.5 270,96.4" fill="none" stroke="#0D9488" stroke-width="2.4"/>
+          <polyline points="145.2,190 144,172 141,148 138,136 132,124 120,114.4 102,109 72,105.5 30,103.6" fill="none" stroke="#0D9488" stroke-width="2.4"/>
+          <text x="165" y="35" font-size="12" fill="#0D9488" font-weight="700">y=12/x</text>
+          <polyline points="145.2,10 144,28 141,52 138,64 132,76 120,85.6 102,91 72,94.5 30,96.4" fill="none" stroke="#EA580C" stroke-width="2.4"/>
+          <polyline points="154.8,190 156,172 159,148 162,136 168,124 180,114.4 198,109 228,105.5 270,103.6" fill="none" stroke="#EA580C" stroke-width="2.4"/>
+          <text x="55" y="35" font-size="12" fill="#EA580C" font-weight="700">y=-12/x</text>
+        </svg>
+        <p class="figure-cap">반비례 그래프는 좌표축에 닿지 않고 한없이 가까워지기만 한다</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 반비례 관계 y=12/x에서 x=3일 때 y의 값은?</p>
+          <p><b>A.</b> <span class="math">y=12/3=4</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>a 값</label>
+          <input type="range" id="ip-a" min="-20" max="20" step="1" value="12">
+          <span class="widget-val" id="ip-a-val">12</span>
+        </div>
+        <svg viewBox="0 0 300 200" id="ip-svg">
+          <line x1="20" y1="100" x2="280" y2="100" stroke="#C7D3E0" stroke-width="1"/>
+          <line x1="150" y1="10" x2="150" y2="190" stroke="#C7D3E0" stroke-width="1"/>
+          <polyline id="ip-branch1" points="" fill="none" stroke="#0D9488" stroke-width="2.4"/>
+          <polyline id="ip-branch2" points="" fill="none" stroke="#0D9488" stroke-width="2.4"/>
+        </svg>
+        <div class="widget-result" id="ip-result"></div>
+      </div>
+<div class="tip">반비례 그래프는 절대 원점이나 좌표축을 지나지 않는다. x=0이면 정의되지 않기 때문이다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 5 : 도형의 기초 ================= -->
+  <div id="ch5" class="ch5">
+    <div class="chapter-banner"><span class="chapter-num">Ⅴ</span><h2>도형의 기초</h2></div>
+    <p class="chapter-sub">점·선·면의 관계부터 작도, 삼각형의 합동까지 평면·공간 도형의 기본을 다루는 단원입니다.</p>
+
+    <section class="concept" id="c38">
+      <div class="concept-head"><span class="concept-num">1</span><h3>점, 선, 면</h3></div>
+      <div class="def">
+        <p><b>선</b>: 무수히 많은 점이 모여서 이루어진 것(점들이 연속적으로 움직인 자리). 예) 수직선</p>
+        <p><b>면</b>: 무수히 많은 선이 모여서 이루어진 것. 예) 좌표평면</p>
+        <p><b>교점</b>: 선과 선 또는 선과 면이 만나서 생기는 점. <b>교선</b>: 면과 면이 만나서 생기는 선.</p>
+        <table class="dtable">
+          <tr><th></th><th>점</th><th>선</th><th>면</th></tr>
+          <tr><td>점</td><td></td><td></td><td></td></tr>
+          <tr><td>선</td><td></td><td></td><td>교점</td></tr>
+          <tr><td>면</td><td></td><td>교점</td><td>교선</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 삼각형에서 변과 변이 만나는 점을 무엇이라 하는가?</p>
+          <p><b>A.</b> 교점이며, 특별히 도형의 꼭짓점이라 부른다</p>
+        </div>
+      </details>
+<div class="tip">삼각형·사각형에서 변과 변이 만나는 꼭짓점은 교점, 직육면체·각뿔에서 면과 면이 만나는 모서리는 교선의 예다.</div>
+    </section>
+
+    <section class="concept" id="c39">
+      <div class="concept-head"><span class="concept-num">2</span><h3>직선, 반직선, 선분</h3></div>
+      <div class="def">
+        <p>한 점을 지나는 직선은 무수히 많지만, 서로 다른 두 점을 모두 지나는 직선은 딱 하나다.</p>
+        <p><b>직선 AB</b>: 서로 다른 두 점 A, B를 지나 양쪽으로 한없이 곧게 뻗은 선</p>
+        <p><b>반직선 AB</b>: 직선 AB의 한 점 A에서 시작해서 점 B쪽으로 곧게 뻗은 선 (반직선 AB ≠ 반직선 BA)</p>
+        <p><b>선분 AB</b>: 직선 AB 위의 점 A에서 점 B까지의 부분</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="30" x2="300" y2="30" stroke="#EA580C" stroke-width="2"/>
+          <polygon points="300,30 290,26 290,34" fill="#EA580C"/><polygon points="20,30 30,26 30,34" fill="#EA580C"/>
+          <circle cx="90" cy="30" r="3"/><circle cx="220" cy="30" r="3"/>
+          <text x="86" y="20" font-size="13">A</text><text x="216" y="20" font-size="13">B</text>
+          <text x="10" y="50" font-size="12" fill="#6B7A90">직선 AB</text>
+
+          <line x1="90" y1="70" x2="300" y2="70" stroke="#16233B" stroke-width="2"/>
+          <polygon points="300,70 290,66 290,74" fill="#16233B"/>
+          <circle cx="90" cy="70" r="3"/><circle cx="220" cy="70" r="3"/>
+          <text x="86" y="88" font-size="13">A</text><text x="216" y="88" font-size="13">B</text>
+          <text x="10" y="96" font-size="12" fill="#6B7A90">반직선 AB</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 서로 다른 두 점 A, B를 지나는 직선은 몇 개인가?</p>
+          <p><b>A.</b> 오직 <b>1개</b>뿐이다</p>
+        </div>
+      </details>
+<div class="tip">반직선은 시작점(시점)이 어디인지에 따라 완전히 다른 도형이 된다. 반직선 AB와 반직선 BA는 서로 다르다는 것을 꼭 기억하자.</div>
+    </section>
+
+    <section class="concept" id="c40">
+      <div class="concept-head"><span class="concept-num">3</span><h3>두 점 사이의 거리</h3></div>
+      <div class="def">
+        <p><b>거리</b>: 두 점 A, B를 연결하는 무수히 많은 선 중에서 길이가 가장 짧은 선의 길이 = 선분 AB의 길이</p>
+        <p><span class="math">AB</span>: 도형으로서 선분 AB, 또는 선분 AB의 길이를 나타내는 기호로 함께 쓰인다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 두 점 A, B를 잇는 무수히 많은 선 중 가장 짧은 것은?</p>
+          <p><b>A.</b> 선분 AB (이 길이가 곧 두 점 사이의 거리)</p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>점 A</label>
+          <input type="range" id="pd-a" min="-10" max="10" value="-4">
+          <span class="widget-val" id="pd-a-val">-4</span>
+        </div>
+        <div class="widget-row">
+          <label>점 B</label>
+          <input type="range" id="pd-b" min="-10" max="10" value="6">
+          <span class="widget-val" id="pd-b-val">6</span>
+        </div>
+        <div class="widget-result" id="pd-result"></div>
+      </div>
+<div class="tip">두 점을 잇는 무수히 많은 곡선·꺾인 선 중에서, 직선 거리(선분)가 항상 가장 짧다.</div>
+    </section>
+
+    <section class="concept" id="c41">
+      <div class="concept-head"><span class="concept-num">4</span><h3>중점</h3></div>
+      <div class="def">
+        <p><b>중점</b>: 두 점의 가운데 있는 점. 알파벳으로 M(Middle point)</p>
+        <p>두 점 A, B(선분 AB)와 중점 M일 때,</p>
+        <div class="formula"><span class="math">AM = BM = (1/2)AB</span>,&nbsp; <span class="math">2AM = 2BM = AB</span></div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> AB=10cm이고 점 M이 AB의 중점일 때, AM의 길이는?</p>
+          <p><b>A.</b> 중점은 전체 길이의 절반이므로 <span class="math">AM = 10÷2 = 5cm</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <svg viewBox="0 0 300 90" id="mp-svg">
+          <line x1="20" y1="45" x2="280" y2="45" stroke="#16233B" stroke-width="1.6"/>
+          <circle id="mp-a" cx="70" cy="45" r="7" fill="#EA580C" class="num-pt"/>
+          <circle id="mp-b" cx="230" cy="45" r="7" fill="#0D9488" class="num-pt"/>
+          <circle id="mp-m" cx="150" cy="45" r="5" fill="#16233B"/>
+          <text id="mp-label" x="140" y="30" font-size="12" fill="#16233B">M</text>
+          <text id="mp-ta" x="70" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#EA580C" pointer-events="none">A</text>
+          <text id="mp-tb" x="230" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#0D9488" pointer-events="none">B</text>
+        </svg>
+        <div class="widget-result" id="mp-result">A, B 점을 드래그해서 중점 M을 확인해보세요.</div>
+      </div>
+<div class="tip">중점 문제는 대부분 "전체 길이의 절반"이라는 사실 하나로 풀린다.</div>
+    </section>
+
+    <section class="concept" id="c42">
+      <div class="concept-head"><span class="concept-num">5</span><h3>각의 정의, 각의 표시</h3></div>
+      <div class="def">
+        <p><b>각</b>: 한 점 O에서 시작하는 두 반직선 OA, OB로 이루어지는 도형. 기호는 <span class="math">∠</span></p>
+        <div class="formula"><span class="math">∠AOB = ∠BOA = ∠O = ∠a</span></div>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="140" x2="147" y2="32" stroke="#16233B" stroke-width="2"/>
+          <polygon points="147,32 136,38 138,44" fill="#16233B"/>
+          <line x1="40" y1="140" x2="195" y2="140" stroke="#16233B" stroke-width="2"/>
+          <polygon points="195,140 184,135 184,145" fill="#16233B"/>
+          <path d="M59.3,119.7 A28,28 0 0,1 68,140" fill="none" stroke="#EA580C" stroke-width="1.6"/>
+          <text x="70" y="127" font-size="13" fill="#EA580C">a</text>
+          <circle cx="40" cy="140" r="2.5" fill="#16233B"/>
+          <text x="22" y="152" font-size="13" fill="#16233B">O</text>
+          <text x="148" y="24" font-size="13" fill="#16233B">A</text>
+          <text x="197" y="144" font-size="13" fill="#16233B">B</text>
+        </svg>
+        <p class="figure-cap">점 O에서 시작하는 두 반직선 OA, OB가 이루는 각 ∠AOB(=∠a)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 두 반직선 OA, OB로 이루어지는 각을 기호로 나타내면?</p>
+          <p><b>A.</b> <span class="math">∠AOB</span></p>
+        </div>
+      </details>
+<div class="tip">각의 이름은 시작점(꼭짓점) O를 가운데에 쓰는 것이 원칙이다(∠AOB).</div>
+    </section>
+
+    <section class="concept" id="c43">
+      <div class="concept-head"><span class="concept-num">6</span><h3>각의 크기와 종류</h3></div>
+      <div class="def">
+        <p><b>평각</b>: 두 반직선이 직선을 이룰 때, 180°. <b>직각</b>: 평각의 1/2, 90°</p>
+        <p><b>예각</b>: 0°보다 크고 90°보다 작은 각. <b>둔각</b>: 90°보다 크고 180°보다 작은 각.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 340 90" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="70" x2="320" y2="70" stroke="#16233B" stroke-width="1.6"/>
+          <g stroke="#16233B"><line x1="20" y1="65" x2="20" y2="75"/><line x1="170" y1="65" x2="170" y2="75"/><line x1="320" y1="65" x2="320" y2="75"/></g>
+          <text x="12" y="90" font-size="12">0°</text><text x="160" y="90" font-size="12">90°</text><text x="308" y="90" font-size="12">180°</text>
+          <text x="45" y="30" font-size="13" fill="#EA580C" font-weight="700">예각</text>
+          <text x="150" y="30" font-size="13" fill="#EA580C" font-weight="700">직각</text>
+          <text x="215" y="30" font-size="13" fill="#EA580C" font-weight="700">둔각</text>
+          <text x="290" y="30" font-size="13" fill="#EA580C" font-weight="700">평각</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 110°는 예각, 직각, 둔각 중 무엇인가?</p>
+          <p><b>A.</b> 90°보다 크고 180°보다 작으므로 <b>둔각</b></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>각도</label>
+          <input type="range" id="ang-deg" min="0" max="180" value="60">
+          <span class="widget-val" id="ang-deg-val">60°</span>
+        </div>
+        <svg viewBox="0 0 240 140" id="ang-svg">
+          <line x1="30" y1="120" x2="220" y2="120" stroke="#16233B" stroke-width="2"/>
+          <line id="ang-ray" x1="30" y1="120" x2="130" y2="17" stroke="#EA580C" stroke-width="2.4"/>
+          <path id="ang-arc" d="" fill="none" stroke="#EA580C" stroke-width="1.4"/>
+        </svg>
+        <div class="widget-result" id="ang-result"></div>
+      </div>
+<div class="tip">직각(90°)을 기준으로 그보다 작으면 예각, 크면 둔각이라고 나누면 외우기 쉽다.</div>
+    </section>
+
+    <section class="concept" id="c44">
+      <div class="concept-head"><span class="concept-num">7</span><h3>교각, 맞꼭지각</h3></div>
+      <div class="def">
+        <p><b>교각</b>: 직선과 직선이 만나서 생기는 각. 항상 네 개가 생기며 네 개 전부 교각이다.</p>
+        <p><b>맞꼭지각</b>: 네 개의 교각 중에서 서로 마주 보고 있는 두 각. 서로 크기가 같다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 260 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="30" x2="230" y2="130" stroke="#16233B" stroke-width="1.8"/>
+          <line x1="30" y1="130" x2="230" y2="30" stroke="#16233B" stroke-width="1.8"/>
+          <path d="M124.82,60.68 A20,20 0 0,1 135.18,60.68" fill="none" stroke="#EA580C" stroke-width="1.6"/>
+          <path d="M149.32,74.82 A20,20 0 0,1 149.32,85.18" fill="none" stroke="#EA580C" stroke-width="1.6"/>
+          <path d="M135.18,99.32 A20,20 0 0,1 124.82,99.32" fill="none" stroke="#EA580C" stroke-width="1.6"/>
+          <path d="M110.68,85.18 A20,20 0 0,1 110.68,74.82" fill="none" stroke="#EA580C" stroke-width="1.6"/>
+          <text x="123" y="55" font-size="13" fill="#EA580C">a</text>
+          <text x="166" y="84" font-size="13" fill="#EA580C">d</text>
+          <text x="108" y="100" font-size="13" fill="#EA580C">c</text>
+          <text x="88" y="84" font-size="13" fill="#EA580C">b</text>
+        </svg>
+        <p class="figure-cap">∠a=∠c, ∠b=∠d (마주보는 각끼리 맞꼭지각)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 두 직선이 만나 생긴 네 각 중 ∠a=70°일 때, ∠a의 맞꼭지각의 크기는?</p>
+          <p><b>A.</b> 맞꼭지각은 크기가 서로 같으므로 <span class="math">70°</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>회전각</label>
+          <input type="range" id="va-deg" min="10" max="170" value="55">
+          <span class="widget-val" id="va-deg-val">55°</span>
+        </div>
+        <svg viewBox="0 0 260 160" id="va-svg" style="overflow:visible;">
+          <line id="va-l1" x1="30" y1="30" x2="230" y2="130" stroke="#16233B" stroke-width="1.8"/>
+          <line id="va-l2" x1="30" y1="130" x2="230" y2="30" stroke="#16233B" stroke-width="1.8"/>
+          <path id="va-wa" fill="rgba(234,88,12,.20)"/>
+          <path id="va-wb" fill="rgba(13,148,136,.20)"/>
+          <path id="va-wc" fill="rgba(234,88,12,.20)"/>
+          <path id="va-wd" fill="rgba(13,148,136,.20)"/>
+          <path id="va-ra" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linecap="round"/>
+          <path id="va-rb" fill="none" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round"/>
+          <path id="va-rc" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linecap="round"/>
+          <path id="va-rd" fill="none" stroke="#0D9488" stroke-width="1.8" stroke-linecap="round"/>
+          <text id="va-ta" x="123" y="55" font-size="13" font-weight="700" text-anchor="middle" fill="#EA580C">a</text>
+          <text id="va-td" x="166" y="84" font-size="13" font-weight="700" text-anchor="middle" fill="#0D9488">d</text>
+          <text id="va-tc" x="108" y="100" font-size="13" font-weight="700" text-anchor="middle" fill="#EA580C">c</text>
+          <text id="va-tb" x="88" y="84" font-size="13" font-weight="700" text-anchor="middle" fill="#0D9488">b</text>
+        </svg>
+        <div class="widget-result" id="va-result"></div>
+      </div>
+<div class="tip">맞꼭지각은 항상 크기가 같다는 사실이 도형 문제에서 각의 크기를 구하는 데 자주 쓰인다.</div>
+    </section>
+
+    <section class="concept" id="c45">
+      <div class="concept-head"><span class="concept-num">8</span><h3>수직과 직교, 수선, 수선의 발, 점과 직선 사이의 거리</h3></div>
+      <div class="def">
+        <p><b>직교</b>: 교각이 90°일 때, 두 직선은 직교. 기호는 <span class="math">⊥</span>. 이때 두 직선은 서로 <b>수직</b>이며, 한 직선은 다른 직선의 <b>수선</b>(서로가 서로에게 수선)이다.</p>
+        <p><b>수선의 발</b>: 직선 l 위에 있지 않은 점 P에서 직선 l에 수선을 그었을 때 생기는 교점 H</p>
+        <p><b>점과 직선 사이의 거리</b> = 점 P와 수선의 발 H 사이의 거리 = 선분 PH의 길이</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 두 직선이 이루는 교각이 90°일 때, 두 직선의 관계는?</p>
+          <p><b>A.</b> 직교하며, 서로 <b>수직</b>이다</p>
+        </div>
+      </details>
+<div class="tip">"점과 직선 사이의 거리"는 항상 수직으로 내린 거리를 말한다. 비스듬히 잰 거리는 해당하지 않는다.</div>
+    </section>
+
+    <section class="concept" id="c46">
+      <div class="concept-head"><span class="concept-num">9</span><h3>평면에서 점과 직선의 위치 관계</h3></div>
+      <div class="def">
+        <p>직선이 점을 지난다 = 점이 직선 위에 있다 → 직선 위의 점</p>
+        <p>직선이 점을 지나지 않는다 = 점이 직선 위에 있지 않다 → 직선 위에 있지 않은 점</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 직선이 점 P를 지나지 않을 때, 점 P와 직선의 관계는?</p>
+          <p><b>A.</b> 점 P는 직선 위에 있지 않다</p>
+        </div>
+      </details>
+<div class="tip">이 단순한 분류가 이후 공간에서의 점·직선·평면 위치 관계 전체의 기초가 된다.</div>
+    </section>
+
+    <section class="concept" id="c47">
+      <div class="concept-head"><span class="concept-num">10</span><h3>평면에서 두 직선의 위치 관계</h3></div>
+      <div class="def">
+        <table class="dtable">
+          <tr><th></th><th>평면에서 두 직선의 위치 관계</th></tr>
+          <tr><td rowspan="2">만난다</td><td>한 점에서 만난다</td></tr>
+          <tr><td>일치</td></tr>
+          <tr><td>만나지 않는다</td><td>평행</td></tr>
+        </table>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 360 110" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="20" x2="100" y2="90" stroke="#16233B" stroke-width="1.8"/>
+          <line x1="10" y1="90" x2="100" y2="20" stroke="#16233B" stroke-width="1.8"/>
+          <text x="30" y="105" font-size="11" fill="#6B7A90">한 점에서 만난다</text>
+          <line x1="140" y1="35" x2="240" y2="35" stroke="#16233B" stroke-width="1.8"/>
+          <line x1="140" y1="75" x2="240" y2="75" stroke="#16233B" stroke-width="1.8"/>
+          <text x="160" y="105" font-size="11" fill="#6B7A90">평행</text>
+          <line x1="270" y1="55" x2="360" y2="55" stroke="#16233B" stroke-width="3.4"/>
+          <text x="290" y="105" font-size="11" fill="#6B7A90">일치</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 평면에서 서로 만나지 않는 두 직선의 관계는?</p>
+          <p><b>A.</b> 평행</p>
+        </div>
+      </details>
+<div class="tip">평면에서 두 직선은 딱 세 가지 경우(만난다·평행·일치)뿐이다. 공간에서는 여기에 "꼬인 위치"가 하나 더 추가된다(#50).</div>
+    </section>
+
+    <section class="concept" id="c48">
+      <div class="concept-head"><span class="concept-num">11</span><h3>공간에서 점과 직선의 위치 관계</h3></div>
+      <div class="def"><p>공간에서 점과 직선의 위치 관계는 평면에서 점과 직선의 위치 관계와 완전히 같다.</p></div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 공간에서 점과 직선의 위치 관계는 평면에서와 비교해 어떻게 다른가?</p>
+          <p><b>A.</b> 완전히 같다. 점은 직선 위에 있거나 있지 않거나 둘 중 하나뿐이다</p>
+        </div>
+      </details>
+<div class="tip">평면이든 공간이든, 점은 직선 위에 있거나 있지 않거나 둘 중 하나다.</div>
+    </section>
+
+    <section class="concept" id="c49">
+      <div class="concept-head"><span class="concept-num">12</span><h3>공간에서 점과 평면의 위치 관계</h3></div>
+      <div class="def">
+        <p>공간에서 점과 직선의 위치 관계에서 (직선)을 (평면)으로 바꾸면 된다.</p>
+        <p>점이 (평면) 위에 있다 / 점이 (평면) 위에 있지 않다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 점이 평면 위에 있지 않을 때를 무엇이라 하는가?</p>
+          <p><b>A.</b> 점이 평면 위에 있지 않다(평면 밖의 점)고 한다</p>
+        </div>
+      </details>
+<div class="tip">"직선"을 "평면"으로 바꿔서 생각하는 이 패턴은 뒤에 나오는 위치 관계 표(#53)에서 계속 반복된다.</div>
+    </section>
+
+    <section class="concept" id="c50">
+      <div class="concept-head"><span class="concept-num">13</span><h3>공간에서 두 직선의 위치 관계</h3></div>
+      <div class="def">
+        <p>(공간에서 두 직선의 위치 관계) = (평면에서 두 직선의 위치 관계 3가지) + 꼬인 위치</p>
+        <p><b>꼬인 위치</b>: 만나지도 않으면서 평행하지도 않은 경우</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,30 180,20 190,80 30,90" fill="#FDEDE2" stroke="#EA580C" stroke-width="1.6"/>
+          <line x1="60" y1="30" x2="131" y2="66" stroke="#16233B" stroke-width="1.8"/>
+          <line x1="139" y1="69" x2="150" y2="75" stroke="#16233B" stroke-width="1.8"/>
+          <line x1="70" y1="100" x2="160" y2="55" stroke="#16233B" stroke-width="1.8" stroke-dasharray="4,3"/>
+        </svg>
+        <p class="figure-cap">꼬인 위치: 한 평면 위에 함께 놓을 수 없는 두 직선(평면 위의 실선과, 평면을 벗어난 점선)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 직육면체에서 한 모서리와 평행하지도 만나지도 않는 모서리의 관계는?</p>
+          <p><b>A.</b> 꼬인 위치</p>
+        </div>
+      </details>
+<div class="tip">꼬인 위치인지 확인하려면 두 직선이 한 평면 위에 동시에 놓일 수 있는지를 따져보면 된다. 놓일 수 없다면 꼬인 위치다.</div>
+    </section>
+
+    <section class="concept" id="c51">
+      <div class="concept-head"><span class="concept-num">14</span><h3>공간에서 평면과 직선의 위치 관계</h3></div>
+      <div class="def">
+        <table class="dtable">
+          <tr><th>평면에서 두 직선의 위치 관계</th><th>공간에서 평면과 직선의 위치 관계</th></tr>
+          <tr><td>한 점에서 만난다</td><td rowspan="2">한 점에서 만난다</td></tr>
+          <tr><td>일치</td></tr>
+          <tr><td>평행</td><td>포함</td></tr>
+          <tr><td></td><td>평행</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 직선이 평면에 완전히 포함되어 놓여 있을 때의 관계는?</p>
+          <p><b>A.</b> 포함</p>
+        </div>
+      </details>
+<div class="tip">직선이 평면에 "포함"되는 경우는 평면에서는 없던, 공간에서만 나타나는 새로운 경우다.</div>
+    </section>
+
+    <section class="concept" id="c52">
+      <div class="concept-head"><span class="concept-num">15</span><h3>공간에서 두 평면의 위치 관계</h3></div>
+      <div class="def">
+        <table class="dtable">
+          <tr><th></th><th>공간에서 두 평면의 위치 관계</th></tr>
+          <tr><td>만난다</td><td>한 직선에서 만난다</td></tr>
+          <tr><td></td><td>일치</td></tr>
+          <tr><td>만나지 않는다</td><td>평행</td></tr>
+        </table>
+        <p><b>두 평면 사이의 수직관계</b>: 평면 Q와 수직인 직선 l이 평면 P에 포함될 때, 평면 P와 평면 Q도 서로 수직.</p>
+        <p><b>두 평면 사이의 거리</b>: 평행한 평면에서만 구할 수 있음 = 한 평면 위의 점에서 다른 평면에 그은 수선의 길이</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 직육면체의 두 밑면처럼 서로 만나지 않는 두 평면의 관계는?</p>
+          <p><b>A.</b> 평행</p>
+        </div>
+      </details>
+<div class="tip">두 평면은 만나면 반드시 "선"에서 만난다(점이 아니다). 이 교선 개념은 이후 다면체의 모서리 개념과도 연결된다.</div>
+    </section>
+
+    <section class="concept" id="c53">
+      <div class="concept-head"><span class="concept-num">16</span><h3>위치 관계 총정리</h3></div>
+      <div class="def">
+        <table class="dtable">
+          <tr><th></th><th></th><th>만난다</th><th></th><th>만나지 않는다</th><th></th></tr>
+          <tr><td rowspan="2">평면</td><td>점과 직선</td><td colspan="2">직선이 점을 지난다(=직선 위의 점)</td><td colspan="2">직선이 점을 지나지 않는다</td></tr>
+          <tr><td>두 직선</td><td>한 점에서 만난다</td><td>일치</td><td colspan="2">평행</td></tr>
+          <tr><td rowspan="6">공간</td><td>점과 직선</td><td colspan="2">직선이 점을 지난다</td><td colspan="2">직선이 점을 지나지 않는다</td></tr>
+          <tr><td>점과 평면</td><td colspan="2">평면 위의 점</td><td colspan="2">평면 위에 있지 않다</td></tr>
+          <tr><td>두 직선</td><td>한 점에서 만난다</td><td>일치</td><td>평행</td><td>꼬인 위치</td></tr>
+          <tr><td>직선과 평면</td><td>한 점에서 만난다</td><td>포함</td><td colspan="2">평행</td></tr>
+          <tr><td>두 평면</td><td>한 직선에서 만난다</td><td>일치</td><td colspan="2">평행</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 공간에서 두 직선의 위치 관계에는 있지만, 평면에서 두 직선의 위치 관계에는 없는 경우는?</p>
+          <p><b>A.</b> 꼬인 위치</p>
+        </div>
+      </details>
+<div class="tip">이 표를 통째로 외우기보다, "공간 = 평면의 경우 + 꼬인 위치·포함이 추가된 것"이라는 규칙으로 이해하면 훨씬 오래 기억된다.</div>
+    </section>
+
+    <section class="concept" id="c54">
+      <div class="concept-head"><span class="concept-num">17</span><h3>동위각과 엇각</h3></div>
+      <div class="def">
+        <p>두 직선 l, m이 다른 직선 n과 만나면 교각이 8개 생긴다.</p>
+        <p><b>동위각</b>: 같은 위치에 있는 각 (왼쪽 위끼리, 오른쪽 아래끼리 등)</p>
+        <p><b>엇각</b>: 서로 엇갈린 위치에 있는 각. 교점이 하나만 있는 두 직선 사이에 있는 4개의 각에서만 정의된다. 엇각 = 동위각의 맞꼭지각</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="180" y1="10" x2="80" y2="210" stroke="#16233B" stroke-width="1.6"/>
+          <line x1="20" y1="70" x2="240" y2="70" stroke="#16233B" stroke-width="1.6"/>
+          <line x1="20" y1="150" x2="240" y2="150" stroke="#16233B" stroke-width="1.6"/>
+          <path d="M138.36,59.02 A16,16 0 0,1 145.41,54.67" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M160.98,58.36 A16,16 0 0,1 165.33,65.41" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M139.02,81.64 A16,16 0 0,1 134.67,74.59" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M161.64,80.98 A16,16 0 0,1 154.59,85.33" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M98.36,139.02 A16,16 0 0,1 105.41,134.67" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M120.98,138.36 A16,16 0 0,1 125.33,145.41" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M99.02,161.64 A16,16 0 0,1 94.67,154.59" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <path d="M121.64,160.98 A16,16 0 0,1 114.59,165.33" fill="none" stroke="#EA580C" stroke-width="1.3"/>
+          <text x="115" y="56" font-size="13" fill="#EA580C">a</text>
+          <text x="165" y="56" font-size="13" fill="#EA580C">d</text>
+          <text x="115" y="92" font-size="13" fill="#EA580C">b</text>
+          <text x="165" y="92" font-size="13" fill="#EA580C">c</text>
+          <text x="75" y="136" font-size="13" fill="#EA580C">e</text>
+          <text x="125" y="136" font-size="13" fill="#EA580C">h</text>
+          <text x="75" y="172" font-size="13" fill="#EA580C">f</text>
+          <text x="125" y="172" font-size="13" fill="#EA580C">g</text>
+        </svg>
+        <p class="figure-cap">∠a,∠e / ∠b,∠f / ∠d,∠h / ∠c,∠g 는 각각 동위각. ∠b,∠h 및 ∠c,∠e 는 엇각</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> ∠a와 동위각 관계인 ∠e가 있을 때, 이 둘은 서로 어떤 위치에 있는가?</p>
+          <p><b>A.</b> 두 직선이 만드는 교각 중 같은 위치(예: 둘 다 왼쪽 위)에 있다</p>
+        </div>
+      </details>
+<div class="tip">동위각과 엇각은 평행선일 때만 크기가 같다(#55). 평행하지 않은 두 직선에서는 크기가 다를 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c55">
+      <div class="concept-head"><span class="concept-num">18</span><h3>평행선의 성질</h3></div>
+      <div class="def">
+        <p><b>평행선</b>: 평행한 두 직선. 기호는 <span class="math">∥</span></p>
+        <p>평행선에서 동위각의 크기는 같다. <span class="math">∠a=∠b</span></p>
+        <p>평행선에서 엇각의 크기는 같다. <span class="math">∠a=∠c</span></p>
+        <p><b>평행선의 조건</b>: 동위각과 엇각이 같은 두 직선은 평행하다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="40" x2="240" y2="40" stroke="#16233B" stroke-width="1.6"/>
+          <line x1="20" y1="110" x2="240" y2="110" stroke="#16233B" stroke-width="1.6"/>
+          <line x1="70" y1="10" x2="190" y2="140" stroke="#16233B" stroke-width="1.6"/>
+          <path d="M114,40 A16,16 0 0,1 108.85,51.76" fill="none" stroke="#EA580C" stroke-width="1.4"/>
+          <path d="M178,110 A16,16 0 0,1 172.85,121.76" fill="none" stroke="#EA580C" stroke-width="1.4"/>
+          <path d="M146,110 A16,16 0 0,1 151.17,98.22" fill="none" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="2,2"/>
+          <text x="128" y="58" font-size="13" fill="#EA580C">a</text>
+          <text x="192" y="128" font-size="13" fill="#EA580C">b</text>
+          <text x="122" y="98" font-size="13" fill="#EA580C">c</text>
+        </svg>
+        <p class="figure-cap">l ∥ m 일 때 ∠a=∠b(동위각), ∠a=∠c(엇각)</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> l∥m이고 ∠a=65°일 때, ∠a의 동위각 ∠b의 크기는?</p>
+          <p><b>A.</b> 평행선에서는 동위각의 크기가 같으므로 <span class="math">∠b=65°</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>가로선 기울기</label>
+          <input type="range" id="pl-deg" min="20" max="70" value="42">
+          <span class="widget-val" id="pl-deg-val">42°</span>
+        </div>
+        <svg viewBox="0 0 260 150" id="pl-svg" style="overflow:visible;">
+          <line x1="20" y1="40" x2="240" y2="40" stroke="#16233B" stroke-width="1.6"/>
+          <line x1="20" y1="110" x2="240" y2="110" stroke="#16233B" stroke-width="1.6"/>
+          <line id="pl-trans" x1="70" y1="10" x2="190" y2="140" stroke="#16233B" stroke-width="1.6"/>
+          <path id="pl-arca" fill="rgba(234,88,12,.18)" stroke="#EA580C" stroke-width="1.6" stroke-linejoin="round"/>
+          <path id="pl-arcb" fill="rgba(234,88,12,.18)" stroke="#EA580C" stroke-width="1.6" stroke-linejoin="round"/>
+          <text id="pl-ta" x="128" y="58" font-size="13" font-weight="700" text-anchor="middle" fill="#EA580C">a</text>
+          <text id="pl-tb" x="192" y="128" font-size="13" font-weight="700" text-anchor="middle" fill="#EA580C">b</text>
+        </svg>
+        <div class="widget-result" id="pl-result"></div>
+      </div>
+<div class="tip">거꾸로, 동위각(또는 엇각)이 같다는 것을 확인하면 두 직선이 평행하다는 것을 증명할 수 있다(평행선의 조건).</div>
+    </section>
+
+    <section class="concept" id="c56">
+      <div class="concept-head"><span class="concept-num">19</span><h3>작도</h3></div>
+      <div class="def">
+        <p><b>작도</b>: 눈금 없는 자와 컴퍼스를 이용해서 도형을 그리는 것</p>
+        <p><b>눈금 없는 자</b>: 선을 긋거나 이미 그려진 선분을 더 길게 그릴 때 사용. <b>컴퍼스</b>: 원을 그리거나, 주어진 선분의 길이만큼을 다른 곳에 옮길 때 사용.</p>
+        <p><b>길이가 같은 선분의 작도</b>: 직선을 긋고 점을 잡은 뒤, 컴퍼스로 원래 선분의 길이를 재서 그 점에 원을 그리면 교점까지가 같은 길이의 선분이 된다.</p>
+        <p><b>크기가 같은 각의 작도</b>: 원래 각의 두 변과 원이 만나는 두 점 사이의 거리를 컴퍼스로 재서, 새로 그릴 각의 변에 그대로 옮기는 방법으로 작도한다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 작도에서 주어진 선분의 길이를 재서 다른 곳에 옮길 때 사용하는 도구는?</p>
+          <p><b>A.</b> 컴퍼스</p>
+        </div>
+      </details>
+<div class="tip">작도의 핵심 도구는 딱 두 가지, "길이를 옮기는 컴퍼스"와 "직선을 긋는 자"뿐이라는 것을 기억하면 모든 작도 문제의 원리를 이해하기 쉽다.</div>
+    </section>
+
+    <section class="concept" id="c57">
+      <div class="concept-head"><span class="concept-num">20</span><h3>삼각형이란? 대변, 대각</h3></div>
+      <div class="def">
+        <p><b>삼각형 ABC</b>: 세 점 A, B, C를 선분으로 연결한 도형. 기호 <span class="math">△ABC</span></p>
+        <p><b>대변</b>: 한 각과 마주보는 변. <span class="math">∠A</span>의 대변은 <span class="math">BC=a</span>, <span class="math">∠B</span>의 대변은 <span class="math">CA=b</span>, <span class="math">∠C</span>의 대변은 <span class="math">AB=c</span></p>
+        <p><b>대각</b>: 한 변과 마주보는 각. <span class="math">AB</span>의 대각은 <span class="math">∠C</span>, <span class="math">BC</span>의 대각은 <span class="math">∠A</span>, <span class="math">CA</span>의 대각은 <span class="math">∠B</span></p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 삼각형 ABC에서 ∠B의 대변은?</p>
+          <p><b>A.</b> <span class="math">∠B</span>와 마주보는 변인 <span class="math">CA(=b)</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 꼭짓점을 클릭해보세요</span>
+        <svg viewBox="0 0 220 170" id="tri-svg">
+          <polygon points="110,20 30,150 190,150" fill="#FDEDE2" stroke="#EA580C" stroke-width="2"/>
+          <line id="tri-hl" x1="0" y1="0" x2="0" y2="0" stroke="#DB2777" stroke-width="4" opacity="0"/>
+          <circle data-v="A" cx="110" cy="20" r="10" fill="#EA580C" style="cursor:pointer;"/>
+          <circle data-v="B" cx="30" cy="150" r="10" fill="#EA580C" style="cursor:pointer;"/>
+          <circle data-v="C" cx="190" cy="150" r="10" fill="#EA580C" style="cursor:pointer;"/>
+          <text x="100" y="14" font-size="13">A</text>
+          <text x="12" y="166" font-size="13">B</text>
+          <text x="196" y="166" font-size="13">C</text>
+        </svg>
+        <div class="widget-result" id="tri-result">꼭짓점을 클릭하면 그 대변이 보라색으로 표시돼요.</div>
+      </div>
+<div class="tip">변의 이름(a,b,c)은 그 변과 마주보는 각(A,B,C)의 소문자로 쓴다는 규칙을 알아두면 표기를 헷갈리지 않는다.</div>
+    </section>
+
+    <section class="concept" id="c58">
+      <div class="concept-head"><span class="concept-num">21</span><h3>삼각형의 작도</h3></div>
+      <div class="def">
+        <p>삼각형은 다음 세 가지 경우에만 하나로 작도할 수 있다.</p>
+        <p>1. 세 변의 길이를 알 때 (단, 가장 긴 변의 길이는 다른 두 변 길이의 합보다 작아야 함)</p>
+        <p>2. 두 변의 길이와 그 사이 끼인각의 크기를 알 때</p>
+        <p>3. 한 변의 길이와 양쪽 끝각의 크기를 알 때</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 세 변의 길이가 3cm, 4cm, 8cm일 때 삼각형을 작도할 수 있는가?</p>
+          <p><b>A.</b> 없다. 가장 긴 변(8cm)이 나머지 두 변의 합(3+4=7cm)보다 커서 삼각형의 성립 조건을 만족하지 않는다</p>
+        </div>
+      </details>
+<div class="tip">세 변의 길이만으로 작도할 때는, 삼각형의 성립 조건(가장 긴 변 &lt; 나머지 두 변의 합)을 먼저 확인해야 한다.</div>
+    </section>
+
+    <section class="concept" id="c59">
+      <div class="concept-head"><span class="concept-num">22</span><h3>도형의 합동과 삼각형의 합동조건</h3></div>
+      <div class="def">
+        <p><b>합동</b>: 도형을 모양이나 크기를 바꾸지 않고 옮겨서 다른 도형에 완전히 포갤 수 있을 때. 기호 <span class="math">≡</span></p>
+        <p><b>대응</b>: 합동인 두 도형에서 꼭짓점, 각, 변이 포개지는 것 (대응변, 대응각, 대응점). 합동인 도형에서 대응변의 길이, 대응각의 크기는 각각 같다.</p>
+        <p><b>삼각형의 합동조건</b> (S=side 변, A=angle 각)</p>
+        <p>◦ <b>SSS 합동</b>: 세 쌍의 대응변의 길이가 각각 같을 때</p>
+        <p>◦ <b>SAS 합동</b>: 두 쌍의 대응변의 길이가 각각 같고 끼인각의 크기가 같을 때</p>
+        <p>◦ <b>ASA 합동</b>: 한 쌍의 대응변의 길이가 같고 양쪽 끝각의 크기가 각각 같을 때</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 두 삼각형의 세 변의 길이가 각각 같을 때 성립하는 합동조건은?</p>
+          <p><b>A.</b> SSS 합동</p>
+        </div>
+      </details>
+<div class="tip">삼각형의 작도(#58)에서 삼각형이 하나로 결정되는 세 경우가, 그대로 합동조건 SSS·SAS·ASA와 정확히 대응된다는 것을 기억하면 두 개념을 한 번에 이해할 수 있다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 6 : 평면도형 ================= -->
+  <div id="ch6" class="ch6">
+    <div class="chapter-banner"><span class="chapter-num">Ⅵ</span><h2>평면도형</h2></div>
+    <p class="chapter-sub">다각형의 내각·외각, 원과 부채꼴의 길이·넓이를 다루는 단원입니다.</p>
+
+    <section class="concept" id="c60">
+      <div class="concept-head"><span class="concept-num">1</span><h3>다각형</h3></div>
+      <div class="def">
+        <p>여러 개의 선분으로 둘러싸인 평면 위의 도형.</p>
+        <p><b>변</b>: 도형을 둘러싼 선분. <b>꼭짓점</b>: 변과 변이 만나는 교점.</p>
+        <p>변이 3개면 삼각형, 4개면 사각형, n개면 n각형.</p>
+        <p><b>내각</b>: 다각형의 한 꼭짓점에서 이웃하는 두 변으로 이루어진 각. <b>외각</b>: 한 변과 그 변에 이웃한 변의 연장선이 이루는 각. 두 개의 외각은 맞꼭지각으로 크기가 같다.</p>
+        <p>한 꼭짓점에서 내각과 그 이웃한 외각의 합은 180°.</p>
+        <p><b>정다각형</b>: 모든 변의 길이가 같고 내각의 크기가 모두 같은 다각형.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="130,20 210,80 180,180 80,180 50,80" fill="#FCE7F1" stroke="#DB2777" stroke-width="2"/>
+          <line x1="180" y1="180" x2="240" y2="180" stroke="#16233B" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="122" y="14" font-size="12">A</text><text x="216" y="80" font-size="12">B</text><text x="184" y="196" font-size="12">C</text><text x="70" y="196" font-size="12">D</text><text x="30" y="80" font-size="12">E</text>
+          <path d="M158,180 A22,22 0 0,1 186.3,158.9" fill="none" stroke="#DB2777" stroke-width="1.5"/>
+          <text x="141" y="147" font-size="11" fill="#DB2777">내각</text>
+          <path d="M185.7,160.8 A20,20 0 0,1 200,180" fill="none" stroke="#DB2777" stroke-width="1.5" stroke-dasharray="2,2"/>
+          <text x="203" y="157" font-size="11" fill="#DB2777">외각</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 변이 7개인 다각형을 무엇이라 하는가?</p>
+          <p><b>A.</b> 칠각형</p>
+        </div>
+      </details>
+<div class="tip">한 꼭짓점의 외각을 구할 때는 "180° - 내각"으로 바로 계산하는 것이 가장 빠르다.</div>
+    </section>
+
+    <section class="concept" id="c61">
+      <div class="concept-head"><span class="concept-num">2</span><h3>대각선</h3></div>
+      <div class="def">
+        <p><b>대각선</b>: 다각형에서 이웃하지 않은 꼭짓점을 연결한 선분</p>
+        <p>n각형의 한 꼭짓점에서 그을 수 있는 대각선의 개수는 <span class="math">(n-3)</span>개</p>
+        <p>n각형에서 그을 수 있는 대각선의 총 개수 = <span class="math">n(n-3)/2</span></p>
+        <table class="dtable">
+          <tr><th>다각형</th><th>삼각형</th><th>사각형</th><th>오각형</th><th>육각형</th><th>n각형</th></tr>
+          <tr><td>꼭짓점 개수</td><td>3</td><td>4</td><td>5</td><td>6</td><td>n</td></tr>
+          <tr><td>한 꼭짓점의 대각선 수</td><td>0</td><td>1</td><td>2</td><td>3</td><td>n-3</td></tr>
+          <tr><td>대각선 총 개수</td><td>0</td><td>2</td><td>5</td><td>9</td><td>n(n-3)/2</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 육각형의 한 꼭짓점에서 그을 수 있는 대각선의 개수는?</p>
+          <p><b>A.</b> <span class="math">n-3 = 6-3 = 3개</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>변의 개수</label>
+          <input type="range" id="dg-n" min="3" max="10" value="6">
+          <span class="widget-val" id="dg-n-val">6</span>
+        </div>
+        <svg viewBox="0 0 200 160" id="dg-svg">
+          <polygon id="dg-poly" points="" fill="#FCE7F1" stroke="#DB2777" stroke-width="2"/>
+          <g id="dg-diag" stroke="#DB2777" stroke-width="1" stroke-dasharray="3,2"></g>
+        </svg>
+        <div class="widget-result" id="dg-result"></div>
+      </div>
+<div class="tip">자기 자신과 바로 옆 두 꼭짓점(총 3개)을 제외한 나머지 꼭짓점 수가 곧 "한 꼭짓점에서 그을 수 있는 대각선 수(n-3)"다.</div>
+    </section>
+
+    <section class="concept" id="c62">
+      <div class="concept-head"><span class="concept-num">3</span><h3>삼각형의 내각의 합, 삼각형 외각의 크기, 외각의 합</h3></div>
+      <div class="def">
+        <p>삼각형 세 내각의 크기의 합 = <span class="math">180°</span></p>
+        <p>삼각형 한 외각의 크기 = 이웃하지 않은 두 내각의 크기의 합 = <span class="math">180° - (이웃한 내각의 크기)</span></p>
+        <p>삼각형 세 외각의 크기의 합 = <span class="math">360°</span></p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 삼각형의 한 내각이 50°, 다른 한 내각이 60°일 때 나머지 한 내각의 크기는?</p>
+          <p><b>A.</b> 세 내각의 합은 180°이므로 <span class="math">180-50-60=70°</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>∠A</label>
+          <input type="number" id="ext-a" value="50" style="width:56px;">
+          <label>∠B</label>
+          <input type="number" id="ext-b" value="60" style="width:56px;">
+        </div>
+        <div class="widget-result" id="ext-result"></div>
+      </div>
+<div class="tip">"한 외각 = 이웃하지 않은 두 내각의 합"이라는 성질은 각 문제를 풀 때 아주 자주 쓰이는 지름길이다.</div>
+    </section>
+
+    <section class="concept" id="c63">
+      <div class="concept-head"><span class="concept-num">4</span><h3>다각형 내각의 크기의 합과 외각 크기의 합</h3></div>
+      <div class="def">
+        <p>다각형의 한 꼭짓점에서 대각선을 그으면 삼각형이 <span class="math">(n-2)</span>개 생기므로,</p>
+        <div class="formula">
+          n각형 내각의 크기의 합 = <span class="math">180°×(n-2)</span><br>
+          정n각형 한 내각의 크기 = <span class="math">180°×(n-2)/n</span><br>
+          n각형 외각의 크기의 합 = <span class="math">360°</span> (항상 일정)<br>
+          정n각형 한 외각의 크기 = <span class="math">360°/n</span>
+        </div>
+        <table class="dtable">
+          <tr><th>다각형</th><th>정오각형</th><th>정십각형</th><th>정십오각형</th></tr>
+          <tr><td>내각 크기의 합</td><td>540°</td><td>1440°</td><td>2340°</td></tr>
+          <tr><td>한 내각의 크기</td><td>108°</td><td>144°</td><td>156°</td></tr>
+          <tr><td>한 외각의 크기</td><td>72°</td><td>36°</td><td>24°</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 정팔각형의 한 내각의 크기는?</p>
+          <p><b>A.</b> <span class="math">180°×(8-2)/8 = 1080°/8 = 135°</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>변의 개수</label>
+          <input type="range" id="ng-n" min="3" max="12" value="5">
+          <span class="widget-val" id="ng-n-val">5</span>
+        </div>
+        <svg viewBox="0 0 200 160" id="ng-svg">
+          <polygon id="ng-poly" points="" fill="#FCE7F1" stroke="#DB2777" stroke-width="2"/>
+        </svg>
+        <div class="widget-result" id="ng-result"></div>
+      </div>
+<div class="tip">외각의 합은 다각형의 변의 개수와 상관없이 항상 360°로 일정하다는 사실이 가장 강력한 암기 포인트다.</div>
+    </section>
+
+    <section class="concept" id="c64">
+      <div class="concept-head"><span class="concept-num">5</span><h3>원, 호, 현, 활꼴, 부채꼴</h3></div>
+      <div class="def">
+        <p><b>원</b>: 한 점(중심)으로부터 일정한 거리(반지름)에 있는 모든 점들로 이루어진 도형</p>
+        <p><b>호 AB</b>: 원 위의 두 점을 양 끝으로 하는 원의 일부. <b>현 AB</b>: 원 위의 두 점을 이은 선분. <b>지름</b>: 현 중에서 원의 중심을 지나는, 길이가 가장 긴 현.</p>
+        <p><b>활꼴</b>: 호와 현으로 이루어진 도형. <b>부채꼴</b>: 호와 원의 반지름 두 개로 이루어진 도형. <b>중심각</b>: 두 반지름이 원의 중심에서 만나서 생기는 각.</p>
+        <p>하나의 원(또는 합동인 두 원)에서 중심각의 크기가 같으면 호의 길이와 부채꼴의 넓이도 같다. 중심각의 크기는 호의 길이, 부채꼴의 넓이에 각각 정비례한다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="80" r="55" fill="none" stroke="#16233B" stroke-width="1.6"/>
+          <path d="M40,35 A55,55 0 0,1 110,45" fill="none" stroke="#DB2777" stroke-width="3"/>
+          <line x1="40" y1="35" x2="110" y2="45" stroke="#0D9488" stroke-width="2"/>
+          <text x="55" y="24" font-size="12" fill="#DB2777">호</text>
+          <text x="82" y="62" font-size="12" fill="#0D9488">현</text>
+
+          <circle cx="200" cy="80" r="55" fill="none" stroke="#16233B" stroke-width="1.6"/>
+          <path d="M200,80 L200,25 A55,55 0 0,1 249.85,103.24 Z" fill="#FCE7F1" stroke="#DB2777" stroke-width="1.8"/>
+          <path d="M200,58 A22,22 0 0,1 219.94,89.3" fill="none" stroke="#DB2777" stroke-width="1.6"/>
+          <text x="223" y="62" font-size="11" fill="#DB2777">중심각</text>
+        </svg>
+        <p class="figure-cap">왼쪽: 호와 현 / 오른쪽: 부채꼴과 중심각</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 원 위의 두 점을 이은 선분 중 원의 중심을 지나는 것을 무엇이라 하는가?</p>
+          <p><b>A.</b> 지름(현 중 가장 긴 현)</p>
+        </div>
+      </details>
+<div class="tip">지름은 "가장 긴 현"이라는 사실을 알면, 지름과 현의 관계를 헷갈리지 않는다.</div>
+    </section>
+
+    <section class="concept" id="c65">
+      <div class="concept-head"><span class="concept-num">6</span><h3>원의 둘레와 넓이, 부채꼴 호의 길이와 넓이</h3></div>
+      <div class="def">
+        <p>반지름 r인 원의 둘레(원주) l과 넓이 S:</p>
+        <div class="formula"><span class="math">l = 2πr</span>,&nbsp; <span class="math">S = πr²</span></div>
+        <p>반지름 r, 중심각 x°인 부채꼴의 호의 길이 l과 넓이 S:</p>
+        <div class="formula">
+          <span class="math">l = 2πr × (x/360)</span><br>
+          <span class="math">S = πr² × (x/360) = (1/2)rl</span>
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 반지름이 5cm인 원의 넓이는?</p>
+          <p><b>A.</b> <span class="math">S=πr²=π×5²=25π cm²</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>반지름 r</label>
+          <input type="range" id="sc-r" min="1" max="10" value="5">
+          <span class="widget-val" id="sc-r-val">5</span>
+        </div>
+        <div class="widget-row">
+          <label>중심각</label>
+          <input type="range" id="sc-deg" min="1" max="360" value="90">
+          <span class="widget-val" id="sc-deg-val">90°</span>
+        </div>
+        <svg viewBox="0 0 200 160" id="sc-svg">
+          <path id="sc-sector" d="" fill="#FCE7F1" stroke="#DB2777" stroke-width="1.8"/>
+          <line id="sc-rline" stroke="#DB2777" stroke-width="1.6" stroke-dasharray="4,3"/>
+          <text id="sc-rtxt" font-size="12" font-weight="700" fill="#DB2777" text-anchor="end" pointer-events="none">r</text>
+        </svg>
+        <div class="widget-result" id="sc-result"></div>
+      </div>
+<div class="tip">부채꼴의 넓이 공식 S=(1/2)rl은 중심각을 몰라도 반지름과 호의 길이만 알면 바로 쓸 수 있어 매우 유용하다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 7 : 입체도형 ================= -->
+  <div id="ch7" class="ch7">
+    <div class="chapter-banner"><span class="chapter-num">Ⅶ</span><h2>입체도형</h2></div>
+    <p class="chapter-sub">다면체와 회전체의 종류, 겉넓이와 부피 공식을 다루는 단원입니다.</p>
+
+    <section class="concept" id="c66">
+      <div class="concept-head"><span class="concept-num">1</span><h3>다면체, 각기둥, 각뿔, 각뿔대</h3></div>
+      <div class="def">
+        <p><b>다면체</b>: 다각형인 면으로만 둘러싸인 입체도형(삼각기둥, 사각뿔 등). 원기둥·원뿔은 밑면이 원이어서 다면체가 아니다.</p>
+        <p><b>다면체의 면·모서리·꼭짓점</b>: 각각 다면체를 이루는 다각형, 다각형의 변, 다각형의 꼭짓점에 대응한다.</p>
+        <p>분류 1. 면의 개수에 따라: 4개면 사면체, 5개면 오면체, 6개면 육면체…</p>
+        <p>분류 2. 모양에 따라: 각기둥, 각뿔 등</p>
+        <p><b>각뿔대</b>: 각뿔을 밑면과 평행한 평면으로 잘랐을 때, 각뿔이 아닌 아랫부분. 밑면 모양에 따라 삼각뿔대, 사각뿔대…</p>
+        <table class="dtable">
+          <tr><th></th><th>뜻</th><th>각기둥</th><th>각뿔대</th></tr>
+          <tr><td>밑면</td><td>서로 평행한 두 면</td><td>평행, 합동</td><td>평행(O), 합동(X)</td></tr>
+          <tr><td>옆면</td><td>밑면이 아닌 면</td><td>밑면에 수직, 직사각형</td><td>밑면에 수직X, 사다리꼴</td></tr>
+          <tr><td>높이</td><td>두 밑면에 수직인 선분의 길이</td><td colspan="2"></td></tr>
+        </table>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="85,20 75,140 15,105" fill="#EEF0FE" stroke="#4F46E5" stroke-width="2"/>
+          <polygon points="85,20 75,140 150,110" fill="#E4E7FC" stroke="#4F46E5" stroke-width="2"/>
+          <line x1="15" y1="105" x2="90" y2="75" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <line x1="90" y1="75" x2="150" y2="110" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <line x1="85" y1="20" x2="90" y2="75" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <text x="60" y="155" font-size="11" fill="#6B7A90">각뿔</text>
+
+          <polygon points="170,50 240,50 240,115 170,115" fill="#EEF0FE" stroke="#4F46E5" stroke-width="2"/>
+          <polygon points="170,50 205,25 275,25 240,50" fill="#E6E9FC" stroke="#4F46E5" stroke-width="2"/>
+          <polygon points="240,50 275,25 275,90 240,115" fill="#DADFF8" stroke="#4F46E5" stroke-width="2"/>
+          <line x1="170" y1="115" x2="205" y2="90" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <line x1="205" y1="90" x2="275" y2="90" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <line x1="205" y1="90" x2="205" y2="25" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <text x="195" y="140" font-size="11" fill="#6B7A90">각기둥</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 밑면이 오각형인 각뿔의 면의 개수는?</p>
+          <p><b>A.</b> 밑면 1개 + 옆면 5개 = <b>6개</b>(육면체)</p>
+        </div>
+      </details>
+<div class="tip">"밑면이 다각형인가?"만 확인하면 다면체와 회전체(원기둥·원뿔·구)를 바로 구분할 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c67">
+      <div class="concept-head"><span class="concept-num">2</span><h3>정다면체</h3></div>
+      <div class="def">
+        <p><b>정다면체</b>: 모든 면이 서로 합동인 정다각형이고 각 꼭짓점에 모이는 면의 개수가 같은 다면체</p>
+        <p>정다면체는 <b>정사면체, 정육면체, 정팔면체, 정십이면체, 정이십면체의 5가지</b>뿐이다.</p>
+        <p>정다면체가 되는 조건: 1. 한 꼭짓점에서 3개 이상의 면이 만나고 2. 한 꼭짓점에서 모인 각의 크기 합은 360°보다 작아야 한다.</p>
+        <table class="dtable">
+          <tr><th>한 꼭짓점에 모이는 면</th><th>정삼각형(3개)</th><th>정삼각형(4개)</th><th>정삼각형(5개)</th><th>정사각형(3개)</th><th>정오각형(3개)</th></tr>
+          <tr><td>각의 합</td><td>180°</td><td>240°</td><td>300°</td><td>270°</td><td>324°</td></tr>
+          <tr><td>정다면체</td><td>정사면체</td><td>정팔면체</td><td>정이십면체</td><td>정육면체</td><td>정십이면체</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 정다면체는 모두 몇 가지인가?</p>
+          <p><b>A.</b> 정사면체, 정육면체, 정팔면체, 정십이면체, 정이십면체의 <b>5가지</b>뿐이다</p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row chip-btns" id="plato-btns">
+          <button data-i="0" class="active">정사면체</button>
+          <button data-i="1">정육면체</button>
+          <button data-i="2">정팔면체</button>
+          <button data-i="3">정십이면체</button>
+          <button data-i="4">정이십면체</button>
+        </div>
+        <div class="widget-result" id="plato-result"></div>
+      </div>
+<div class="tip">정삼각형 6개, 정사각형 4개, 정오각형 4개가 한 꼭짓점에 모이면 각의 합이 360° 이상이 되어 정다면체를 만들 수 없다 — 그래서 정다면체가 딱 5가지뿐인 것이다.</div>
+    </section>
+
+    <section class="concept" id="c68">
+      <div class="concept-head"><span class="concept-num">3</span><h3>회전체와 원뿔대, 회전체의 성질</h3></div>
+      <div class="def">
+        <p><b>회전체</b>: 한 직선을 축으로 평면도형을 1회전 시킬 때 생기는 입체도형. 원기둥(직사각형 회전), 원뿔(직각삼각형 회전), 구(반원 회전), 원뿔대.</p>
+        <p><b>회전축</b>: 회전체에서 축이 되는 한 직선. <b>모선</b>: 회전체에서 회전하여 옆면을 이루는 선분.</p>
+        <p><b>원뿔대</b>: 원뿔을 밑면에 평행한 평면으로 잘라서 생기는 입체도형 중 원뿔이 아닌 부분.</p>
+        <p><b>회전체의 성질</b>: 회전축에 수직인 평면으로 자르면 단면은 항상 원. 회전축을 포함하는 평면으로 자르면 그 단면은 모두 합동이고, 회전축에 대해 선대칭도형이다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 320 136" xmlns="http://www.w3.org/2000/svg">
+          <!-- 원기둥 -->
+          <line x1="40" y1="10" x2="40" y2="106" stroke="#94A8C4" stroke-width="1" stroke-dasharray="3,3"/>
+          <path d="M20,30 L20,95 A20,6 0 0,0 60,95 L60,30 Z" fill="#EEF0FE" stroke="#4F46E5" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M20,95 A20,6 0 0,1 60,95" fill="none" stroke="#4F46E5" stroke-width="1" stroke-dasharray="2,2"/>
+          <ellipse cx="40" cy="30" rx="20" ry="6" fill="#EEF0FE" stroke="#4F46E5" stroke-width="1.4"/>
+          <text x="40" y="126" font-size="11" fill="#6B7A90" text-anchor="middle">원기둥</text>
+
+          <!-- 원뿔 -->
+          <line x1="150" y1="10" x2="150" y2="112" stroke="#94A8C4" stroke-width="1" stroke-dasharray="3,3"/>
+          <path d="M150,20 L120,100 A30,6 0 0,0 180,100 Z" fill="#EEF0FE" stroke="#4F46E5" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M120,100 A30,6 0 0,1 180,100" fill="none" stroke="#4F46E5" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="150" y="126" font-size="11" fill="#6B7A90" text-anchor="middle">원뿔</text>
+
+          <!-- 구 -->
+          <line x1="270" y1="10" x2="270" y2="112" stroke="#94A8C4" stroke-width="1" stroke-dasharray="3,3"/>
+          <circle cx="270" cy="65" r="40" fill="#EEF0FE" stroke="#4F46E5" stroke-width="1.8"/>
+          <path d="M230,65 A40,12 0 0,1 310,65" fill="none" stroke="#4F46E5" stroke-width="1" stroke-dasharray="2,2"/>
+          <path d="M230,65 A40,12 0 0,0 310,65" fill="none" stroke="#4F46E5" stroke-width="1"/>
+          <text x="270" y="126" font-size="11" fill="#6B7A90" text-anchor="middle">구</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 직각삼각형을 한 직선(직각을 낀 한 변)을 축으로 하여 회전시키면 어떤 입체도형이 되는가?</p>
+          <p><b>A.</b> 원뿔</p>
+        </div>
+      </details>
+<div class="tip">회전체는 반드시 회전축에 대해 선대칭이므로, 단면 절반만 알아도 전체 모양을 그릴 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c69">
+      <div class="concept-head"><span class="concept-num">4</span><h3>각기둥의 겉넓이와 부피, 원기둥의 겉넓이와 부피</h3></div>
+      <div class="def">
+        <div class="formula">
+          각기둥의 겉넓이 = <span class="math">2×(밑넓이) + (옆넓이)</span><br>
+          각기둥의 부피 = <span class="math">(밑넓이)×(높이) = Sh</span><br>
+          원기둥(반지름 r, 높이 h)의 겉넓이 = <span class="math">2πr² + 2πrh</span><br>
+          원기둥의 부피 = <span class="math">πr²h</span>
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 밑넓이가 20cm², 높이가 10cm인 각기둥의 부피는?</p>
+          <p><b>A.</b> <span class="math">V=Sh=20×10=200cm³</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 원기둥</span>
+        <div class="widget-row">
+          <label>반지름 r</label>
+          <input type="range" id="cyl-r" min="1" max="10" value="3">
+          <span class="widget-val" id="cyl-r-val">3</span>
+        </div>
+        <div class="widget-row">
+          <label>높이 h</label>
+          <input type="range" id="cyl-h" min="1" max="15" value="8">
+          <span class="widget-val" id="cyl-h-val">8</span>
+        </div>
+        <div class="figure">
+          <svg id="cyl-svg" viewBox="0 0 320 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="원기둥의 전개도" style="width:100%; max-width:380px;"></svg>
+          <p class="figure-cap">원기둥의 전개도: 옆면은 가로가 밑면 둘레(2πr), 세로가 높이(h)인 직사각형 — 슬라이더를 움직이면 그림이 함께 바뀝니다</p>
+        </div>
+        <div class="widget-result" id="cyl-result"></div>
+      </div>
+<div class="tip">겉넓이는 항상 "전개도를 펼쳤을 때의 넓이"라는 것을 기억하면, 밑넓이를 2번 더하고 옆넓이를 한 번 더하는 이유가 자연스럽게 이해된다.</div>
+    </section>
+
+    <section class="concept" id="c70">
+      <div class="concept-head"><span class="concept-num">5</span><h3>각뿔의 겉넓이와 부피와 원뿔의 겉넓이와 부피</h3></div>
+      <div class="def">
+        <div class="formula">
+          각뿔의 겉넓이 = <span class="math">(밑넓이) + (옆넓이)</span><br>
+          각뿔의 부피 = <span class="math">(1/3)×(밑넓이)×(높이) = (1/3)Sh</span><br>
+          원뿔(반지름 r, 높이 h, 모선 l)의 겉넓이 = <span class="math">πr² + πrl</span><br>
+          원뿔의 부피 = <span class="math">(1/3)πr²h</span>
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 밑넓이가 12cm², 높이가 9cm인 각뿔의 부피는?</p>
+          <p><b>A.</b> <span class="math">V=(1/3)Sh=(1/3)×12×9=36cm³</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 원뿔</span>
+        <div class="widget-row">
+          <label>반지름 r</label>
+          <input type="range" id="cone-r" min="1" max="10" value="3">
+          <span class="widget-val" id="cone-r-val">3</span>
+        </div>
+        <div class="widget-row">
+          <label>높이 h</label>
+          <input type="range" id="cone-h" min="1" max="15" value="4">
+          <span class="widget-val" id="cone-h-val">4</span>
+        </div>
+        <div class="figure">
+          <svg id="cone-svg" viewBox="0 0 320 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="원뿔의 전개도" style="width:100%; max-width:380px;"></svg>
+          <p class="figure-cap">원뿔의 전개도: 옆면은 반지름이 모선(l)인 부채꼴, 호의 길이는 밑면 둘레(2πr) — 슬라이더를 움직이면 그림이 함께 바뀝니다</p>
+        </div>
+        <div class="widget-result" id="cone-result"></div>
+      </div>
+<div class="tip">각기둥·원기둥의 부피에 항상 1/3을 곱하면 대응되는 각뿔·원뿔의 부피가 된다는 것을 기억해두면 공식을 따로 외우지 않아도 된다.</div>
+    </section>
+
+    <section class="concept" id="c71">
+      <div class="concept-head"><span class="concept-num">6</span><h3>구의 겉넓이와 부피</h3></div>
+      <div class="def">
+        <p>반지름이 r인 구일 때,</p>
+        <div class="formula">
+          구의 겉넓이 = <span class="math">4πr²</span><br>
+          구의 부피 = <span class="math">(4/3)πr³</span>
+        </div>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 반지름이 3cm인 구의 부피는?</p>
+          <p><b>A.</b> <span class="math">V=(4/3)πr³=(4/3)π×27=36π cm³</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 구</span>
+        <div class="widget-row">
+          <label>반지름 r</label>
+          <input type="range" id="sph-r" min="1" max="10" value="3">
+          <span class="widget-val" id="sph-r-val">3</span>
+        </div>
+        <div class="figure">
+          <svg id="sph-svg" viewBox="0 0 320 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="구" style="width:100%; max-width:380px;"></svg>
+          <p class="figure-cap">반지름 r이 변하면 구의 크기도 함께 변합니다</p>
+        </div>
+        <div class="widget-result" id="sph-result"></div>
+      </div>
+<div class="tip">구의 겉넓이(4πr²)는 반지름이 같은 원의 넓이(πr²)의 정확히 4배라는 것도 함께 기억해두면 좋다.</div>
+    </section>
+  </div>
+  <!-- ================= CHAPTER 8 : 통계 ================= -->
+  <div id="ch8" class="ch8">
+    <div class="chapter-banner"><span class="chapter-num">Ⅷ</span><h2>통계</h2></div>
+    <p class="chapter-sub">대푯값, 줄기와 잎 그림, 도수분포표와 히스토그램, 상대도수를 다루는 단원입니다.</p>
+
+    <section class="concept" id="c72">
+      <div class="concept-head"><span class="concept-num">1</span><h3>대푯값과 평균, 중앙값과 최빈값</h3></div>
+      <div class="def">
+        <p><b>변량</b>: 점수, 시간 같은 여러 자료를 수량으로 나타낸 것. <b>대푯값</b>: 전체의 특징을 대표적으로 나타내는 값(평균, 중앙값, 최빈값 등).</p>
+        <div class="formula">평균 = (변량의 총합) / (변량의 개수)</div>
+        <p><b>중앙값</b>: 변량을 작은 값부터 크기순으로 나열했을 때 가운데 순서에 있는 값</p>
+        <p>◦ 자료의 개수(n)가 홀수일 때 → <span class="math">(n+1)/2</span>번째 값</p>
+        <p>◦ 자료의 개수(n)가 짝수일 때 → <span class="math">n/2</span>번째와 <span class="math">(n/2)+1</span>번째 값의 평균</p>
+        <p><b>최빈값</b>: 변량 중에서 가장 많이 나타나는 값. 횟수가 가장 큰 값이 여러 개면 최빈값도 2개 이상일 수 있다.</p>
+        <p>평균은 모든 자료를 이용하지만 극단값에 취약하고, 중앙값은 극단값에 강하며, 최빈값은 MBTI나 좋아하는 과일처럼 숫자가 아닌 자료에도 쓸 수 있다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 자료 2, 4, 4, 6, 9의 평균과 최빈값은?</p>
+          <p><b>A.</b> 평균 <span class="math">=(2+4+4+6+9)/5=25/5=5</span>, 최빈값은 가장 많이 나온 <span class="math">4</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>자료</label>
+          <input type="text" id="st-data" value="2,4,4,6,9" style="width:180px;">
+          <button id="st-calc">계산하기</button>
+        </div>
+        <div class="widget-result" id="st-result"></div>
+      </div>
+<div class="tip">자료에 유난히 크거나 작은 값(이상치)이 섞여 있을 때는 평균보다 중앙값이 자료의 특징을 더 잘 대표한다.</div>
+    </section>
+
+    <section class="concept" id="c73">
+      <div class="concept-head"><span class="concept-num">2</span><h3>줄기와 잎 그림</h3></div>
+      <div class="def">
+        <p>1. 세로로 선을 긋고 왼쪽에 줄기(일의 자리를 제외한 숫자)를 크기순으로 쓴다.</p>
+        <p>2. 선의 오른쪽에 각 자료의 일의 자리 숫자(잎)를 가로로 크기순으로 쓴다.</p>
+        <p>3. 제목을 적고 (줄기|잎)의 설명을 함께 쓴다.</p>
+      </div>
+      <div class="figure">
+        <table class="dtable" style="max-width:280px;">
+          <tr><th>줄기</th><th>잎</th></tr>
+          <tr><td>15</td><td>2&nbsp;&nbsp;5&nbsp;&nbsp;9</td></tr>
+          <tr><td>16</td><td>3&nbsp;&nbsp;4&nbsp;&nbsp;4&nbsp;&nbsp;8</td></tr>
+          <tr><td>17</td><td>2&nbsp;&nbsp;2&nbsp;&nbsp;7</td></tr>
+        </table>
+        <p class="figure-cap">학생들의 키 (15│2는 152cm) — 155,172,164,152,168,177,163,159,172,164cm</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 줄기 12, 잎 3은 어떤 자료값을 나타내는가?</p>
+          <p><b>A.</b> 줄기와 잎을 이어 붙인 <span class="math">123</span></p>
+        </div>
+      </details>
+<div class="tip">줄기와 잎 그림은 표처럼 정리하면서도, 자료 하나하나의 원래 값을 그대로 확인할 수 있다는 것이 가장 큰 장점이다.</div>
+    </section>
+
+    <section class="concept" id="c74">
+      <div class="concept-head"><span class="concept-num">3</span><h3>도수분포표, 변량, 계급, 계급값, 도수</h3></div>
+      <div class="def">
+        <p><b>계급</b>: 변량을 일정한 간격으로 나눈 구간. <b>계급의 크기</b>: 계급의 간격 = (큰 쪽 끝값) - (작은 쪽 끝값), 모든 계급에서 같다.</p>
+        <p><b>계급값</b>: 계급을 대표하는 값(계급의 한가운데 값) = (계급의 양 끝값의 합)÷2</p>
+        <p><b>도수</b>: 각 계급에 속하는 변량의 개수</p>
+        <table class="dtable">
+          <tr><th>점수(점)</th><th>학생 수(명)</th></tr>
+          <tr><td>60 이상 ~ 70 미만</td><td>1</td></tr>
+          <tr><td>70 ~ 80</td><td>2</td></tr>
+          <tr><td>80 ~ 90</td><td>3</td></tr>
+          <tr><td>90 ~ 100</td><td>4</td></tr>
+          <tr><td>합계</td><td>10</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 계급이 "10 이상 20 미만"일 때 계급값은?</p>
+          <p><b>A.</b> <span class="math">(10+20)÷2=15</span></p>
+        </div>
+      </details>
+<div class="tip">"이상 ~ 미만"으로 구간을 나누는 이유는 경계값(예: 70점)이 어느 계급에 속하는지 겹치지 않게 하기 위함이다.</div>
+    </section>
+
+    <section class="concept" id="c75">
+      <div class="concept-head"><span class="concept-num">4</span><h3>도수분포표 만드는 법</h3></div>
+      <div class="def">
+        <p>주어진 전체 자료를 몇 개의 계급으로 나누고 각 계급에 속하는 도수를 조사하여 나타낸 표. 전체 분포 파악에 도움이 되지만, 자료 하나하나의 특징은 파악하기 어렵다.</p>
+        <p>1. 가장 큰 변량과 가장 작은 변량을 찾는다. 2. 이를 포함할 수 있는 계급을 만든다(계급의 크기는 모두 같게, 계급 개수는 5~15개 정도가 적당). 3. 각 계급에 속하는 변량의 개수를 세어 도수를 구한다.</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 자료의 최댓값이 95, 최솟값이 42이고 계급의 크기를 10으로 할 때 필요한 계급은 대략 몇 개인가?</p>
+          <p><b>A.</b> <span class="math">(95-42)÷10≈5.3</span>이므로 약 6개의 계급이 필요하다</p>
+        </div>
+      </details>
+<div class="tip">계급의 개수가 너무 적으면 분포가 뭉뚱그려지고, 너무 많으면 표가 복잡해지므로 5~15개 사이가 적당하다.</div>
+    </section>
+
+    <section class="concept" id="c76">
+      <div class="concept-head"><span class="concept-num">5</span><h3>히스토그램</h3></div>
+      <div class="def">
+        <p>도수분포표의 계급을 가로축, 도수를 세로축에 표시해서 직사각형 모양으로 나타낸 그래프.</p>
+        <p>한 계급의 (직사각형의 넓이) = (계급의 크기)×(계급의 도수). 계급의 크기가 모두 같으므로 (직사각형의 넓이) ∝ (계급의 도수)이다.</p>
+        <p>(직사각형의 전체 넓이) = (계급의 크기)×(총 도수)</p>
+        <p>히스토그램은 60~70점, 70~80점처럼 서로 연속된 자료라 막대가 붙어있지만, 막대그래프는 보통 연속되지 않는 자료라 막대가 떨어져 있다.</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="130" x2="280" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <line x1="30" y1="20" x2="30" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <rect x="30" y="120" width="50" height="10" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect x="80" y="100" width="50" height="30" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect x="130" y="30" width="50" height="100" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect x="180" y="70" width="50" height="60" fill="#E3F4F8" stroke="#0891B2"/>
+          <text x="24" y="145" font-size="11" fill="#16233B">60</text>
+          <text x="74" y="145" font-size="11" fill="#16233B">70</text>
+          <text x="124" y="145" font-size="11" fill="#16233B">80</text>
+          <text x="174" y="145" font-size="11" fill="#16233B">90</text>
+          <text x="224" y="145" font-size="11" fill="#16233B">100</text>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 어떤 계급의 크기가 10, 도수가 5일 때 히스토그램에서 이 계급의 직사각형 넓이는?</p>
+          <p><b>A.</b> <span class="math">(계급의 크기)×(도수)=10×5=50</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기 — 막대를 조절해보세요</span>
+        <div class="widget-row"><label>60~70</label><input type="range" id="hist-b0" min="0" max="10" value="1"><span class="widget-val" id="hist-b0-val">1</span></div>
+        <div class="widget-row"><label>70~80</label><input type="range" id="hist-b1" min="0" max="10" value="3"><span class="widget-val" id="hist-b1-val">3</span></div>
+        <div class="widget-row"><label>80~90</label><input type="range" id="hist-b2" min="0" max="10" value="10"><span class="widget-val" id="hist-b2-val">10</span></div>
+        <div class="widget-row"><label>90~100</label><input type="range" id="hist-b3" min="0" max="10" value="6"><span class="widget-val" id="hist-b3-val">6</span></div>
+        <svg viewBox="0 0 260 140" id="hist-svg">
+          <line x1="30" y1="120" x2="250" y2="120" stroke="#16233B" stroke-width="1.4"/>
+          <line x1="30" y1="10" x2="30" y2="120" stroke="#16233B" stroke-width="1.4"/>
+          <rect id="hist-r0" x="30" y="120" width="50" height="0" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect id="hist-r1" x="80" y="120" width="50" height="0" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect id="hist-r2" x="130" y="120" width="50" height="0" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect id="hist-r3" x="180" y="120" width="50" height="0" fill="#E3F4F8" stroke="#0891B2"/>
+        </svg>
+        <div class="widget-result" id="hist-result"></div>
+      </div>
+<div class="tip">히스토그램은 막대그래프와 달리 막대가 서로 붙어있어야 한다. 계급이 연속적이기 때문이다.</div>
+    </section>
+
+    <section class="concept" id="c77">
+      <div class="concept-head"><span class="concept-num">6</span><h3>도수분포다각형</h3></div>
+      <div class="def">
+        <p><b>도수분포다각형</b>: 자료를 여러 개의 각을 가진 도형으로 표현한 그림.</p>
+        <p>1. 히스토그램을 그린다. 2. 각 사각형 윗변의 가운데에 중점을 찍는다(계급 양끝에는 도수 0인 계급이 있다고 생각해 그곳에도 중점을 찍는다). 3. 중점을 직선으로 연결한다.</p>
+        <p>선으로 되어 있어 변량과 도수의 분포 흐름을 연속적으로 판단하기 좋고, 서로 다른 두 자료를 겹쳐 그려 비교하기에도 편리하다.</p>
+        <p>도수분포다각형과 가로축으로 둘러싸인 도형의 넓이 = 히스토그램의 직사각형 전체 넓이 = (계급의 크기)×(도수의 총합)</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="130" x2="280" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <line x1="30" y1="20" x2="30" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <rect x="30" y="120" width="50" height="10" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect x="80" y="100" width="50" height="30" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect x="130" y="30" width="50" height="100" fill="#E3F4F8" stroke="#0891B2"/>
+          <rect x="180" y="70" width="50" height="60" fill="#E3F4F8" stroke="#0891B2"/>
+          <polyline points="5,130 55,120 105,100 155,30 205,70 255,130" fill="none" stroke="#DB2777" stroke-width="2.4"/>
+        </svg>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 도수분포다각형은 히스토그램의 어느 점들을 이어서 그리는가?</p>
+          <p><b>A.</b> 각 직사각형 윗변의 가운데 점(중점)을 이어서 그린다</p>
+        </div>
+      </details>
+<div class="tip">도수분포다각형은 히스토그램 위에 점을 찍어 잇기만 하면 되므로, 히스토그램을 먼저 정확히 그리는 것이 순서다.</div>
+    </section>
+
+    <section class="concept" id="c78">
+      <div class="concept-head"><span class="concept-num">7</span><h3>상대도수와 상대도수의 분포표</h3></div>
+      <div class="def">
+        <p><b>상대도수</b>: 도수의 총합에 대한 각 계급의 도수의 비율</p>
+        <div class="formula">계급의 상대도수 = (계급의 도수) / (도수의 총합)</div>
+        <p>상대도수의 총합은 항상 1이다. (상대도수) ∝ (각 계급의 도수)</p>
+        <p>도수가 너무 커서 전체를 조사하기 힘들 때, 또는 도수의 총합이 다른 두 자료를 비교할 때 유용하다.</p>
+        <table class="dtable">
+          <tr><th>점수(점)</th><th>학생 수(명)</th><th>상대도수</th></tr>
+          <tr><td>60 이상 ~ 70 미만</td><td>1</td><td>0.05</td></tr>
+          <tr><td>70 ~ 80</td><td>3</td><td>0.15</td></tr>
+          <tr><td>80 ~ 90</td><td>10</td><td>0.5</td></tr>
+          <tr><td>90 ~ 100</td><td>6</td><td>0.3</td></tr>
+          <tr><td>합계</td><td>20</td><td>1</td></tr>
+        </table>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 어떤 계급의 도수가 8, 전체 도수가 40일 때 이 계급의 상대도수는?</p>
+          <p><b>A.</b> <span class="math">8÷40=0.2</span></p>
+        </div>
+      </details>
+      <div class="widget">
+        <span class="widget-label">🎮 직접 해보기</span>
+        <div class="widget-row">
+          <label>도수</label>
+          <input type="number" id="rf-f" value="8" min="0" max="40" step="1" style="width:60px;">
+          <label>총 도수</label>
+          <input type="number" id="rf-n" value="40" min="1" step="1" style="width:60px;">
+        </div>
+        <svg viewBox="0 0 260 40" id="rf-svg">
+          <rect x="10" y="10" width="240" height="20" rx="6" fill="#F0F2F5" stroke="#0891B2" stroke-width="1.2"/>
+          <rect id="rf-bar" x="10" y="10" width="0" height="20" rx="6" fill="#0891B2"/>
+        </svg>
+        <div class="widget-result" id="rf-result"></div>
+      </div>
+<div class="tip">상대도수의 합이 항상 1이 된다는 것을 이용하면, 계급 하나의 상대도수를 몰라도 나머지 값을 빼서 구할 수 있다.</div>
+    </section>
+
+    <section class="concept" id="c79">
+      <div class="concept-head"><span class="concept-num">8</span><h3>상대도수의 그래프</h3></div>
+      <div class="def">
+        <p>1. 가로축에 각 계급의 양 끝값을 적는다. 2. 세로축에 상대도수를 적는다. 3. 히스토그램·도수분포다각형과 같은 방법으로 그린다.</p>
+        <p>각 계급의 도수가 전체에서 차지하는 비율을 쉽게 알 수 있고, 전체 도수가 다른 자료끼리 비교할 때 매우 편리하다.</p>
+        <p>상대도수 그래프와 가로축으로 둘러싸인 도형의 넓이 = (계급의 크기)×1 = 계급의 크기</p>
+      </div>
+      <div class="figure">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="130" x2="280" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <line x1="30" y1="20" x2="30" y2="130" stroke="#16233B" stroke-width="1.4"/>
+          <polyline points="30,128 80,120 130,100 180,30 230,80 280,128" fill="none" stroke="#0891B2" stroke-width="2.4"/>
+          <polyline points="30,126 80,110 130,105 180,35 230,60 280,126" fill="none" stroke="#DB2777" stroke-width="2.4" stroke-dasharray="5,3"/>
+          <text x="230" y="18" font-size="11" fill="#0891B2">1반</text>
+          <text x="255" y="18" font-size="11" fill="#DB2777">2반</text>
+        </svg>
+        <p class="figure-cap">도수 총합이 다른 두 반의 성적 분포도 상대도수 그래프로는 바로 비교할 수 있다</p>
+      </div>
+            <details class="example">
+        <summary>예제 풀어보기</summary>
+        <div class="example-body">
+          <p><b>Q.</b> 상대도수 그래프에서 세로축에 나타내는 값은 무엇인가?</p>
+          <p><b>A.</b> 상대도수</p>
+        </div>
+      </details>
+<div class="tip">전체 학생 수가 다른 두 반을 비교할 때는 도수 그대로가 아니라 반드시 상대도수로 바꿔서 비교해야 공정하다.</div>
+    </section>
+  </div>
+
+  </main>
+</div>
+
+<footer>상무고 유환수 제작 · 중학교 1학년 수학 개념 총정리</footer>
+
+<script>
+  const sections = document.querySelectorAll('.concept');
+  const links = document.querySelectorAll('.toc-list a');
+  const linkMap = {};
+  links.forEach(l => linkMap[l.getAttribute('href').slice(1)] = l);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = linkMap[entry.target.id];
+      if(!link) return;
+      if(entry.isIntersecting){
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+
+  // ===== 중2 효과 이식: 스크롤 등장 / 진행 바 / 예제 페이드 / 히어로 =====
+  const revealTargets = document.querySelectorAll('.concept, .chapter-banner, .chapter-sub');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+  revealTargets.forEach(t => revealObserver.observe(t));
+
+  const heroEl = document.getElementById('hero');
+  if(heroEl){
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          heroEl.classList.add('hero-play');
+          heroObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    heroObserver.observe(heroEl);
+  }
+
+  const progressBar = document.getElementById('scroll-progress');
+  function updateProgress(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  document.querySelectorAll('details.example').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if(d.open){
+        const body = d.querySelector('.example-body');
+        if(!body) return;
+        body.classList.remove('fade-in');
+        void body.offsetWidth;
+        body.classList.add('fade-in');
+      }
+    });
+  });
+</script>
+
+<script>
+// ===== Interactive widgets (Brilliant-style) =====
+
+// 1) 거듭제곱 계산기
+(function(){
+  const base=document.getElementById('pw-base'), exp=document.getElementById('pw-exp');
+  if(!base) return;
+  const baseVal=document.getElementById('pw-base-val'), expVal=document.getElementById('pw-exp-val');
+  const result=document.getElementById('pw-result');
+  function update(){
+    const b=+base.value, e=+exp.value;
+    baseVal.textContent=b; expVal.textContent=e;
+    const expr=Array(e).fill(b).join('×');
+    const val=Math.pow(b,e);
+    result.innerHTML=`${b}<sup>${e}</sup> = ${expr} = <span class="big">${val.toLocaleString()}</span>`;
+  }
+  base.addEventListener('input',update); exp.addEventListener('input',update);
+  update();
+})();
+
+// 2) 최대공약수·최소공배수 계산기
+(function(){
+  const aI=document.getElementById('gl-a'), bI=document.getElementById('gl-b');
+  if(!aI) return;
+  const btn=document.getElementById('gl-calc'), res=document.getElementById('gl-result');
+  function gcd(a,b){ return b? gcd(b,a%b): a; }
+  function calc(){
+    let a=Math.max(1,Math.min(999,Math.round(+aI.value)||1));
+    let b=Math.max(1,Math.min(999,Math.round(+bI.value)||1));
+    aI.value=a; bI.value=b;
+    const g=gcd(a,b), l=(a*b)/g;
+    res.innerHTML=`최대공약수 <span class="big">${g}</span> · 최소공배수 <span class="big">${l}</span><br><span style="font-size:12px;color:#6B7A90;">${a}×${b}=${a*b} = ${g}×${l}(=${g*l}) 확인!</span>`;
+  }
+  btn.addEventListener('click',calc);
+  calc();
+})();
+
+// 3) 절댓값 수직선 드래그
+(function(){
+  const svg=document.getElementById('abs-svg');
+  if(!svg) return;
+  const pt=document.getElementById('abs-pt');
+  const valEl=document.getElementById('abs-val'), absEl=document.getElementById('abs-abs');
+  const ticksG=document.getElementById('abs-ticks');
+  for(let v=-8; v<=8; v+=2){
+    const x=190+v*17;
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',x-6); t.setAttribute('y',65); t.setAttribute('font-size','11'); t.setAttribute('fill','#6B7A90');
+    t.textContent=v; ticksG.appendChild(t);
+    const tick=document.createElementNS('http://www.w3.org/2000/svg','line');
+    tick.setAttribute('x1',x);tick.setAttribute('x2',x);tick.setAttribute('y1',40);tick.setAttribute('y2',50);
+    tick.setAttribute('stroke','#16233B'); tick.setAttribute('stroke-width',1);
+    ticksG.appendChild(tick);
+  }
+  function setFromClientX(clientX){
+    const rect=svg.getBoundingClientRect();
+    const scaleX=380/rect.width;
+    let x=(clientX-rect.left)*scaleX;
+    x=Math.max(20,Math.min(360,x));
+    let v=Math.round((x-190)/17);
+    v=Math.max(-10,Math.min(10,v));
+    pt.setAttribute('cx',190+v*17);
+    valEl.textContent=v; absEl.textContent=Math.abs(v);
+  }
+  let dragging=false;
+  pt.addEventListener('pointerdown',e=>{dragging=true; pt.setPointerCapture(e.pointerId);});
+  svg.addEventListener('pointermove',e=>{ if(dragging) setFromClientX(e.clientX); });
+  window.addEventListener('pointerup',()=>dragging=false);
+  svg.addEventListener('pointerdown', e=>{ if(e.target===svg || e.target.tagName==='line' || e.target.tagName==='rect'){ setFromClientX(e.clientX); } });
+})();
+
+// 4) 사칙연산 계산기
+(function(){
+  const aI=document.getElementById('ar-a'), bI=document.getElementById('ar-b');
+  if(!aI) return;
+  const opWrap=document.getElementById('ar-op'), res=document.getElementById('ar-result');
+  let op='+';
+  opWrap.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      opWrap.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); op=btn.dataset.op; calc();
+    });
+  });
+  function calc(){
+    const a=+aI.value||0, b=+bI.value||0;
+    let val, note;
+    if(op==='+'){ val=a+b; note=(Math.sign(a)===Math.sign(b)||a===0||b===0)?'부호가 같으면 절댓값을 더하고 공통 부호':'부호가 다르면 절댓값의 차에 큰 쪽 부호'; }
+    else if(op==='-'){ val=a-b; note='뺄셈은 뒤의 부호를 바꿔 덧셈으로 계산'; }
+    else if(op==='×'){ val=a*b; note=((a<0)!==(b<0))?'부호가 다르면 곱은 (-)':'부호가 같으면 곱은 (+)'; }
+    else{ if(b===0){ res.innerHTML='0으로 나눌 수 없어요!'; return;} val=a/b; note=((a<0)!==(b<0))?'부호가 다르면 몫은 (-)':'부호가 같으면 몫은 (+)'; }
+    res.innerHTML=`${a} ${op} ${b} = <span class="big">${Number.isInteger(val)?val:val.toFixed(2)}</span><br><span style="font-size:12px;color:#6B7A90;">${note}</span>`;
+  }
+  aI.addEventListener('input',calc); bI.addEventListener('input',calc);
+  calc();
+})();
+
+// 5) 일차방정식 단계별 풀이
+(function(){
+  const aI=document.getElementById('eq-a');
+  if(!aI) return;
+  const bI=document.getElementById('eq-b'), cI=document.getElementById('eq-c');
+  const btn=document.getElementById('eq-solve'), res=document.getElementById('eq-result');
+  function solve(){
+    const a=(+aI.value)||1, b=(+bI.value)||0, c=(+cI.value)||0;
+    if(a===0){ res.textContent='a는 0이 될 수 없어요.'; return; }
+    const rhs=c-b, x=rhs/a;
+    res.innerHTML=`${a}x + ${b} = ${c}<br>${a}x = ${c} - (${b}) = ${rhs} <span style="color:#6B7A90;font-size:12px;">(이항)</span><br>x = ${rhs} ÷ ${a} = <span class="big">${Number.isInteger(x)?x:x.toFixed(2)}</span>`;
+  }
+  btn.addEventListener('click',solve);
+  solve();
+})();
+
+// 6) 좌표평면 클릭 플로터
+(function(){
+  const svg=document.getElementById('cp-svg');
+  if(!svg) return;
+  const dot=document.getElementById('cp-dot'), res=document.getElementById('cp-result');
+  svg.addEventListener('click', e=>{
+    const rect=svg.getBoundingClientRect();
+    const scaleX=300/rect.width, scaleY=260/rect.height;
+    const px=(e.clientX-rect.left)*scaleX, py=(e.clientY-rect.top)*scaleY;
+    const gx=Math.round((px-150)/20), gy=Math.round((130-py)/20);
+    dot.setAttribute('cx',150+gx*20); dot.setAttribute('cy',130-gy*20); dot.style.display='block';
+    let quad = (gx===0||gy===0) ? '축 위' : (gx>0&&gy>0?'제1사분면':gx<0&&gy>0?'제2사분면':gx<0&&gy<0?'제3사분면':'제4사분면');
+    res.innerHTML=`점 (${gx}, ${gy}) → <span class="big">${quad}</span>`;
+  });
+})();
+
+// 7) 정비례 그래프 슬라이더
+(function(){
+  const aI=document.getElementById('dp-a');
+  if(!aI) return;
+  const aVal=document.getElementById('dp-a-val'), line=document.getElementById('dp-line'), res=document.getElementById('dp-result');
+  function fmt(a){ if(a===1) return 'x'; if(a===-1) return '-x'; return a+'x'; }
+  function update(){
+    const a=+aI.value; aVal.textContent=a;
+    const maxX=130,maxY=90;
+    let dx=maxX, dy=a*maxX;
+    if(Math.abs(dy)>maxY && a!==0){ dy=Math.sign(dy)*maxY; dx=Math.abs(dy/a); }
+    if(a===0) dy=0;
+    line.setAttribute('x1',150-dx); line.setAttribute('y1',100+dy);
+    line.setAttribute('x2',150+dx); line.setAttribute('y2',100-dy);
+    line.setAttribute('stroke', a>=0? '#0D9488':'#EA580C');
+    res.innerHTML = `y = ${fmt(a)} <span style="font-size:12px;color:#6B7A90;">${a>0?'(제1,3사분면)':a<0?'(제2,4사분면)':'(x축과 겹침)'}</span>`;
+  }
+  aI.addEventListener('input',update);
+  update();
+})();
+
+// 8) 반비례 그래프 슬라이더
+(function(){
+  const aI=document.getElementById('ip-a');
+  if(!aI) return;
+  const aVal=document.getElementById('ip-a-val'), p1=document.getElementById('ip-branch1'), p2=document.getElementById('ip-branch2'), res=document.getElementById('ip-result');
+  const baseOffsets=[[4.8,-90],[6,-72],[9,-48],[12,-36],[18,-24],[30,-14.4],[48,-9],[78,-5.5],[120,-3.6]];
+  function update(){
+    let a=+aI.value; if(a===0){ a=1; aI.value=1; }
+    aVal.textContent=a;
+    const k=Math.sqrt(Math.abs(a)/12), sign=a>0?1:-1;
+    const pts1=baseOffsets.map(([dx,dy])=>`${(150+sign*dx*k).toFixed(1)},${(100+dy*k).toFixed(1)}`).join(' ');
+    const pts2=baseOffsets.map(([dx,dy])=>`${(150-sign*dx*k).toFixed(1)},${(100-dy*k).toFixed(1)}`).join(' ');
+    p1.setAttribute('points',pts1); p2.setAttribute('points',pts2);
+    const color=a>0?'#0D9488':'#EA580C';
+    p1.setAttribute('stroke',color); p2.setAttribute('stroke',color);
+    res.innerHTML=`y = ${a}/x <span style="font-size:12px;color:#6B7A90;">${a>0?'(제1,3사분면)':'(제2,4사분면)'}</span>`;
+  }
+  aI.addEventListener('input',update);
+  update();
+})();
+
+// 9) 각도 슬라이더
+(function(){
+  const slider=document.getElementById('ang-deg');
+  if(!slider) return;
+  const val=document.getElementById('ang-deg-val'), ray=document.getElementById('ang-ray'), arc=document.getElementById('ang-arc'), res=document.getElementById('ang-result');
+  const ox=30, oy=120, r=90, arcR=26;
+  function update(){
+    const deg=+slider.value; val.textContent=deg+'°';
+    const rad=deg*Math.PI/180;
+    const x=ox+r*Math.cos(rad), y=oy-r*Math.sin(rad);
+    ray.setAttribute('x2',x); ray.setAttribute('y2',y);
+    const ax=ox+arcR*Math.cos(rad), ay=oy-arcR*Math.sin(rad);
+    const largeArc = deg>180?1:0;
+    arc.setAttribute('d', `M${ox+arcR},${oy} A${arcR},${arcR} 0 ${largeArc},0 ${ax.toFixed(1)},${ay.toFixed(1)}`);
+    let label = deg===0?'0°': deg<90?'예각':deg===90?'직각':deg<180?'둔각':'평각';
+    res.innerHTML=`${deg}° → <span class="big">${label}</span>`;
+  }
+  slider.addEventListener('input',update);
+  update();
+})();
+
+// 10) 부채꼴 계산기
+(function(){
+  const rI=document.getElementById('sc-r');
+  if(!rI) return;
+  const dI=document.getElementById('sc-deg'), rVal=document.getElementById('sc-r-val'), dVal=document.getElementById('sc-deg-val');
+  const sector=document.getElementById('sc-sector'), res=document.getElementById('sc-result');
+  const rLine=document.getElementById('sc-rline'), rTxt=document.getElementById('sc-rtxt');
+  const cx=100, cy=90, UNIT=6.5; // 반지름 1당 6.5 → r=10일 때 65
+  function update(){
+    const r=+rI.value, deg=+dI.value;
+    rVal.textContent=r; dVal.textContent=deg+'°';
+    const maxR=r*UNIT; // 반지름 슬라이더에 맞춰 부채꼴 크기 변경
+    const rad=deg*Math.PI/180;
+    const startAngle=-Math.PI/2, endAngle=startAngle+rad;
+    const x1=cx+maxR*Math.cos(startAngle), y1=cy+maxR*Math.sin(startAngle);
+    const x2=cx+maxR*Math.cos(endAngle), y2=cy+maxR*Math.sin(endAngle);
+    const largeArc = deg>180?1:0;
+    let d;
+    if(deg>=360){ d = `M${cx-maxR},${cy} a${maxR},${maxR} 0 1,0 ${maxR*2},0 a${maxR},${maxR} 0 1,0 ${-maxR*2},0`; }
+    else{ d = `M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${maxR},${maxR} 0 ${largeArc},1 ${x2.toFixed(1)},${y2.toFixed(1)} Z`; }
+    sector.setAttribute('d', d);
+    rLine.setAttribute('x1',cx); rLine.setAttribute('y1',cy); rLine.setAttribute('x2',x1.toFixed(1)); rLine.setAttribute('y2',y1.toFixed(1));
+    rTxt.setAttribute('x',cx-6); rTxt.setAttribute('y',(cy+y1)/2+4); rTxt.textContent='r = '+r;
+    const arcLen=(2*Math.PI*r*deg/360).toFixed(2);
+    const area=(Math.PI*r*r*deg/360).toFixed(2);
+    res.innerHTML=`호의 길이 ≈ <span class="big">${arcLen}</span> &nbsp;|&nbsp; 넓이 ≈ <span class="big">${area}</span>`;
+  }
+  rI.addEventListener('input',update); dI.addEventListener('input',update);
+  update();
+})();
+
+// 11) 정다각형 내각 계산기
+(function(){
+  const nI=document.getElementById('ng-n');
+  if(!nI) return;
+  const nVal=document.getElementById('ng-n-val'), poly=document.getElementById('ng-poly'), res=document.getElementById('ng-result');
+  const cx=100, cy=85, r=62;
+  function update(){
+    const n=+nI.value; nVal.textContent=n;
+    let pts=[];
+    for(let i=0;i<n;i++){
+      const a=-Math.PI/2 + i*2*Math.PI/n;
+      pts.push(`${(cx+r*Math.cos(a)).toFixed(1)},${(cy+r*Math.sin(a)).toFixed(1)}`);
+    }
+    poly.setAttribute('points',pts.join(' '));
+    const sum=180*(n-2), each=(sum/n).toFixed(1);
+    res.innerHTML=`내각의 합 = 180°×(${n}-2) = <span class="big">${sum}°</span><br>정${n}각형 한 내각 = ${sum}°÷${n} = <span class="big">${each}°</span>`;
+  }
+  nI.addEventListener('input',update);
+  update();
+})();
+
+// 12) 대푯값 계산기
+(function(){
+  const dataI=document.getElementById('st-data');
+  if(!dataI) return;
+  const btn=document.getElementById('st-calc'), res=document.getElementById('st-result');
+  function calc(){
+    const nums=dataI.value.split(',').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
+    if(nums.length===0){ res.textContent='숫자를 쉼표로 구분해서 입력해주세요.'; return; }
+    const sorted=[...nums].sort((a,b)=>a-b);
+    const mean=(nums.reduce((a,b)=>a+b,0)/nums.length);
+    const mid=Math.floor(sorted.length/2);
+    const median = sorted.length%2 ? sorted[mid] : (sorted[mid-1]+sorted[mid])/2;
+    const freq={};
+    nums.forEach(n=>freq[n]=(freq[n]||0)+1);
+    const maxFreq=Math.max(...Object.values(freq));
+    const modes=Object.keys(freq).filter(k=>freq[k]===maxFreq);
+    const modeText = maxFreq>1 ? modes.join(', ') : '없음(모두 1번씩)';
+    res.innerHTML=`평균 = <span class="big">${mean.toFixed(2)}</span> · 중앙값 = <span class="big">${median}</span> · 최빈값 = <span class="big">${modeText}</span>`;
+  }
+  btn.addEventListener('click',calc);
+  calc();
+})();
+</script>
+
+<script>
+// ===== 입체도형 실시간 그림 (슬라이더 연동) =====
+window.GEO = (function(){
+  var ACC='#4F46E5', FILL='#EEF0FE', PINK='#DB2777', GRAY='#6B7A90', AMB='#D97706', INK='#16233B';
+  function f(n){ return (Math.round(n*10)/10).toFixed(1); }
+  function arrow(x,y,dir){ // dir: 1 → 오른쪽 끝, -1 → 왼쪽 끝
+    return '<path d="M'+x+','+y+' l'+(-6*dir)+',-3 v6 z" fill="'+GRAY+'"/>';
+  }
+  function txt(x,y,s,o){
+    o=o||{};
+    return '<text x="'+x+'" y="'+y+'" font-size="'+(o.size||12)+'" font-weight="'+(o.weight||700)+'" fill="'+(o.fill||INK)+'" text-anchor="'+(o.anchor||'middle')+'">'+s+'</text>';
+  }
+
+  // 원기둥 전개도
+  function cyl(r,h){
+    var K=3.1, CX=160, VH=250;
+    var R=r*K, H=h*K, W=2*Math.PI*r*K;
+    var total=4*R+H, y0=(VH-total)/2;
+    var c1y=y0+R, rt=y0+2*R, rb=rt+H, c2y=rb+R;
+    var xl=CX-W/2, xr=CX+W/2, dimY=y0-9, xb=xr+10;
+    var g='';
+    // 가로(2πr) 치수선
+    g+='<line x1="'+xl+'" y1="'+rt+'" x2="'+xl+'" y2="'+(dimY-3)+'" stroke="#94A8C4" stroke-dasharray="2,2"/>';
+    g+='<line x1="'+xr+'" y1="'+rt+'" x2="'+xr+'" y2="'+(dimY-3)+'" stroke="#94A8C4" stroke-dasharray="2,2"/>';
+    g+='<line x1="'+(xl+5)+'" y1="'+dimY+'" x2="'+(xr-5)+'" y2="'+dimY+'" stroke="'+GRAY+'" stroke-width="1.2"/>';
+    g+=arrow(xl,dimY,-1)+arrow(xr,dimY,1);
+    g+=txt(CX,dimY-7,'2πr = '+f(2*Math.PI*r),{fill:AMB});
+    // 세로(h) 치수선
+    g+='<line x1="'+xr+'" y1="'+rt+'" x2="'+(xb+3)+'" y2="'+rt+'" stroke="#94A8C4" stroke-dasharray="2,2"/>';
+    g+='<line x1="'+xr+'" y1="'+rb+'" x2="'+(xb+3)+'" y2="'+rb+'" stroke="#94A8C4" stroke-dasharray="2,2"/>';
+    g+='<line x1="'+xb+'" y1="'+rt+'" x2="'+xb+'" y2="'+rb+'" stroke="'+GRAY+'" stroke-width="1.2"/>';
+    g+=txt(xb+7,(rt+rb)/2+4,'h = '+h,{anchor:'start',fill:ACC});
+    // 도형
+    g+='<rect x="'+xl+'" y="'+rt+'" width="'+W+'" height="'+H+'" fill="'+FILL+'" stroke="'+ACC+'" stroke-width="1.8"/>';
+    g+='<circle cx="'+CX+'" cy="'+c1y+'" r="'+R+'" fill="'+FILL+'" stroke="'+AMB+'" stroke-width="2.4"/>';
+    g+='<circle cx="'+CX+'" cy="'+c2y+'" r="'+R+'" fill="'+FILL+'" stroke="'+AMB+'" stroke-width="2.4"/>';
+    g+='<line x1="'+xl+'" y1="'+rt+'" x2="'+xr+'" y2="'+rt+'" stroke="'+AMB+'" stroke-width="2.4"/>';
+    g+='<line x1="'+xl+'" y1="'+rb+'" x2="'+xr+'" y2="'+rb+'" stroke="'+AMB+'" stroke-width="2.4"/>';
+    // 반지름 r (위쪽 밑면)
+    g+='<line x1="'+CX+'" y1="'+c1y+'" x2="'+(CX+R)+'" y2="'+c1y+'" stroke="'+PINK+'" stroke-width="1.6"/>';
+    g+='<circle cx="'+CX+'" cy="'+c1y+'" r="2" fill="'+PINK+'"/>';
+    if(R>=12) g+=txt(CX+R/2,c1y-5,'r',{fill:PINK,size:12});
+    else g+=txt(CX+R+6,c1y+4,'r',{anchor:'start',fill:PINK,size:12});
+    // 이름표
+    if(R>=18){
+      g+=txt(CX-R*0.45,c1y+4,'밑면',{size:11,fill:GRAY,weight:600});
+      g+=txt(CX,c2y+4,'밑면',{size:11,fill:GRAY,weight:600});
+    }
+    if(H>=22) g+=txt(CX,(rt+rb)/2+4,'옆면',{size:12,fill:GRAY,weight:600});
+    return g;
+  }
+
+  // 구
+  function sph(r){
+    var K=10, CX=160, CY=125, R=r*K;
+    var g='<defs><radialGradient id="sphG" cx="36%" cy="30%" r="75%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#C9CDF7"/></radialGradient></defs>';
+    g+='<circle cx="'+CX+'" cy="'+CY+'" r="100" fill="none" stroke="#CBD5E1" stroke-dasharray="3,4"/>';
+    g+=txt(CX,CY-106,'점선 = r 10일 때의 크기',{size:10,fill:'#94A3B8',weight:500});
+    g+='<circle cx="'+CX+'" cy="'+CY+'" r="'+R+'" fill="url(#sphG)" stroke="'+ACC+'" stroke-width="1.8"/>';
+    g+='<path d="M'+(CX-R)+','+CY+' A'+R+','+(R*0.3)+' 0 0,1 '+(CX+R)+','+CY+'" fill="none" stroke="'+ACC+'" stroke-dasharray="3,3"/>';
+    g+='<path d="M'+(CX-R)+','+CY+' A'+R+','+(R*0.3)+' 0 0,0 '+(CX+R)+','+CY+'" fill="none" stroke="'+ACC+'" stroke-width="1.2"/>';
+    g+='<line x1="'+CX+'" y1="'+CY+'" x2="'+(CX+R)+'" y2="'+CY+'" stroke="'+PINK+'" stroke-width="1.8"/>';
+    g+='<circle cx="'+CX+'" cy="'+CY+'" r="2.5" fill="'+PINK+'"/>';
+    if(R>=40) g+=txt(CX+R/2,CY-7,'r = '+r,{fill:PINK,size:12});
+    else g+=txt(CX+R+6,CY+4,'r = '+r,{anchor:'start',fill:PINK,size:12});
+    return g;
+  }
+
+  // 원뿔 전개도
+  function cone(r,h){
+    var K=5, CX=160, VH=250;
+    var l=Math.sqrt(r*r+h*h), th=2*Math.PI*r/l, half=th/2;
+    var LK=l*K, RK=r*K;
+    var top=Math.min(0,LK*Math.cos(half));
+    var H=LK+2*RK-top, y0=(VH-H)/2-top;
+    var x1=CX-LK*Math.sin(half), x2=CX+LK*Math.sin(half), y1=y0+LK*Math.cos(half);
+    var large=th>Math.PI?1:0;
+    var cy=y0+LK+RK;
+    var g='';
+    var arcD='M'+x1+','+y1+' A'+LK+','+LK+' 0 '+large+',0 '+x2+','+y1;
+    g+='<path d="M'+CX+','+y0+' L'+x1+','+y1+' A'+LK+','+LK+' 0 '+large+',0 '+x2+','+y1+' Z" fill="'+FILL+'" stroke="'+ACC+'" stroke-width="1.8" stroke-linejoin="round"/>';
+    g+='<path d="'+arcD+'" fill="none" stroke="'+AMB+'" stroke-width="2.4"/>';
+    g+='<circle cx="'+CX+'" cy="'+cy+'" r="'+RK+'" fill="'+FILL+'" stroke="'+AMB+'" stroke-width="2.4"/>';
+    // 모선 l
+    if(half<=Math.PI/2){
+      var c=Math.cos(half), sn=Math.sin(half);
+      var mx=(CX+x1)/2, my=(y0+y1)/2, nx=-c, ny=-sn;
+      g+=txt(mx+12*nx,my+12*ny+4,'l = '+f(l),{anchor:(nx<0?'end':'start'),fill:ACC});
+    } else {
+      g+='<line x1="'+CX+'" y1="'+y0+'" x2="'+CX+'" y2="'+(y0+LK)+'" stroke="'+ACC+'" stroke-width="1.2" stroke-dasharray="4,3"/>';
+      g+=txt(CX+6,y0+LK*0.55,'l = '+f(l),{anchor:'start',fill:ACC});
+    }
+    // 호의 길이 = 밑면 둘레
+    g+=txt(x2+8,y1+4,'호 = 2πr',{anchor:'start',fill:AMB,size:11});
+    // 밑면 반지름
+    g+='<line x1="'+CX+'" y1="'+cy+'" x2="'+(CX+RK)+'" y2="'+cy+'" stroke="'+PINK+'" stroke-width="1.6"/>';
+    g+='<circle cx="'+CX+'" cy="'+cy+'" r="2" fill="'+PINK+'"/>';
+    if(RK>=12) g+=txt(CX+RK/2,cy-5,'r',{fill:PINK,size:12});
+    else g+=txt(CX+RK+6,cy+4,'r',{anchor:'start',fill:PINK,size:12});
+    if(RK>=20) g+=txt(CX-RK*0.45,cy+4,'밑면',{size:11,fill:GRAY,weight:600});
+    return g;
+  }
+  return {cyl:cyl,sph:sph,cone:cone};
+})();
+</script>
+
+<script>
+// ===== Interactive widgets, round 2 =====
+
+// c2 소수 판별기
+(function(){
+  const nI=document.getElementById('pr-n');
+  if(!nI) return;
+  const btn=document.getElementById('pr-check'), res=document.getElementById('pr-result');
+  function check(){
+    const n=Math.max(1,Math.round(+nI.value)||1); nI.value=n;
+    let divs=[]; for(let i=1;i<=n;i++) if(n%i===0) divs.push(i);
+    const label = n===1? '1은 소수도 합성수도 아니에요' : (divs.length===2? '소수':'합성수');
+    res.innerHTML=`${n}의 약수: ${divs.join(', ')} (${divs.length}개)<br>→ <span class="big">${label}</span>`;
+  }
+  btn.addEventListener('click',check); check();
+})();
+
+// c3 소인수분해 단계별
+(function(){
+  const nI=document.getElementById('ft-n');
+  if(!nI) return;
+  const btn=document.getElementById('ft-go'), res=document.getElementById('ft-result');
+  function factorize(){
+    let n=Math.max(2,Math.round(+nI.value)||2); nI.value=n;
+    let cur=n, primes=[], steps=[String(n)];
+    for(let p=2;p<=cur;p++){
+      while(cur%p===0){ primes.push(p); cur/=p; steps.push(primes.join('×') + (cur>1? '×'+cur : '')); }
+    }
+    const counts={}; primes.forEach(p=>counts[p]=(counts[p]||0)+1);
+    const expForm = Object.keys(counts).map(p=> counts[p]>1? `${p}<sup>${counts[p]}</sup>` : p).join('×');
+    res.innerHTML = `${steps.join(' = ')}<br>→ <span class="big">${n} = ${expForm}</span>`;
+  }
+  btn.addEventListener('click',factorize); factorize();
+})();
+
+// c4 약수 개수
+(function(){
+  const nI=document.getElementById('dv-n');
+  if(!nI) return;
+  const btn=document.getElementById('dv-go'), res=document.getElementById('dv-result');
+  function calc(){
+    let n=Math.max(2,Math.round(+nI.value)||2); nI.value=n;
+    let cur=n, counts={};
+    for(let p=2;p<=cur;p++){ while(cur%p===0){ counts[p]=(counts[p]||0)+1; cur/=p; } }
+    const factorsStr = Object.keys(counts).map(p=>counts[p]>1?`${p}<sup>${counts[p]}</sup>`:p).join('×');
+    const countExpr = Object.values(counts).map(e=>`(${e}+1)`).join('×');
+    const total = Object.values(counts).reduce((a,e)=>a*(e+1),1);
+    res.innerHTML = `${n} = ${factorsStr}<br>약수 개수 = ${countExpr} = <span class="big">${total}개</span>`;
+  }
+  btn.addEventListener('click',calc); calc();
+})();
+
+// c8 온도계
+(function(){
+  const t=document.getElementById('temp-t');
+  if(!t) return;
+  const tVal=document.getElementById('temp-t-val'), fill=document.getElementById('temp-fill'), bulb=document.getElementById('temp-bulb'), res=document.getElementById('temp-result');
+  function update(){
+    const v=+t.value;
+    tVal.textContent = v>0? '+'+v : v;
+    const color = v>0? '#EA580C' : v<0? '#2563EB' : '#6B7A90';
+    const w = Math.abs(v)*9;
+    fill.setAttribute('x', v>=0? 20 : 20-w);
+    fill.setAttribute('width', w); fill.setAttribute('fill', color); bulb.setAttribute('fill', color);
+    const label = v>0? '양수':v<0?'음수':'영(0)';
+    res.innerHTML = `${tVal.textContent}℃ → <span class="big">${label}</span>`;
+  }
+  t.addEventListener('input',update); update();
+})();
+
+// c9 수 분류기
+(function(){
+  const nI=document.getElementById('cls-n');
+  if(!nI) return;
+  const btn=document.getElementById('cls-go'), res=document.getElementById('cls-result');
+  function classify(){
+    let s=nI.value.trim(), val;
+    if(s.includes('/')){ const [a,b]=s.split('/').map(Number); if(!b){ res.textContent='올바른 분수를 입력해주세요.'; return; } val=a/b; }
+    else { val=parseFloat(s); }
+    if(isNaN(val)){ res.textContent='숫자를 입력해주세요.'; return; }
+    let label;
+    if(Number.isInteger(val)){ label = val>0? '자연수(양의 정수)' : val===0? '정수 (0)' : '음의 정수'; }
+    else { label = '정수가 아닌 유리수'; }
+    res.innerHTML = `${s} → <span class="big">${label}</span>`;
+  }
+  btn.addEventListener('click',classify); classify();
+})();
+
+// c11 대소비교
+(function(){
+  const aI=document.getElementById('cmp-a');
+  if(!aI) return;
+  const bI=document.getElementById('cmp-b'), aVal=document.getElementById('cmp-a-val'), bVal=document.getElementById('cmp-b-val'), res=document.getElementById('cmp-result');
+  function update(){
+    const a=+aI.value, b=+bI.value; aVal.textContent=a; bVal.textContent=b;
+    const sym = a>b?'>':a<b?'<':'=';
+    res.innerHTML = `${a} ${sym} ${b}`;
+  }
+  aI.addEventListener('input',update); bI.addEventListener('input',update); update();
+})();
+
+// c12 부등호
+(function(){
+  const xI=document.getElementById('ineq-x');
+  if(!xI) return;
+  const kI=document.getElementById('ineq-k'), opWrap=document.getElementById('ineq-op'), res=document.getElementById('ineq-result');
+  let op='>';
+  opWrap.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      opWrap.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); op=btn.dataset.op; calc();
+    });
+  });
+  function calc(){
+    const x=+xI.value, k=+kI.value;
+    let ok;
+    if(op==='>') ok = x>k; else if(op==='<') ok = x<k; else if(op==='≥') ok = x>=k; else ok = x<=k;
+    res.innerHTML = `x=${x} 일 때, x ${op} ${k} → <span class="big">${ok?'참':'거짓'}</span>`;
+  }
+  xI.addEventListener('input',calc); kI.addEventListener('input',calc); calc();
+})();
+
+// c16 혼합계산
+(function(){
+  const dataI=document.getElementById('mix-data');
+  if(!dataI) return;
+  const btn=document.getElementById('mix-go'), res=document.getElementById('mix-result');
+  function calc(){
+    const nums=dataI.value.split(',').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
+    if(nums.length===0){ res.textContent='쉼표로 구분한 숫자를 입력해주세요.'; return; }
+    const pos=nums.filter(n=>n>=0), neg=nums.filter(n=>n<0);
+    const posSum=pos.reduce((a,b)=>a+b,0), negSum=neg.reduce((a,b)=>a+b,0);
+    res.innerHTML = `양수끼리: ${pos.length?pos.join('+'):'0'} = ${posSum}<br>음수끼리: ${neg.length?neg.join(''):'0'} = ${negSum}<br>합 = <span class="big">${posSum+negSum}</span>`;
+  }
+  btn.addEventListener('click',calc); calc();
+})();
+
+// c22 대입 계산기
+(function(){
+  const aI=document.getElementById('sub-a');
+  if(!aI) return;
+  const bI=document.getElementById('sub-b'), xI=document.getElementById('sub-x'), res=document.getElementById('sub-result');
+  function calc(){
+    const a=+aI.value||0, b=+bI.value||0, x=+xI.value||0;
+    res.innerHTML = `${a}×(${x}) + ${b} = <span class="big">${a*x+b}</span>`;
+  }
+  [aI,bI,xI].forEach(el=>el.addEventListener('input',calc)); calc();
+})();
+
+// c26 동류항
+(function(){
+  const c1I=document.getElementById('lt-c1');
+  if(!c1I) return;
+  const c2I=document.getElementById('lt-c2'), res=document.getElementById('lt-result');
+  function calc(){
+    const c1=+c1I.value||0, c2=+c2I.value||0;
+    res.innerHTML = `${c1}a + ${c2}a = (${c1}+${c2})a = <span class="big">${c1+c2}a</span>`;
+  }
+  c1I.addEventListener('input',calc); c2I.addEventListener('input',calc); calc();
+})();
+
+// c33 거리속력시간
+(function(){
+  const dI=document.getElementById('dst-d');
+  if(!dI) return;
+  const tI=document.getElementById('dst-t'), res=document.getElementById('dst-result');
+  function calc(){
+    const d=+dI.value||0, t=+tI.value||1;
+    res.innerHTML = `속력 = 거리 ÷ 시간 = ${d} ÷ ${t} = <span class="big">${(d/t).toFixed(2)}km/h</span>`;
+  }
+  dI.addEventListener('input',calc); tI.addEventListener('input',calc); calc();
+})();
+
+// c40 두 점 사이 거리
+(function(){
+  const aI=document.getElementById('pd-a');
+  if(!aI) return;
+  const bI=document.getElementById('pd-b'), aVal=document.getElementById('pd-a-val'), bVal=document.getElementById('pd-b-val'), res=document.getElementById('pd-result');
+  function update(){
+    const a=+aI.value, b=+bI.value; aVal.textContent=a; bVal.textContent=b;
+    res.innerHTML = `AB = |${a} - ${b}| = <span class="big">${Math.abs(a-b)}</span>`;
+  }
+  aI.addEventListener('input',update); bI.addEventListener('input',update); update();
+})();
+
+// c41 중점 드래그
+(function(){
+  const svg=document.getElementById('mp-svg');
+  if(!svg) return;
+  const aPt=document.getElementById('mp-a'), bPt=document.getElementById('mp-b'), mPt=document.getElementById('mp-m'), mLabel=document.getElementById('mp-label'), res=document.getElementById('mp-result');
+  const aTxt=document.getElementById('mp-ta'), bTxt=document.getElementById('mp-tb');
+  let aX=70, bX=230;
+  function toVal(x){ return ((x-20)/20).toFixed(1); }
+  function render(){
+    const mx=(aX+bX)/2;
+    aPt.setAttribute('cx',aX); bPt.setAttribute('cx',bX);
+    mPt.setAttribute('cx',mx); mLabel.setAttribute('x',mx-5);
+    aTxt.setAttribute('x',aX); bTxt.setAttribute('x',bX);
+    const am=(Math.abs(mx-aX)/20).toFixed(1);
+    res.innerHTML = `A=${toVal(aX)}, B=${toVal(bX)} → 중점 M=${toVal(mx)}<br>AM=BM=${am} 확인!`;
+  }
+  function makeDraggable(pt, setX){
+    let dragging=false;
+    pt.addEventListener('pointerdown',e=>{dragging=true; pt.setPointerCapture(e.pointerId);});
+    svg.addEventListener('pointermove',e=>{
+      if(!dragging) return;
+      const rect=svg.getBoundingClientRect(); const scaleX=300/rect.width;
+      let x=(e.clientX-rect.left)*scaleX; x=Math.max(20,Math.min(280,x));
+      setX(x); render();
+    });
+    window.addEventListener('pointerup',()=>dragging=false);
+  }
+  makeDraggable(aPt, x=>aX=x); makeDraggable(bPt, x=>bX=x);
+  render();
+})();
+
+// c44 맞꼭지각 슬라이더
+(function(){
+  const slider=document.getElementById('va-deg');
+  if(!slider) return;
+  const val=document.getElementById('va-deg-val');
+  const l1=document.getElementById('va-l1'), l2=document.getElementById('va-l2');
+  const ta=document.getElementById('va-ta'), td=document.getElementById('va-td'), tb=document.getElementById('va-tb'), tc=document.getElementById('va-tc');
+  const res=document.getElementById('va-result');
+  const cx=130, cy=80, L=100, AR=22;
+  const wa=document.getElementById('va-wa'), wb=document.getElementById('va-wb'), wc=document.getElementById('va-wc'), wd=document.getElementById('va-wd');
+  function pt(deg,r){ const q=deg*Math.PI/180; return [cx+r*Math.cos(q), cy-r*Math.sin(q)]; }
+  // a1°→a2°(반시계) 부채꼴 표시 + 이름표를 그 각의 이등분선 위에 배치
+  function mark(path,txt,a1,a2){
+    const p1=pt(a1,AR), p2=pt(a2,AR);
+    const arcD='M'+p1[0]+','+p1[1]+' A'+AR+','+AR+' 0 0,0 '+p2[0]+','+p2[1];
+    path.setAttribute('d','M'+cx+','+cy+' L'+p1[0]+','+p1[1]+' A'+AR+','+AR+' 0 0,0 '+p2[0]+','+p2[1]+' Z');
+    document.getElementById(path.id.replace('-w','-r')).setAttribute('d',arcD);
+    const half=(a2-a1)/2*Math.PI/180, RL=Math.min(Math.max(AR+12, 9/Math.sin(half)), 72);
+    const q=pt((a1+a2)/2,RL);
+    txt.setAttribute('x',q[0]); txt.setAttribute('y',q[1]+4.5);
+  }
+  function update(){
+    const theta=+slider.value; val.textContent=theta+'°';
+    const rad=theta*Math.PI/180, dx=L*Math.cos(rad), dy=L*Math.sin(rad);
+    l1.setAttribute('x1',cx+dx); l1.setAttribute('y1',cy-dy);
+    l1.setAttribute('x2',cx-dx); l1.setAttribute('y2',cy+dy);
+    l2.setAttribute('x1',cx-L); l2.setAttribute('y1',cy);
+    l2.setAttribute('x2',cx+L); l2.setAttribute('y2',cy);
+    mark(wa,ta,0,theta);
+    mark(wd,td,theta,180);
+    mark(wc,tc,180,180+theta);
+    mark(wb,tb,180+theta,360);
+    res.innerHTML = `∠a=∠c=${theta}° · ∠b=∠d=${180-theta}° <span style="font-size:12px;color:#6B7A90;">(맞꼭지각은 항상 같다)</span>`;
+  }
+  slider.addEventListener('input',update); update();
+})();
+
+// c55 평행선 슬라이더
+(function(){
+  const slider=document.getElementById('pl-deg');
+  if(!slider) return;
+  const val=document.getElementById('pl-deg-val');
+  const trans=document.getElementById('pl-trans'), ta=document.getElementById('pl-ta'), tb=document.getElementById('pl-tb'), res=document.getElementById('pl-result');
+  const arca=document.getElementById('pl-arca'), arcb=document.getElementById('pl-arcb');
+  const midX=130, midY=75, AR=20;
+  // 교점 (cx,cy)에서 가로선(오른쪽)과 사선(아래쪽) 사이의 각을 부채꼴 호로 표시하고 이름표를 붙인다
+  function mark(arc,txt,cx,cy,rad){
+    const ex=cx+AR*Math.cos(rad), ey=cy+AR*Math.sin(rad);
+    arc.setAttribute('d','M'+cx+','+cy+' L'+(cx+AR)+','+cy+' A'+AR+','+AR+' 0 0,1 '+ex+','+ey+' Z');
+    const RL=AR+11, rel=Math.max(RL*Math.sin(rad/2),9.5);
+    const lx=Math.max(cx+RL*Math.cos(rad/2), cx+rel/Math.tan(rad)+7);
+    txt.setAttribute('x',lx); txt.setAttribute('y',cy+rel+4.5);
+  }
+  function update(){
+    const theta=+slider.value; val.textContent=theta+'°';
+    const rad=theta*Math.PI/180, sn=Math.sin(rad), cs=Math.cos(rad);
+    // 사선이 두 평행선을 충분히 지나가도록 길이를 기울기에 맞춰 늘린다
+    const L=35/sn+30, dx=L*cs, dy=L*sn;
+    trans.setAttribute('x1',midX-dx); trans.setAttribute('y1',midY-dy);
+    trans.setAttribute('x2',midX+dx); trans.setAttribute('y2',midY+dy);
+    const t1=(40-midY)/sn, x1=midX+t1*cs;
+    const t2=(110-midY)/sn, x2=midX+t2*cs;
+    mark(arca,ta,x1,40,rad);
+    mark(arcb,tb,x2,110,rad);
+    res.innerHTML = `∠a = ∠b = <span class="big">${theta}°</span> <span style="font-size:12px;color:#6B7A90;">(평행선의 동위각은 항상 같다)</span>`;
+  }
+  slider.addEventListener('input',update); update();
+})();
+
+// c57 삼각형 대변대각 클릭
+(function(){
+  const svg=document.getElementById('tri-svg');
+  if(!svg) return;
+  const hl=document.getElementById('tri-hl'), res=document.getElementById('tri-result');
+  const verts={A:[110,20], B:[30,150], C:[190,150]};
+  const opp={A:['B','C'], B:['A','C'], C:['A','B']};
+  svg.querySelectorAll('circle[data-v]').forEach(c=>{
+    c.addEventListener('click',()=>{
+      const v=c.dataset.v; const [p1,p2]=opp[v].map(k=>verts[k]);
+      hl.setAttribute('x1',p1[0]); hl.setAttribute('y1',p1[1]);
+      hl.setAttribute('x2',p2[0]); hl.setAttribute('y2',p2[1]); hl.setAttribute('opacity',1);
+      res.innerHTML = `∠${v}의 대변은 <span class="big">${opp[v].join('')}</span>`;
+    });
+  });
+})();
+
+// c61 대각선 계산기
+(function(){
+  const nI=document.getElementById('dg-n');
+  if(!nI) return;
+  const nVal=document.getElementById('dg-n-val'), poly=document.getElementById('dg-poly'), diagG=document.getElementById('dg-diag'), res=document.getElementById('dg-result');
+  const cx=100, cy=85, r=62;
+  function update(){
+    const n=+nI.value; nVal.textContent=n;
+    let pts=[];
+    for(let i=0;i<n;i++){ const a=-Math.PI/2+i*2*Math.PI/n; pts.push([cx+r*Math.cos(a), cy+r*Math.sin(a)]); }
+    poly.setAttribute('points', pts.map(p=>p.join(',')).join(' '));
+    diagG.innerHTML=''; let dcount=0;
+    for(let i=0;i<n;i++){
+      for(let j=i+1;j<n;j++){
+        if(Math.abs(i-j)===1 || Math.abs(i-j)===n-1) continue;
+        const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1',pts[i][0]); line.setAttribute('y1',pts[i][1]);
+        line.setAttribute('x2',pts[j][0]); line.setAttribute('y2',pts[j][1]);
+        diagG.appendChild(line); dcount++;
+      }
+    }
+    res.innerHTML = `대각선 개수 = n(n-3)/2 = ${n}×(${n}-3)/2 = <span class="big">${dcount}개</span>`;
+  }
+  nI.addEventListener('input',update); update();
+})();
+
+// c62 삼각형 외각
+(function(){
+  const aI=document.getElementById('ext-a');
+  if(!aI) return;
+  const bI=document.getElementById('ext-b'), res=document.getElementById('ext-result');
+  function calc(){
+    const a=+aI.value||0, b=+bI.value||0, c=180-a-b;
+    if(c<=0){ res.innerHTML='삼각형이 만들어지지 않아요! (세 각의 합이 180°를 넘어요)'; return; }
+    res.innerHTML = `∠C = 180° - ${a}° - ${b}° = <span class="big">${c}°</span><br>∠C의 외각 = ${a}+${b} = <span class="big">${a+b}°</span>`;
+  }
+  aI.addEventListener('input',calc); bI.addEventListener('input',calc); calc();
+})();
+
+// c67 정다면체 탐색기
+(function(){
+  const wrap=document.getElementById('plato-btns');
+  if(!wrap) return;
+  const res=document.getElementById('plato-result');
+  const data=[
+    {name:'정사면체', face:'정삼각형', meet:3, F:4, V:4, E:6},
+    {name:'정육면체', face:'정사각형', meet:3, F:6, V:8, E:12},
+    {name:'정팔면체', face:'정삼각형', meet:4, F:8, V:6, E:12},
+    {name:'정십이면체', face:'정오각형', meet:3, F:12, V:20, E:30},
+    {name:'정이십면체', face:'정삼각형', meet:5, F:20, V:12, E:30},
+  ];
+  function show(i){
+    const d=data[i];
+    res.innerHTML = `<b>${d.name}</b> — 면: ${d.face}, 한 꼭짓점에 면 ${d.meet}개<br>면 F=${d.F} · 꼭짓점 V=${d.V} · 모서리 E=${d.E} (F+V-E=${d.F+d.V-d.E})`;
+  }
+  wrap.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      wrap.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); show(+btn.dataset.i);
+    });
+  });
+  show(0);
+})();
+
+// c69 원기둥 계산기
+(function(){
+  const rI=document.getElementById('cyl-r');
+  if(!rI) return;
+  const hI=document.getElementById('cyl-h'), rVal=document.getElementById('cyl-r-val'), hVal=document.getElementById('cyl-h-val'), res=document.getElementById('cyl-result');
+  function calc(){
+    const r=+rI.value, h=+hI.value; rVal.textContent=r; hVal.textContent=h;
+    document.getElementById('cyl-svg').innerHTML = GEO.cyl(r,h);
+    res.innerHTML = `전개도 가로 2πr ≈ ${(2*Math.PI*r).toFixed(2)}, 세로 h = ${h}<br>겉넓이 = 2πr²+2πrh ≈ <span class="big">${(2*Math.PI*r*r+2*Math.PI*r*h).toFixed(2)}</span><br>부피 = πr²h ≈ <span class="big">${(Math.PI*r*r*h).toFixed(2)}</span>`;
+  }
+  rI.addEventListener('input',calc); hI.addEventListener('input',calc); calc();
+})();
+
+// c70 원뿔 계산기
+(function(){
+  const rI=document.getElementById('cone-r');
+  if(!rI) return;
+  const hI=document.getElementById('cone-h'), rVal=document.getElementById('cone-r-val'), hVal=document.getElementById('cone-h-val'), res=document.getElementById('cone-result');
+  function calc(){
+    const r=+rI.value, h=+hI.value; rVal.textContent=r; hVal.textContent=h;
+    const l=Math.sqrt(r*r+h*h);
+    document.getElementById('cone-svg').innerHTML = GEO.cone(r,h);
+    const deg=360*r/l;
+    res.innerHTML = `모선 l = √(r²+h²) ≈ ${l.toFixed(2)}<br>부채꼴 중심각 = 360°×r/l ≈ ${deg.toFixed(1)}°<br>겉넓이 = πr²+πrl ≈ <span class="big">${(Math.PI*r*r+Math.PI*r*l).toFixed(2)}</span><br>부피 = (1/3)πr²h ≈ <span class="big">${((1/3)*Math.PI*r*r*h).toFixed(2)}</span>`;
+  }
+  rI.addEventListener('input',calc); hI.addEventListener('input',calc); calc();
+})();
+
+// c71 구 계산기
+(function(){
+  const rI=document.getElementById('sph-r');
+  if(!rI) return;
+  const rVal=document.getElementById('sph-r-val'), res=document.getElementById('sph-result');
+  function calc(){
+    const r=+rI.value; rVal.textContent=r;
+    document.getElementById('sph-svg').innerHTML = GEO.sph(r);
+    res.innerHTML = `겉넓이 = 4πr² ≈ <span class="big">${(4*Math.PI*r*r).toFixed(2)}</span><br>부피 = (4/3)πr³ ≈ <span class="big">${((4/3)*Math.PI*r*r*r).toFixed(2)}</span>`;
+  }
+  rI.addEventListener('input',calc); calc();
+})();
+
+// c76 히스토그램 빌더
+(function(){
+  const b0=document.getElementById('hist-b0');
+  if(!b0) return;
+  const bars=['hist-b0','hist-b1','hist-b2','hist-b3'].map(id=>document.getElementById(id));
+  const vals=['hist-b0-val','hist-b1-val','hist-b2-val','hist-b3-val'].map(id=>document.getElementById(id));
+  const rects=['hist-r0','hist-r1','hist-r2','hist-r3'].map(id=>document.getElementById(id));
+  const res=document.getElementById('hist-result');
+  function update(){
+    let total=0;
+    bars.forEach((b,i)=>{
+      const v=+b.value; vals[i].textContent=v; total+=v;
+      const h=v*10; rects[i].setAttribute('height',h); rects[i].setAttribute('y',120-h);
+    });
+    res.innerHTML = `전체 도수(학생 수) = <span class="big">${total}명</span>`;
+  }
+  bars.forEach(b=>b.addEventListener('input',update)); update();
+})();
+
+// c78 상대도수 계산기
+(function(){
+  const fI=document.getElementById('rf-f');
+  if(!fI) return;
+  const nI=document.getElementById('rf-n'), bar=document.getElementById('rf-bar'), res=document.getElementById('rf-result');
+  const noteStyle='display:block; margin-top:6px; font-size:12px; color:#B45309;';
+  function num(el){ return el.value===''?NaN:Math.floor(+el.value); }
+  function show(html,w){ bar.setAttribute('width',w); res.innerHTML=html; }
+  // src: 'f' | 'n' | null — 어느 칸을 고치는 중인지. 상대도수는 항상 0 이상 1 이하가 되도록 막는다.
+  function calc(src,forced){
+    let f=num(fI), n=num(nI), note=forced||'';
+    if(isNaN(f)||isNaN(n)){ show('도수와 총 도수를 모두 입력해 주세요.',0); return; }
+    if(f<0){ f=0; fI.value=0; note='도수는 0 이상이어야 해요.'; }
+    if(n<1){ show('<span style="'+noteStyle+'margin:0;">총 도수는 1 이상이어야 해요.</span>',0); return; }
+    if(f>n){
+      if(src==='f'){ f=n; fI.value=n; note='도수는 총 도수보다 클 수 없어서 '+n+'(으)로 맞췄어요. (상대도수는 1을 넘을 수 없어요)'; }
+      else { show('<span style="'+noteStyle+'margin:0;">도수('+f+')가 총 도수('+n+')보다 클 수 없어요. 상대도수는 0 이상 1 이하예요.</span>',0); return; }
+    }
+    fI.max=n;
+    const ratio=f/n;
+    show(`상대도수 = ${f} ÷ ${n} = <span class="big">${ratio.toFixed(3)}</span> (${(ratio*100).toFixed(1)}%)`+(note?'<span style="'+noteStyle+'">'+note+'</span>':''), Math.max(0,Math.min(240,240*ratio)));
+  }
+  // 입력을 마치면(포커스 이동/Enter) 값을 올바른 범위로 정리
+  function finalize(src){
+    let f=num(fI), n=num(nI), note='';
+    if(isNaN(f)||f<0) f=0;
+    if(isNaN(n)||n<1) n=Math.max(1,f);
+    if(f>n){
+      if(src==='n'){ n=f; note='총 도수는 도수보다 작을 수 없어서 '+f+'(으)로 맞췄어요.'; }
+      else { f=n; note='도수는 총 도수보다 클 수 없어서 '+n+'(으)로 맞췄어요.'; }
+    }
+    fI.value=f; nI.value=n;
+    calc(null,note);
+  }
+  fI.addEventListener('input',()=>calc('f')); nI.addEventListener('input',()=>calc('n'));
+  fI.addEventListener('change',()=>finalize('f')); nI.addEventListener('change',()=>finalize('n'));
+  calc(null);
+})();
+</script>
+
+</body>
+</html>
